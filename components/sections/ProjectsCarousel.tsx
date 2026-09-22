@@ -24,7 +24,7 @@ import {
   track,
 } from "@/lib/analytics/events";
 
-import type { ProjectCoverData } from "@/lib/data/projects";
+import type { Project } from "@/lib/data/projects";
 
 import styles from "./ProjectsCarousel.module.css";
 
@@ -34,8 +34,8 @@ export type CarouselProject = {
   category: string;
   type: string;
   summary: string;
-  tags: string[];
-  cover: ProjectCoverData;
+  tags: readonly string[];
+  cover: Project["cover"];
 };
 
 type Interaction =
@@ -73,9 +73,12 @@ export function ProjectsCarousel({
   const [active, setActive] = useState(0);
 
   const activeRef = useRef(0);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const hintRef = useRef<HTMLSpanElement>(null);
+  const viewportRef =
+    useRef<HTMLDivElement>(null);
+  const trackRef =
+    useRef<HTMLDivElement>(null);
+  const hintRef =
+    useRef<HTMLSpanElement>(null);
 
   const seenInitialView = useRef(false);
   const suppressClick = useRef(false);
@@ -83,7 +86,10 @@ export function ProjectsCarousel({
   const drag = useRef<DragState | null>(null);
 
   const goTo = useCallback(
-    (index: number, interaction: Interaction) => {
+    (
+      index: number,
+      interaction: Interaction,
+    ) => {
       if (total === 0) {
         return;
       }
@@ -123,39 +129,48 @@ export function ProjectsCarousel({
     if (
       !element ||
       total === 0 ||
-      typeof IntersectionObserver === "undefined"
+      typeof IntersectionObserver ===
+        "undefined"
     ) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (
-          entries.some((entry) => entry.isIntersecting) &&
-          !seenInitialView.current
-        ) {
-          seenInitialView.current = true;
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          if (
+            entries.some(
+              (entry) =>
+                entry.isIntersecting,
+            ) &&
+            !seenInitialView.current
+          ) {
+            seenInitialView.current =
+              true;
 
-          const project = projects[activeRef.current];
+            const project =
+              projects[
+                activeRef.current
+              ];
 
-          if (project) {
-            track(
-              "view_project",
-              projectParams(project, {
-                project_position:
-                  activeRef.current + 1,
-                interaction: "auto",
-              }),
-            );
+            if (project) {
+              track(
+                "view_project",
+                projectParams(project, {
+                  project_position:
+                    activeRef.current + 1,
+                  interaction: "auto",
+                }),
+              );
+            }
+
+            observer.disconnect();
           }
-
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.5,
-      },
-    );
+        },
+        {
+          threshold: 0.5,
+        },
+      );
 
     observer.observe(element);
 
@@ -171,7 +186,11 @@ export function ProjectsCarousel({
       return;
     }
 
-    element.style.setProperty("--drag", "0px");
+    element.style.setProperty(
+      "--drag",
+      "0px",
+    );
+
     delete element.dataset.dragging;
   }, []);
 
@@ -212,15 +231,27 @@ export function ProjectsCarousel({
       const overControl =
         target instanceof HTMLElement
           ? Boolean(
-              target.closest("a, button"),
+              target.closest(
+                "a, button",
+              ),
             )
           : false;
 
       hintRef.current.style.transform =
-        `translate3d(${event.clientX - bounds.left + 16}px, ${event.clientY - bounds.top + 16}px, 0)`;
+        `translate3d(${
+          event.clientX -
+          bounds.left +
+          16
+        }px, ${
+          event.clientY -
+          bounds.top +
+          16
+        }px, 0)`;
 
       hintRef.current.dataset.visible =
-        overControl ? "false" : "true";
+        overControl
+          ? "false"
+          : "true";
     }
 
     const state = drag.current;
@@ -232,8 +263,10 @@ export function ProjectsCarousel({
       return;
     }
 
-    const dx = event.clientX - state.x;
-    const dy = event.clientY - state.y;
+    const dx =
+      event.clientX - state.x;
+    const dy =
+      event.clientY - state.y;
 
     if (!state.decided) {
       if (
@@ -244,6 +277,7 @@ export function ProjectsCarousel({
       }
 
       state.decided = true;
+
       state.horizontal =
         Math.abs(dx) > Math.abs(dy);
 
@@ -253,9 +287,8 @@ export function ProjectsCarousel({
             event.pointerId,
           );
         } catch {
-          // Pointer capture is not available in every
-          // browser/context. The interaction can continue
-          // without it.
+          // Pointer capture is not available
+          // in every browser/context.
         }
 
         if (trackRef.current) {
@@ -272,10 +305,12 @@ export function ProjectsCarousel({
     state.dx = dx;
 
     const atStart =
-      activeRef.current === 0 && dx > 0;
+      activeRef.current === 0 &&
+      dx > 0;
 
     const atEnd =
-      activeRef.current === total - 1 &&
+      activeRef.current ===
+        total - 1 &&
       dx < 0;
 
     const displacement =
@@ -309,7 +344,8 @@ export function ProjectsCarousel({
 
     const elapsed = Math.max(
       1,
-      performance.now() - state.startedAt,
+      performance.now() -
+        state.startedAt,
     );
 
     const velocity =
@@ -346,7 +382,8 @@ export function ProjectsCarousel({
     event: KeyboardEvent<HTMLDivElement>,
   ) => {
     if (
-      event.target !== event.currentTarget ||
+      event.target !==
+        event.currentTarget ||
       total === 0
     ) {
       return;
@@ -355,31 +392,39 @@ export function ProjectsCarousel({
     switch (event.key) {
       case "ArrowRight":
         event.preventDefault();
+
         goTo(
           activeRef.current + 1,
           "keyboard",
         );
+
         break;
 
       case "ArrowLeft":
         event.preventDefault();
+
         goTo(
           activeRef.current - 1,
           "keyboard",
         );
+
         break;
 
       case "Home":
         event.preventDefault();
+
         goTo(0, "keyboard");
+
         break;
 
       case "End":
         event.preventDefault();
+
         goTo(
           total - 1,
           "keyboard",
         );
+
         break;
 
       default:
@@ -397,16 +442,22 @@ export function ProjectsCarousel({
 
   return (
     <div className={styles.wrap}>
-      <div className={`container ${styles.bar}`}>
+      <div
+        className={`container ${styles.bar}`}
+      >
         <p
           className={styles.counter}
           aria-hidden="true"
         >
-          <span className={styles.current}>
+          <span
+            className={styles.current}
+          >
             {pad(active + 1)}
           </span>
 
-          <span className={styles.total}>
+          <span
+            className={styles.total}
+          >
             {" "}
             / {pad(total)}
           </span>
@@ -440,7 +491,9 @@ export function ProjectsCarousel({
                 "arrow",
               )
             }
-            disabled={active === total - 1}
+            disabled={
+              active === total - 1
+            }
             aria-label="Próximo projeto"
           >
             <ArrowRight
@@ -486,109 +539,148 @@ export function ProjectsCarousel({
           className={styles.track}
           style={trackStyle}
         >
-          {projects.map((project, index) => {
-            const isActive = index === active;
+          {projects.map(
+            (project, index) => {
+              const isActive =
+                index === active;
 
-            return (
-              <div
-                key={project.slug}
-                className={styles.slide}
-                data-active={isActive}
-              >
-                <article
-                  className={styles.card}
-                  inert={!isActive}
-                  aria-label={`${project.name} — projeto ${index + 1} de ${total}`}
+              return (
+                <div
+                  key={project.slug}
+                  className={
+                    styles.slide
+                  }
+                  data-active={
+                    isActive
+                  }
                 >
-                  <div className={styles.media}>
-                    <ProjectCover
-                      project={project}
-                      sizes="(min-width: 1200px) 1100px, 84vw"
-                      priority={index === 0}
-                    />
-                  </div>
-
-                  <div className={styles.info}>
-                    <p className={styles.index}>
-                      {pad(index + 1)} /{" "}
-                      {pad(total)}
-                    </p>
-
-                    <h3 className={styles.name}>
-                      {project.name}
-                    </h3>
-
-                    <p
-                      className={
-                        styles.category
-                      }
-                    >
-                      {project.category}
-                    </p>
-
-                    <p
-                      className={
-                        styles.summary
-                      }
-                    >
-                      {project.summary}
-                    </p>
-
-                    <ul
-                      className={styles.tags}
-                      aria-label="Características do projeto"
-                    >
-                      {project.tags.map(
-                        (tag) => (
-                          <li key={tag}>
-                            {tag}
-                          </li>
-                        ),
-                      )}
-                    </ul>
-
-                    <TrackedLink
-                      href={`/projetos/${project.slug}`}
-                      className={styles.cta}
-                      event="click_project"
-                      eventParams={{
-                        ...projectParams(
-                          project,
-                        ),
-                        ...ctaParams(
-                          "carousel",
-                          "Ver projeto",
-                        ),
-                        project_position:
-                          index + 1,
-                      }}
-                    >
-                      Ver projeto
-
-                      <ArrowUpRight
-                        size={18}
-                        aria-hidden="true"
-                      />
-                    </TrackedLink>
-                  </div>
-                </article>
-
-                {!isActive ? (
-                  <button
-                    type="button"
-                    className={styles.peek}
-                    aria-label={`Ver o projeto ${project.name}`}
-                    onClick={() =>
-                      goTo(
-                        index,
-                        "peek",
-                      )
+                  <article
+                    className={
+                      styles.card
                     }
-                  />
-                ) : null}
-              </div>
-            );
-          })}
+                    inert={!isActive}
+                    aria-label={`${project.name} — projeto ${
+                      index + 1
+                    } de ${total}`}
+                  >
+                    <div
+                      className={
+                        styles.media
+                      }
+                    >
+                      <ProjectCover
+                        project={
+                          project
+                        }
+                        sizes="(min-width: 1200px) 1100px, 84vw"
+                        priority={
+                          index === 0
+                        }
+                      />
+                    </div>
+
+                    <div
+                      className={
+                        styles.info
+                      }
+                    >
+                      <p
+                        className={
+                          styles.index
+                        }
+                      >
+                        {pad(index + 1)}{" "}
+                        /{" "}
+                        {pad(total)}
+                      </p>
+
+                      <h3
+                        className={
+                          styles.name
+                        }
+                      >
+                        {project.name}
+                      </h3>
+
+                      <p
+                        className={
+                          styles.category
+                        }
+                      >
+                        {project.category}
+                      </p>
+
+                      <p
+                        className={
+                          styles.summary
+                        }
+                      >
+                        {project.summary}
+                      </p>
+
+                      <ul
+                        className={
+                          styles.tags
+                        }
+                        aria-label="Características do projeto"
+                      >
+                        {project.tags.map(
+                          (tag) => (
+                            <li key={tag}>
+                              {tag}
+                            </li>
+                          ),
+                        )}
+                      </ul>
+
+                      <TrackedLink
+                        href={`/projetos/${project.slug}`}
+                        className={
+                          styles.cta
+                        }
+                        event="click_project"
+                        eventParams={{
+                          ...projectParams(
+                            project,
+                          ),
+                          ...ctaParams(
+                            "carousel",
+                            "Ver projeto",
+                          ),
+                          project_position:
+                            index +
+                            1,
+                        }}
+                      >
+                        Ver projeto
+
+                        <ArrowUpRight
+                          size={18}
+                          aria-hidden="true"
+                        />
+                      </TrackedLink>
+                    </div>
+                  </article>
+
+                  {!isActive ? (
+                    <button
+                      type="button"
+                      className={
+                        styles.peek
+                      }
+                      aria-label={`Ver o projeto ${project.name}`}
+                      onClick={() =>
+                        goTo(
+                          index,
+                          "peek",
+                        )
+                      }
+                    />
+                  ) : null}
+                </div>
+              );
+            },
+          )}
         </div>
 
         <span
@@ -606,25 +698,27 @@ export function ProjectsCarousel({
         role="group"
         aria-label="Escolher projeto"
       >
-        {projects.map((project, index) => (
-          <button
-            key={project.slug}
-            type="button"
-            className={styles.dot}
-            aria-label={`Ir para o projeto ${project.name}`}
-            aria-current={
-              index === active
-                ? "true"
-                : undefined
-            }
-            onClick={() =>
-              goTo(
-                index,
-                "indicator",
-              )
-            }
-          />
-        ))}
+        {projects.map(
+          (project, index) => (
+            <button
+              key={project.slug}
+              type="button"
+              className={styles.dot}
+              aria-label={`Ir para o projeto ${project.name}`}
+              aria-current={
+                index === active
+                  ? "true"
+                  : undefined
+              }
+              onClick={() =>
+                goTo(
+                  index,
+                  "indicator",
+                )
+              }
+            />
+          ),
+        )}
       </div>
 
       <p

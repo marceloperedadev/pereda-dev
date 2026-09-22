@@ -1,11 +1,11 @@
-/**
- * Dados estruturados (JSON-LD) do portfólio.
+﻿/**
+ * Dados estruturados (JSON-LD) do portfÃ³lio.
  *
  * Este arquivo centraliza os schemas utilizados pelo site.
  *
  * Regra principal:
- * o JSON-LD deve representar informações que também possam
- * ser encontradas e compreendidas pelo usuário na página.
+ * o JSON-LD deve representar informaÃ§Ãµes que tambÃ©m possam
+ * ser encontradas e compreendidas pelo usuÃ¡rio na pÃ¡gina.
  */
 
 import {
@@ -38,7 +38,7 @@ export function personSchema() {
     jobTitle: siteConfig.role,
 
     description:
-      "Desenvolvedor Full Stack em Taubaté, SP. Desenvolve sites, lojas virtuais e sistemas web para empresas, negócios locais, profissionais e empreendedores.",
+      "Desenvolvedor Full Stack em TaubatÃ©, SP. Desenvolve sites, lojas virtuais e sistemas web para empresas, negÃ³cios locais, profissionais e empreendedores.",
 
     url: siteConfig.url,
 
@@ -84,7 +84,7 @@ export function websiteSchema() {
 
     url: siteConfig.url,
 
-    name: `${siteConfig.name} — ${siteConfig.role}`,
+    name: `${siteConfig.name} â€” ${siteConfig.role}`,
 
     inLanguage: siteConfig.lang,
 
@@ -109,7 +109,7 @@ export function homeGraph() {
         name: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
 
         description:
-          "Desenvolvedor Full Stack em Taubaté, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais.",
+          "Desenvolvedor Full Stack em TaubatÃ©, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negÃ³cios locais e profissionais.",
 
         inLanguage: siteConfig.lang,
 
@@ -213,7 +213,7 @@ export function projectGraph(
         headline: project.h1,
 
         description:
-          project.metaDescription,
+          project.description,
 
         url,
 
@@ -258,7 +258,7 @@ export function projectGraph(
         name: project.h1,
 
         description:
-          project.metaDescription,
+          project.description,
 
         inLanguage: siteConfig.lang,
 
@@ -282,7 +282,7 @@ export function projectGraph(
       {
         ...breadcrumbSchema([
           {
-            name: "Início",
+            name: "InÃ­cio",
             path: "/",
           },
           {

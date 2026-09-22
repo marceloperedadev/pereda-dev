@@ -13,15 +13,17 @@ import {
 import styles from "./Projects.module.css";
 
 export function Projects() {
-  const items: CarouselProject[] = projects.map((project) => ({
-    slug: project.slug,
-    name: project.name,
-    category: project.category,
-    type: project.type,
-    summary: project.summary,
-    tags: project.tags,
-    cover: project.cover,
-  }));
+  const items: CarouselProject[] = projects.map(
+    (project) => ({
+      slug: project.slug,
+      name: project.name,
+      category: project.category,
+      type: project.type,
+      summary: project.shortDescription,
+      tags: project.tags,
+      cover: project.cover,
+    }),
+  );
 
   return (
     <section
@@ -36,7 +38,10 @@ export function Projects() {
         />
 
         <header className={styles.head}>
-          <h2 id="projects-title" className={styles.title}>
+          <h2
+            id="projects-title"
+            className={styles.title}
+          >
             {projectsSection.title}
           </h2>
 
@@ -48,7 +53,9 @@ export function Projects() {
 
       <ProjectsCarousel projects={items} />
 
-      <div className={`container ${styles.foot}`}>
+      <div
+        className={`container ${styles.foot}`}
+      >
         <ButtonLink
           href="/projetos"
           variant="text"

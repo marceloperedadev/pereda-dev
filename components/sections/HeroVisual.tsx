@@ -15,7 +15,7 @@ import {
   projectParams,
 } from "@/lib/analytics/events";
 
-import type { ProjectCoverData } from "@/lib/data/projects";
+import type { Project } from "@/lib/data/projects";
 
 import styles from "./HeroVisual.module.css";
 
@@ -24,21 +24,25 @@ type HeroVisualStyle = CSSProperties & {
   "--py": number;
 };
 
+type LeadProject = Pick<
+  Project,
+  "name" | "slug" | "category" | "type" | "cover"
+>;
+
+type SecondaryProject = Pick<
+  Project,
+  "name" | "cover"
+>;
+
 type Props = {
-  lead: {
-    name: string;
-    slug: string;
-    category: string;
-    type: string;
-    cover: ProjectCoverData;
-  };
-  second: {
-    name: string;
-    cover: ProjectCoverData;
-  };
+  lead: LeadProject;
+  second: SecondaryProject;
 };
 
-export function HeroVisual({ lead, second }: Props) {
+export function HeroVisual({
+  lead,
+  second,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,10 +85,16 @@ export function HeroVisual({ lead, second }: Props) {
       );
     };
 
-    const handlePointerMove = (event: PointerEvent) => {
-      const bounds = element.getBoundingClientRect();
+    const handlePointerMove = (
+      event: PointerEvent,
+    ) => {
+      const bounds =
+        element.getBoundingClientRect();
 
-      if (bounds.width === 0 || bounds.height === 0) {
+      if (
+        bounds.width === 0 ||
+        bounds.height === 0
+      ) {
         return;
       }
 
@@ -92,7 +102,10 @@ export function HeroVisual({ lead, second }: Props) {
         -1,
         Math.min(
           1,
-          ((event.clientX - bounds.left) / bounds.width - 0.5) * 2,
+          ((event.clientX - bounds.left) /
+            bounds.width -
+            0.5) *
+            2,
         ),
       );
 
@@ -100,14 +113,18 @@ export function HeroVisual({ lead, second }: Props) {
         -1,
         Math.min(
           1,
-          ((event.clientY - bounds.top) / bounds.height - 0.5) * 2,
+          ((event.clientY - bounds.top) /
+            bounds.height -
+            0.5) *
+            2,
         ),
       );
 
       if (frameId === null) {
-        frameId = window.requestAnimationFrame(
-          applyPosition,
-        );
+        frameId =
+          window.requestAnimationFrame(
+            applyPosition,
+          );
       }
     };
 
@@ -116,9 +133,10 @@ export function HeroVisual({ lead, second }: Props) {
       pointerY = 0;
 
       if (frameId === null) {
-        frameId = window.requestAnimationFrame(
-          applyPosition,
-        );
+        frameId =
+          window.requestAnimationFrame(
+            applyPosition,
+          );
       }
     };
 
@@ -186,9 +204,13 @@ export function HeroVisual({ lead, second }: Props) {
           Projeto em foco
         </p>
 
-        <p className={styles.name}>{lead.name}</p>
+        <p className={styles.name}>
+          {lead.name}
+        </p>
 
-        <p className={styles.cat}>{lead.category}</p>
+        <p className={styles.cat}>
+          {lead.category}
+        </p>
 
         <TrackedLink
           href={`/projetos/${lead.slug}`}
@@ -203,6 +225,7 @@ export function HeroVisual({ lead, second }: Props) {
           }}
         >
           Ver projeto
+
           <ArrowUpRight
             size={16}
             aria-hidden="true"

@@ -1,25 +1,26 @@
-type JsonLdValue =
+﻿
+import type { ReactElement } from "react";
+
+type JsonLdPrimitive =
   | string
   | number
   | boolean
-  | null
+  | null;
+
+type JsonLdValue =
+  | JsonLdPrimitive
   | JsonLdValue[]
   | {
-      [key: string]: JsonLdValue;
+      [key: string]: JsonLdValue | undefined;
     };
 
-type Props = {
+type Props = Readonly<{
   data: JsonLdValue;
-};
+}>;
 
-/**
- * Insere dados estruturados JSON-LD na página.
- *
- * O caractere "<" é escapado antes da inserção no script
- * para evitar que o conteúdo possa ser interpretado como
- * uma tag HTML de fechamento.
- */
-export function JsonLd({ data }: Props) {
+export function JsonLd({
+  data,
+}: Props): ReactElement {
   const json = JSON.stringify(data).replace(
     /</g,
     "\\u003c",
