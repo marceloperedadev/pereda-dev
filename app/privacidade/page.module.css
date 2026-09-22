@@ -1,0 +1,20 @@
+.prose {
+  display: grid;
+  gap: 40px;
+  max-width: 46rem;
+  padding-bottom: clamp(72px, 10vw, 144px);
+}
+.prose h2 {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+.prose p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.prose a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

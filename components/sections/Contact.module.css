@@ -1,0 +1,87 @@
+.section {
+  padding-block: clamp(72px, 11vw, 168px);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+.title {
+  font-size: clamp(2.4rem, 6.4vw, 6rem);
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  line-height: 0.98;
+  max-width: 16ch;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 48px;
+  margin-top: clamp(36px, 5vw, 72px);
+}
+.copy {
+  grid-column: 1 / 7;
+}
+.text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  line-height: 1.4;
+  max-width: 30rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.channels {
+  grid-column: 8 / -1;
+  display: grid;
+  gap: 0;
+  align-self: end;
+}
+.channels > div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 16px;
+  padding-block: 14px;
+  border-top: 1px solid var(--line);
+}
+.channels > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.channels dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.channels a {
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+  transition: border-color 0.2s var(--ease);
+}
+.channels a:hover {
+  border-bottom-color: var(--signal);
+}
+@media (max-width: 900px) {
+  .copy,
+  .channels {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 420px) {
+  .channels > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

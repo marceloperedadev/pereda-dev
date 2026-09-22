@@ -1,0 +1,30 @@
+.section {
+  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+}
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 16px;
+  margin-bottom: clamp(24px, 4vw, 48px);
+}
+.title {
+  grid-column: 1 / 8;
+  font-size: clamp(2.4rem, 5.6vw, 5rem);
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+.lead {
+  grid-column: 9 / -1;
+  align-self: end;
+  color: var(--muted);
+}
+.foot {
+  margin-top: clamp(20px, 3vw, 36px);
+}
+@media (max-width: 900px) {
+  .title,
+  .lead {
+    grid-column: 1 / -1;
+  }
+}

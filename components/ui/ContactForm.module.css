@@ -1,0 +1,65 @@
+.form {
+  display: grid;
+  gap: 20px;
+  max-width: 520px;
+}
+.field {
+  display: grid;
+  gap: 8px;
+}
+.field label {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.opt {
+  opacity: 0.8;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  transition: border-color 0.2s var(--ease);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: rgba(245, 242, 247, 0.4);
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-color: var(--signal);
+}
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 1.5rem;
+  border: 0;
+  border-radius: 2px;
+  background: var(--signal);
+  color: var(--bg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease);
+}
+.submit:hover {
+  background: var(--text);
+}
+.note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}

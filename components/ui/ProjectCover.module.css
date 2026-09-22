@@ -1,0 +1,101 @@
+.cover {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.img {
+  object-fit: cover;
+}
+.art {
+  container-type: inline-size;
+  background: var(--bg-c);
+  color: var(--fg-c);
+}
+.word {
+  position: absolute;
+  left: 6cqw;
+  bottom: 5cqw;
+  max-width: 88%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12cqw;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  z-index: 1;
+}
+.art::before,
+.art::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+/* arc: círculos concêntricos + ponto de sinal */
+.arc::before {
+  width: 110cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  right: -36cqw;
+  top: -44cqw;
+  border: 1px solid color-mix(in srgb, var(--fg-c) 38%, transparent);
+  box-shadow: 0 0 0 9cqw transparent, inset 0 0 0 9cqw color-mix(in srgb, var(--fg-c) 0%, transparent);
+}
+.arc::after {
+  width: 5cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ac-c);
+  right: 12cqw;
+  top: 9cqw;
+}
+
+/* grid: malha fina + quadrado de sinal */
+.grid::before {
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--fg-c) 14%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--fg-c) 14%, transparent) 1px, transparent 1px);
+  background-size: 12.5cqw 12.5cqw;
+}
+.grid::after {
+  width: 6cqw;
+  aspect-ratio: 1;
+  background: var(--ac-c);
+  right: 12.5cqw;
+  top: 12.5cqw;
+}
+
+/* stripes: barras verticais + bloco de acento */
+.stripes::before {
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--fg-c) 16%, transparent) 0 1px,
+    transparent 1px 8cqw
+  );
+}
+.stripes::after {
+  width: 24cqw;
+  height: 34cqw;
+  background: var(--ac-c);
+  right: 8cqw;
+  top: 0;
+}
+
+/* block: retângulos deslocados */
+.block::before {
+  width: 46cqw;
+  height: 30cqw;
+  right: 9cqw;
+  top: 9cqw;
+  border: 1px solid color-mix(in srgb, var(--fg-c) 40%, transparent);
+}
+.block::after {
+  width: 46cqw;
+  height: 30cqw;
+  right: 4cqw;
+  top: 14cqw;
+  background: color-mix(in srgb, var(--ac-c) 92%, transparent);
+  mix-blend-mode: normal;
+  opacity: 0.95;
+}

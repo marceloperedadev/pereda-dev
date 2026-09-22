@@ -1,0 +1,64 @@
+.section {
+  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 40px;
+  align-items: center;
+}
+.portrait {
+  grid-column: 1 / 6;
+}
+.copy {
+  grid-column: 7 / -1;
+}
+.title {
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+.role {
+  margin-top: 10px;
+  color: var(--muted);
+}
+.paras {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+  max-width: 34rem;
+}
+.paras p:first-child {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+  line-height: 1.4;
+}
+.paras p:not(:first-child) {
+  color: var(--muted);
+}
+.likes {
+  list-style: none;
+  margin-block: 28px 20px;
+  max-width: 34rem;
+}
+.likes li {
+  padding-block: 12px;
+  border-top: 1px solid var(--line);
+}
+.likes li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .portrait {
+    grid-column: 1 / 9;
+  }
+  .copy {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 520px) {
+  .portrait {
+    grid-column: 1 / -1;
+  }
+}

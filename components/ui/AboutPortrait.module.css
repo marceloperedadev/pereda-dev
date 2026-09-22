@@ -1,0 +1,39 @@
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 18% 100%, 0 82%);
+  background: var(--purple-deep);
+}
+.photo {
+  object-fit: cover;
+}
+.mono {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  background:
+    linear-gradient(rgba(245, 242, 247, 0.08) 1px, transparent 1px) 0 0 / 100% 12.5cqw,
+    var(--purple-deep);
+}
+.letters {
+  position: absolute;
+  left: 8cqw;
+  bottom: 12cqw;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 46cqw;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  color: var(--text);
+}
+.signal {
+  position: absolute;
+  right: 10cqw;
+  top: 10cqw;
+  width: 5cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--signal);
+}

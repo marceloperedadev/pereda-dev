@@ -1,0 +1,308 @@
+/**
+ * Dados estruturados (JSON-LD) do portfólio.
+ *
+ * Este arquivo centraliza os schemas utilizados pelo site.
+ *
+ * Regra principal:
+ * o JSON-LD deve representar informações que também possam
+ * ser encontradas e compreendidas pelo usuário na página.
+ */
+
+import {
+  absoluteUrl,
+  siteConfig,
+  socialLinks,
+} from "@/lib/config/site";
+
+import type { Project } from "@/lib/data/projects";
+
+import { projectPath } from "@/lib/data/projects";
+
+const personId = () =>
+  `${siteConfig.url}/#person`;
+
+const websiteId = () =>
+  `${siteConfig.url}/#website`;
+
+const homeId = () =>
+  `${siteConfig.url}/#home`;
+
+export function personSchema() {
+  return {
+    "@type": "Person",
+
+    "@id": personId(),
+
+    name: siteConfig.name,
+
+    jobTitle: siteConfig.role,
+
+    description:
+      "Desenvolvedor Full Stack em Taubaté, SP. Desenvolve sites, lojas virtuais e sistemas web para empresas, negócios locais, profissionais e empreendedores.",
+
+    url: siteConfig.url,
+
+    email: `mailto:${siteConfig.email}`,
+
+    telephone: siteConfig.telephone,
+
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: siteConfig.city,
+      addressRegion: siteConfig.region,
+      addressCountry: siteConfig.country,
+    },
+
+    knowsAbout: [
+      "Desenvolvimento web",
+      "E-commerce",
+      "Sistemas web",
+      "Next.js",
+      "React",
+      "TypeScript",
+    ],
+
+    sameAs: socialLinks().map(
+      (social) => social.href,
+    ),
+
+    ...(siteConfig.photo
+      ? {
+          image: absoluteUrl(
+            siteConfig.photo,
+          ),
+        }
+      : {}),
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@type": "WebSite",
+
+    "@id": websiteId(),
+
+    url: siteConfig.url,
+
+    name: `${siteConfig.name} — ${siteConfig.role}`,
+
+    inLanguage: siteConfig.lang,
+
+    publisher: {
+      "@id": personId(),
+    },
+  };
+}
+
+export function homeGraph() {
+  return {
+    "@context": "https://schema.org",
+
+    "@graph": [
+      {
+        "@type": "WebPage",
+
+        "@id": homeId(),
+
+        url: siteConfig.url,
+
+        name: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
+
+        description:
+          "Desenvolvedor Full Stack em Taubaté, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais.",
+
+        inLanguage: siteConfig.lang,
+
+        isPartOf: {
+          "@id": websiteId(),
+        },
+
+        about: {
+          "@id": personId(),
+        },
+
+        mainEntity: {
+          "@id": personId(),
+        },
+      },
+
+      websiteSchema(),
+
+      personSchema(),
+    ],
+  };
+}
+
+export function aboutGraph() {
+  const url = absoluteUrl("/sobre");
+
+  return {
+    "@context": "https://schema.org",
+
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+
+        "@id": `${url}#page`,
+
+        url,
+
+        name: `Sobre ${siteConfig.name}`,
+
+        inLanguage: siteConfig.lang,
+
+        isPartOf: {
+          "@id": websiteId(),
+        },
+
+        mainEntity: {
+          "@id": personId(),
+        },
+      },
+
+      personSchema(),
+
+      websiteSchema(),
+    ],
+  };
+}
+
+export function breadcrumbSchema(
+  items: {
+    name: string;
+    path: string;
+  }[],
+) {
+  return {
+    "@type": "BreadcrumbList",
+
+    itemListElement: items.map(
+      (item, index) => ({
+        "@type": "ListItem",
+
+        position: index + 1,
+
+        name: item.name,
+
+        item: absoluteUrl(
+          item.path,
+        ),
+      }),
+    ),
+  };
+}
+
+export function projectGraph(
+  project: Project,
+) {
+  const url = absoluteUrl(
+    projectPath(project.slug),
+  );
+
+  return {
+    "@context": "https://schema.org",
+
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+
+        "@id": `${url}#project`,
+
+        name: project.name,
+
+        headline: project.h1,
+
+        description:
+          project.metaDescription,
+
+        url,
+
+        inLanguage: siteConfig.lang,
+
+        genre: project.type,
+
+        keywords:
+          project.tags.join(", "),
+
+        dateModified:
+          project.updatedAt,
+
+        author: {
+          "@id": personId(),
+        },
+
+        creator: {
+          "@id": personId(),
+        },
+
+        ...(project.cover.src
+          ? {
+              image: absoluteUrl(
+                project.cover.src,
+              ),
+            }
+          : {}),
+
+        mainEntityOfPage: {
+          "@id": `${url}#page`,
+        },
+      },
+
+      {
+        "@type": "WebPage",
+
+        "@id": `${url}#page`,
+
+        url,
+
+        name: project.h1,
+
+        description:
+          project.metaDescription,
+
+        inLanguage: siteConfig.lang,
+
+        isPartOf: {
+          "@id": websiteId(),
+        },
+
+        about: {
+          "@id": `${url}#project`,
+        },
+
+        mainEntity: {
+          "@id": `${url}#project`,
+        },
+
+        breadcrumb: {
+          "@id": `${url}#breadcrumb`,
+        },
+      },
+
+      {
+        ...breadcrumbSchema([
+          {
+            name: "Início",
+            path: "/",
+          },
+          {
+            name: "Projetos",
+            path: "/projetos",
+          },
+          {
+            name: project.name,
+            path: projectPath(
+              project.slug,
+            ),
+          },
+        ]),
+
+        "@id": `${url}#breadcrumb`,
+      },
+
+      personSchema(),
+
+      websiteSchema(),
+    ],
+  };
+}
