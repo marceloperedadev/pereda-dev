@@ -15,18 +15,18 @@ export const metadata = buildMetadata({
 
 export default function ProjetosPage() {
   return (
-    <main className={styles.page}>
-      <section className={styles.hero} aria-labelledby="projetos-title">
-        <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>PROJETOS</p>
+    <main>
+      <section aria-labelledby="projetos-title">
+        <div className="container">
+          <p className={styles.index}>PROJETOS</p>
 
-          <h1 id="projetos-title" className={styles.title}>
+          <h1 id="projetos-title" className={styles.name}>
             Projetos que mostram
             <br />
             o que eu construo.
           </h1>
 
-          <p className={styles.intro}>
+          <p className={styles.summary}>
             Uma seleção de trabalhos desenvolvidos para diferentes tipos de
             negócios, com foco em experiência, estrutura, performance e
             funcionamento real.
@@ -34,72 +34,75 @@ export default function ProjetosPage() {
         </div>
       </section>
 
-      <section
-        className={styles.projects}
-        aria-labelledby="projetos-lista-title"
-      >
-        <div className={styles.projectsInner}>
-          <div className={styles.sectionHeader}>
-            <p className={styles.eyebrow}>SELEÇÃO</p>
+      <section aria-labelledby="projetos-lista-title">
+        <div className="container">
+          <header>
+            <p className={styles.index}>SELEÇÃO</p>
 
-            <h2 id="projetos-lista-title" className={styles.sectionTitle}>
+            <h2 id="projetos-lista-title" className={styles.category}>
               Projetos em movimento
             </h2>
-          </div>
+          </header>
 
-          <div className={styles.grid}>
-            {projects.map((p, index) => (
-              <article className={styles.card} key={p.slug}>
+          <div className={styles.list}>
+            {projects.map((project, index) => (
+              <article
+                key={project.slug}
+                className={styles.item}
+                data-flip={index % 2 === 1 ? "true" : undefined}
+              >
                 <Link
-                  href={projectPath(p.slug)}
-                  className={styles.coverLink}
-                  aria-label={`Ver detalhes do projeto ${p.name}`}
+                  href={projectPath(project.slug)}
+                  className={styles.media}
+                  aria-label={`Ver detalhes do projeto ${project.name}`}
                 >
                   <ProjectCover
-                    project={p}
-                    sizes="(min-width: 1100px) 50vw, (min-width: 700px) 50vw, 100vw"
+                    project={project}
+                    sizes="(min-width: 901px) 58vw, 100vw"
                     priority={index < 2}
                   />
                 </Link>
 
-                <div className={styles.content}>
-                  <div className={styles.meta}>
-                    <span>{p.type}</span>
-                    <span aria-hidden="true">/</span>
-                    <span>{p.category}</span>
-                  </div>
+                <div className={styles.body}>
+                  <span className={styles.index}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                  <h2 className={styles.name}>{p.name}</h2>
+                  <h3 className={styles.name}>{project.name}</h3>
 
-                  <p className={styles.category}>{p.category}</p>
+                  <p className={styles.category}>
+                    {project.type} / {project.category}
+                  </p>
 
-                  <p className={styles.summary}>{p.shortDescription}</p>
+                  <p className={styles.summary}>
+                    {project.shortDescription}
+                  </p>
 
                   <ul
                     className={styles.tags}
-                    aria-label={`Tecnologias e características do projeto ${p.name}`}
+                    aria-label={`Tecnologias e características do projeto ${project.name}`}
                   >
-                    {p.tags.map((tag) => (
+                    {project.tags.map((tag) => (
                       <li key={tag}>{tag}</li>
                     ))}
                   </ul>
 
-                  <div className={styles.actions}>
+                  <div>
                     <Link
-                      href={projectPath(p.slug)}
-                      className={styles.detailsLink}
+                      href={projectPath(project.slug)}
+                      className={styles.cta}
                     >
                       Ver projeto
                       <span aria-hidden="true">↗</span>
                     </Link>
 
-                    {p.url ? (
+                    {project.url ? (
                       <a
-                        href={p.url}
-                        className={styles.externalLink}
+                        href={project.url}
+                        className={styles.cta}
                         target="_blank"
                         rel="noreferrer"
-                        aria-label={`Visitar o site do projeto ${p.name} em nova aba`}
+                        aria-label={`Visitar o site do projeto ${project.name} em nova aba`}
                       >
                         Visitar site
                         <span aria-hidden="true">↗</span>
