@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/config/site";
 
 export const DEFAULT_WA_MESSAGE =
-  "Olá, Marcelo! Vi seu portfólio em pereda.dev e gostaria de conversar sobre um projeto.";
+  "Olá, Marcelo! Vi seu portfólio em marcelopereda.dev e gostaria de conversar sobre um projeto.";
 
 export function whatsappUrl(
   message: string = DEFAULT_WA_MESSAGE,
@@ -15,7 +15,7 @@ export function whatsappUrl(
 export function projectWhatsappMessage(
   projectName: string,
 ): string {
-  return `Olá, Marcelo! Vi o projeto ${projectName} no seu portfólio (pereda.dev) e gostaria de conversar sobre um projeto parecido.`;
+  return `Olá, Marcelo! Vi o projeto ${projectName} no seu portfólio (marcelopereda.dev) e gostaria de conversar sobre um projeto parecido.`;
 }
 
 export function mailtoUrl(

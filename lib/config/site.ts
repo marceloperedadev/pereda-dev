@@ -12,7 +12,7 @@
   * - perfis sociais.
   */
 
-const DEFAULT_SITE_URL = "https://pereda.dev";
+const DEFAULT_SITE_URL = "https://marcelopereda.dev";
 
 const rawUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
@@ -32,7 +32,7 @@ function normalizeSiteUrl(value: string): string {
 export const siteConfig = {
   name: "Marcelo Felipe",
 
-  domain: "pereda.dev",
+  domain: "marcelopereda.dev",
 
   url: normalizeSiteUrl(rawUrl),
 
@@ -69,7 +69,7 @@ export const siteConfig = {
 
   locale: "pt_BR",
 
-  email: "marcelopereda.dev@gmail.com",
+  email: "peredadev@gmail.com",
 
   whatsappNumber: "5512997093459",
 
@@ -126,13 +126,13 @@ export const siteConfig = {
  * Exemplos:
  *
  * absoluteUrl()
- * → https://pereda.dev/
+ * → https://marcelopereda.dev/
  *
  * absoluteUrl("/projetos")
- * → https://pereda.dev/projetos
+ * → https://marcelopereda.dev/projetos
  *
  * absoluteUrl("projetos")
- * → https://pereda.dev/projetos
+ * → https://marcelopereda.dev/projetos
  */
 export function absoluteUrl(path = "/"): string {
   const normalizedPath =

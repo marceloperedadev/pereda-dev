@@ -69,7 +69,7 @@ export function ContactForm() {
         trimmedName
           ? `Meu nome é ${trimmedName}. `
           : ""
-      }Vim pelo seu portfólio (pereda.dev).`,
+      }Vim pelo seu portfólio (marcelopereda.dev).`,
       `Tipo de projeto: ${type}.`,
       trimmedAbout
         ? `Sobre o projeto: ${trimmedAbout}`

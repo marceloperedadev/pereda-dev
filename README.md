@@ -1,4 +1,4 @@
-﻿# pereda.dev â€” PortfÃ³lio de Marcelo Felipe
+﻿# marcelopereda.dev â€” PortfÃ³lio de Marcelo Felipe
 
 PortfÃ³lio autoral de desenvolvedor Full Stack (Next.js App Router Â· TypeScript Â· CSS Modules).
 Foco: clientes locais â€” sites, lojas virtuais e sistemas. SEO tÃ©cnico e GA4 estruturados desde a arquitetura.
@@ -16,7 +16,7 @@ npm run build && npm start
 ## VariÃ¡veis de ambiente
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://pereda.dev
+NEXT_PUBLIC_SITE_URL=https://marcelopereda.dev
 NEXT_PUBLIC_GA_ID=
 GOOGLE_SITE_VERIFICATION=
 NEXT_PUBLIC_LINKEDIN_URL=
@@ -53,10 +53,10 @@ Funil: page_view â†’ view_project â†’ click_project / project_view â�
 
 ## Ativar Google Search Console
 
-1. search.google.com/search-console â†’ Adicionar propriedade â†’ **Prefixo do URL** `https://pereda.dev`.
+1. search.google.com/search-console â†’ Adicionar propriedade â†’ **Prefixo do URL** `https://marcelopereda.dev`.
 2. MÃ©todo "Tag HTML": copie **apenas** o valor de `content`.
 3. Defina `GOOGLE_SITE_VERIFICATION` e faÃ§a deploy; clique em Verificar.
-4. Envie `https://pereda.dev/sitemap.xml` em Sitemaps.
+4. Envie `https://marcelopereda.dev/sitemap.xml` em Sitemaps.
 
 (Alternativa: verificaÃ§Ã£o por DNS, sem cÃ³digo.)
 
