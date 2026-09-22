@@ -101,7 +101,7 @@ export default function ProjetosPage() {
                         href={project.url}
                         className={styles.cta}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         aria-label={`Visitar o site do projeto ${project.name} em nova aba`}
                       >
                         Visitar site

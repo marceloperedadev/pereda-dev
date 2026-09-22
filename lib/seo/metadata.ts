@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 import {
   absoluteUrl,
@@ -10,14 +10,14 @@ type BuildArgs = Readonly<{
   description: string;
 
   /**
-   * Caminho canônico da página.
+   * Caminho canÃ´nico da pÃ¡gina.
    *
-   * Ex.: "/projetos/belo-cao"
+   * Ex.: "/projetos/mimo-pet"
    */
   path: string;
 
   /**
-   * Define se a página deve ser indexada pelos mecanismos
+   * Define se a pÃ¡gina deve ser indexada pelos mecanismos
    * de busca.
    */
   index?: boolean;
@@ -29,7 +29,7 @@ type BuildArgs = Readonly<{
 }>;
 
 /**
- * Gera metadata consistente para as páginas do portfólio.
+ * Gera metadata consistente para as pÃ¡ginas do portfÃ³lio.
  *
  * Centraliza:
  * - title
@@ -39,7 +39,7 @@ type BuildArgs = Readonly<{
  * - Open Graph
  * - Twitter/X
  *
- * As imagens sociais são fornecidas pelos arquivos
+ * As imagens sociais sÃ£o fornecidas pelos arquivos
  * opengraph-image e twitter-image dos segmentos
  * correspondentes do Next.js.
  */

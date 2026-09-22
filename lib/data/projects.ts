@@ -1,11 +1,9 @@
-// lib/data/projects.ts
-
 export type ProjectCoverArt = {
   variant:
-    | "beloCao"
-    | "brasaoBurger"
+    | "mimoPet"
+    | "peredaEngenharia"
     | "ortoclinica"
-    | "draBarbara";
+    | "draValesca";
   bg: string;
   fg: string;
   accent: string;
@@ -40,13 +38,13 @@ export type Project = {
 
 export const projects = [
   {
-    slug: "belo-cao",
-    name: "Belo Cão",
+    slug: "mimo-pet",
+    name: "Mimo Pet",
     category: "Estética animal e pet coffee",
     type: "Site e loja virtual",
-    h1: "Belo Cão — site, loja virtual e experiência digital",
+    h1: "Mimo Pet — site, loja virtual e experiência digital",
     shortDescription:
-      "Uma experiência digital para apresentar o espaço, os serviços e a loja da Belo Cão.",
+      "Uma experiência digital para apresentar o espaço, os serviços e a loja da Mimo Pet.",
     description:
       "Projeto desenvolvido para uma operação que reúne estética animal, pet coffee e loja. A proposta foi organizar diferentes necessidades em uma experiência digital clara, com apresentação do espaço, serviços e produtos.",
     problem:
@@ -82,14 +80,14 @@ export const projects = [
     ],
     stack: ["Next.js", "TypeScript", "React"],
     url: "https://belocao-site-finalizado.vercel.app/",
-    updatedAt: "2026-09-21",
+    updatedAt: "2026-09-22",
     cover: {
-      src: "/projects/belo-cao.webp",
-      alt: "Site Belo Cão apresentado em uma tela de computador",
+      src: "/projects/mimo-pet.webp",
+      alt: "Site Mimo Pet apresentado em uma tela de computador",
       width: 1600,
       height: 1000,
       art: {
-        variant: "beloCao",
+        variant: "mimoPet",
         bg: "#eee5f4",
         fg: "#342039",
         accent: "#672f96",
@@ -98,54 +96,56 @@ export const projects = [
   },
 
   {
-    slug: "brasao-burger",
-    name: "Brasão Burger",
-    category: "Hamburgueria",
-    type: "Cardápio e pedidos online",
-    h1: "Brasão Burger — cardápio e experiência de pedidos",
+    slug: "pereda-engenharia",
+    name: "Pereda Engenharia",
+    category: "Engenharia civil",
+    type: "Landing page profissional",
+    h1: "Pereda Engenharia — presença digital para engenharia civil",
     shortDescription:
-      "Uma experiência digital para apresentar o cardápio e organizar o fluxo de pedidos.",
+      "Uma landing page profissional criada para apresentar a atuação da empresa, seus serviços e facilitar o contato com potenciais clientes.",
     description:
-      "Projeto desenvolvido para uma hamburgueria que precisava transformar o cardápio em uma experiência digital mais clara, acessível e adequada ao processo de pedido.",
+      "Projeto desenvolvido para uma empresa de engenharia civil, com foco em apresentar seus serviços de forma clara, transmitir credibilidade e criar um caminho direto entre a descoberta da empresa e o contato.",
     problem:
-      "O cardápio precisava apresentar produtos, opções e informações de forma organizada, facilitando a escolha e reduzindo atritos durante o pedido.",
+      "Uma empresa de engenharia precisa comunicar seus serviços e diferenciais de maneira objetiva, sem depender de uma estrutura institucional excessivamente complexa ou difícil de navegar.",
     solution:
-      "A interface foi estruturada em torno do cardápio e do fluxo de compra, com foco em navegação simples, leitura rápida e experiência adequada ao celular.",
+      "A experiência foi estruturada para apresentar a empresa, contextualizar sua atuação e destacar os principais serviços, utilizando uma hierarquia visual clara e chamadas para contato distribuídas de forma estratégica.",
     execution:
-      "O projeto combina interface responsiva, organização de produtos, seleção de itens e estrutura para o processo de pedido.",
+      "O projeto reúne uma landing page responsiva, estrutura semântica, apresentação dos serviços, informações institucionais e pontos de conversão preparados para diferentes tamanhos de tela.",
     objective:
-      "Facilitar a consulta do cardápio e tornar o caminho entre escolher um produto e realizar um pedido mais direto.",
+      "Criar uma presença digital profissional para fortalecer a apresentação da empresa e facilitar o contato de novos potenciais clientes.",
     features: [
-      "Cardápio digital",
-      "Categorias de produtos",
-      "Detalhes dos itens",
-      "Seleção de produtos",
-      "Fluxo de pedidos",
-      "Experiência mobile",
-      "Interface responsiva",
+      "Apresentação da empresa",
+      "Serviços de engenharia civil",
+      "Apresentação profissional",
+      "Seções institucionais",
+      "Chamadas para contato",
+      "Experiência responsiva",
+      "Estrutura orientada a SEO",
     ],
     decisions: [
-      "Prioridade para navegação rápida no celular.",
-      "Hierarquia visual baseada nos produtos.",
-      "Redução de etapas desnecessárias durante a escolha.",
-      "Interface construída pensando na operação real do estabelecimento.",
+      "Hierarquia visual baseada em clareza e credibilidade.",
+      "Conteúdo organizado para facilitar a compreensão dos serviços.",
+      "CTAs posicionados próximos aos momentos de decisão.",
+      "Interface responsiva para diferentes dispositivos.",
+      "Estrutura pensada para apresentação profissional da empresa.",
     ],
     tags: [
-      "Hamburgueria",
-      "Cardápio digital",
-      "Pedidos online",
+      "Engenharia",
+      "Engenharia civil",
+      "Landing page",
+      "Site profissional",
       "Negócio local",
     ],
     stack: ["Next.js", "TypeScript", "React"],
-    url: "https://brasao-burger.vercel.app/",
-    updatedAt: "2026-09-21",
+    url: "https://pereda-engenharia.vercel.app/",
+    updatedAt: "2026-09-22",
     cover: {
-      src: "/projects/brasao-burger.webp",
-      alt: "Site Brasão Burger apresentado em uma tela de computador",
+      src: "/projects/pereda-engenharia.webp",
+      alt: "Site da Pereda Engenharia apresentado em uma tela de computador",
       width: 1600,
       height: 1000,
       art: {
-        variant: "brasaoBurger",
+        variant: "peredaEngenharia",
         bg: "#110c15",
         fg: "#f5f2f7",
         accent: "#b8ff00",
@@ -210,15 +210,15 @@ export const projects = [
   },
 
   {
-    slug: "dra-barbara-glayris",
-    name: "Dra. Bárbara Glayris",
+    slug: "dra-valesca",
+    name: "Dra. Valesca",
     category: "Odontologia",
     type: "Site institucional",
-    h1: "Dra. Bárbara Glayris — site profissional para odontologia",
+    h1: "Dra. Valesca — site profissional para odontologia",
     shortDescription:
-      "Um site profissional desenvolvido para apresentar a atuação da dentista e facilitar o contato com novos pacientes.",
+      "Um site profissional desenvolvido como modelo de presença digital para apresentar a atuação da dentista e facilitar o contato com novos pacientes.",
     description:
-      "Projeto desenvolvido para uma profissional da área odontológica, com foco em apresentação profissional, clareza das informações e facilidade de contato.",
+      "Projeto desenvolvido como modelo de presença digital para uma profissional da área odontológica, com foco em apresentação profissional, clareza das informações e facilidade de contato.",
     problem:
       "A presença digital precisava transmitir profissionalismo sem dificultar o acesso às informações e ao contato.",
     solution:
@@ -249,14 +249,14 @@ export const projects = [
     ],
     stack: ["Next.js", "TypeScript", "React"],
     url: "https://site-dentista-phi.vercel.app/",
-    updatedAt: "2026-09-21",
+    updatedAt: "2026-09-22",
     cover: {
-      src: "/projects/dra-barbara-glayris.webp",
-      alt: "Site institucional da Dra. Bárbara Glayris apresentado em uma tela de computador",
+      src: "/projects/dra-valesca.webp",
+      alt: "Site institucional da Dra. Valesca apresentado em uma tela de computador",
       width: 1600,
       height: 1000,
       art: {
-        variant: "draBarbara",
+        variant: "draValesca",
         bg: "#f5f2f7",
         fg: "#342039",
         accent: "#672f96",
@@ -281,10 +281,9 @@ export function projectPath(slug: string) {
 
 /**
  * Retorna os demais projetos, excluindo o projeto atual.
- *
- * Mantida como função pública porque as páginas de projeto
- * utilizam esse helper para montar a seção de projetos relacionados.
  */
 export function otherProjects(currentSlug: string) {
-  return projects.filter((project) => project.slug !== currentSlug);
+  return projects.filter(
+    (project) => project.slug !== currentSlug
+  );
 }

@@ -8,7 +8,7 @@ import { getProject } from "@/lib/data/projects";
 import styles from "./Differential.module.css";
 
 export function Differential() {
-  const burger = getProject("brasao-burger");
+  const engineering = getProject("pereda-engenharia");
 
   return (
     <section
@@ -46,9 +46,9 @@ export function Differential() {
 
           <li className={`${styles.card} ${styles.image}`}>
             <div className={styles.imageBox}>
-              {burger ? (
+              {engineering ? (
                 <ProjectCover
-                  project={burger}
+                  project={engineering}
                   sizes="(min-width: 1024px) 34vw, 90vw"
                 />
               ) : null}

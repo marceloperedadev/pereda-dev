@@ -9,8 +9,8 @@ import { HeroVisual } from "./HeroVisual";
 import styles from "./Hero.module.css";
 
 export function Hero() {
-  const leadProject = getProject("belo-cao");
-  const secondaryProject = getProject("brasao-burger");
+  const leadProject = getProject("mimo-pet");
+  const secondaryProject = getProject("pereda-engenharia");
 
   return (
     <section
