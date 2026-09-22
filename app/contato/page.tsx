@@ -15,9 +15,9 @@ import { mailtoUrl, whatsappUrl } from "@/lib/utils/contact";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contato | Marcelo Felipe — Desenvolvedor Full Stack em Taubaté",
+  title: "Contato | Marcelo Felipe — E-commerce e experiências digitais",
   description:
-    "Entre em contato com Marcelo Felipe, desenvolvedor Full Stack em Taubaté, SP, para conversar sobre sites profissionais, e-commerce e sistemas web.",
+    "Entre em contato com Marcelo Felipe para conversar sobre presença digital, e-commerce e experiências digitais para negócios e marcas.",
   path: "/contato",
 });
 

@@ -15,9 +15,9 @@ import { whatsappUrl } from "@/lib/utils/contact";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Sobre Marcelo Felipe — Desenvolvedor Full Stack em Taubaté",
+  title: "Sobre Marcelo Felipe — E-commerce e experiências digitais",
   description:
-    "Conheça Marcelo Felipe, desenvolvedor Full Stack em Taubaté, SP. Veja como trabalha, os tipos de projetos que desenvolve e como entrar em contato.",
+    "Conheça Marcelo Felipe, profissional de e-commerce e experiências digitais em Taubaté, SP. Veja como trabalha e os projetos que constrói.",
   path: "/sobre",
 });
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
           <p className={styles.eyebrow}>Marcelo Felipe · Taubaté, SP</p>
 
           <h1 id="about-title" className={styles.title}>
-            Desenvolvedor Full Stack
+            E-commerce & experiências digitais
           </h1>
 
           <div className={styles.paras}>

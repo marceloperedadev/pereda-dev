@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${siteConfig.name} — ${siteConfig.role}`,
     short_name: siteConfig.name,
     description:
-      "Portfólio de Marcelo Felipe, desenvolvedor Full Stack em Taubaté, SP. Sites profissionais, e-commerce e sistemas web.",
+      "Portfólio de Marcelo Felipe, com projetos de presença digital, e-commerce e experiências digitais.",
 
     start_url: "/",
     display: "standalone",

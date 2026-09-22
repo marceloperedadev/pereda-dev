@@ -36,9 +36,34 @@ export const siteConfig = {
 
   url: normalizeSiteUrl(rawUrl),
 
-  role: "Desenvolvedor Full Stack",
+  role: "E-commerce e experiências digitais",
 
   specialty: "E-commerce e experiências digitais",
+
+  commercial: {
+    availability: "Projetos autorais e comerciais",
+
+    offerings: [
+      {
+        name: "Landing pages",
+        description:
+          "Uma página focada em apresentar, captar contatos, divulgar uma oferta ou conduzir a uma ação.",
+        price: "A partir de R$ 900",
+      },
+      {
+        name: "Presença digital",
+        description:
+          "Identidade, estrutura e experiência para apresentar e posicionar um negócio no digital.",
+        price: "A partir de R$ 1.500",
+      },
+      {
+        name: "Projetos sob medida",
+        description:
+          "Soluções de design, experiência e tecnologia construídas a partir das necessidades específicas do projeto.",
+        price: "A partir de R$ 2.000+",
+      },
+    ],
+  },
 
   lang: "pt-BR",
 
@@ -81,7 +106,7 @@ export const siteConfig = {
   photo: "" as string,
 
   photoAlt:
-    "Marcelo Felipe, desenvolvedor Full Stack em Taubaté, SP",
+    "Marcelo Felipe, especialista em e-commerce e experiências digitais em Taubaté, SP",
 
   /**
    * Data da última revisão do conteúdo.

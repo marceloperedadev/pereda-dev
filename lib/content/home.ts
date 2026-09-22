@@ -8,78 +8,78 @@
  */
 
 export const hero = {
-  identity: "Marcelo Felipe, desenvolvedor Full Stack",
+  identity: "Marcelo Felipe · E-commerce & experiências digitais",
 
   location: "Taubaté, SP",
 
-  headlineLead: "Site bonito não basta.",
+  headlineLead: "Presença digital",
 
   headlineTail:
-    "Ele precisa fazer o negócio funcionar.",
+    "com identidade, experiência e tecnologia.",
 
   text:
-    "Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais que precisam apresentar melhor o que fazem, vender, agendar ou organizar processos.",
+    "Ajudo negócios a transformar uma ideia, produto ou operação em uma presença digital clara, reconhecível e pronta para apresentar, vender e evoluir.",
 
   primaryCta: "Conhecer projetos",
 
   secondaryCta: "Vamos conversar",
 
   specialties: [
-    "Sites profissionais",
+    "Presença digital",
+    "Identidade digital",
     "E-commerce",
-    "Sistemas web",
   ],
 };
 
 export const proof = {
-  title: "Por que trabalhar comigo",
+  title: "A forma como um negócio aparece importa.",
 
   lead:
-    "O projeto precisa fazer sentido antes de virar código.",
+    "Antes da interface, existe uma decisão: como esse negócio deve ser percebido, entendido e lembrado no digital.",
 
   items: [
     {
       title: "Estratégia",
 
       text:
-        "Entender o negócio, o público e o que precisa acontecer quando alguém chega ao projeto.",
+        "Entender o negócio, o público e a percepção que a presença digital precisa construir.",
     },
 
     {
       title: "Experiência",
 
       text:
-        "Organizar conteúdo, navegação e interface para que as informações sejam claras e fáceis de usar.",
+        "Dar forma ao posicionamento com conteúdo, navegação e interface que façam sentido juntos.",
     },
 
     {
       title: "Tecnologia",
 
       text:
-        "Escolher e integrar as ferramentas necessárias para construir uma solução funcional e sustentável.",
+        "Usar tecnologia para transformar a experiência em uma solução funcional, rápida e sustentável.",
     },
 
     {
       title: "Negócio",
 
       text:
-        "Pensar na experiência completa, do primeiro acesso ao próximo passo que o visitante precisa tomar.",
+        "Construir um caminho claro para apresentar, vender, agendar ou iniciar uma conversa.",
     },
   ],
 };
 
 export const projectsSection = {
-  title: "Projetos em movimento",
+  title: "Cases em contexto",
 
   lead:
-    "Projetos diferentes, problemas diferentes e soluções construídas de acordo com cada contexto.",
+    "Cada projeto parte de uma necessidade real: uma operação para organizar, uma marca para apresentar ou uma experiência para melhorar.",
 };
 
 export const process = {
   title: "Como eu trabalho",
 
   lead:
-    "Um processo direto para transformar uma necessidade em uma solução digital bem estruturada.",
+    "Um processo direto para transformar contexto, conteúdo e intenção em uma experiência digital bem estruturada.",
 
   steps: [
     {
@@ -138,43 +138,48 @@ export const stack = {
 };
 
 export const differential = {
-  title: "Eu não entrego apenas páginas.",
+  title: "Não é apenas uma página.",
 
   lead:
-    "Um projeto digital precisa funcionar além da aparência. Por isso, considero interface, experiência, estrutura, integrações, desempenho e a parte técnica necessária para que o negócio consiga usar e evoluir a solução.",
+    "É a forma como um negócio se apresenta, orienta escolhas e constrói confiança no digital. Interface, experiência, estrutura e tecnologia precisam trabalhar na mesma direção.",
+
+  servicesTitle: "O formato parte da necessidade.",
+
+  servicesLead:
+    "Alguns projetos pedem foco. Outros precisam organizar uma presença inteira. Há também os que exigem uma solução própria.",
 };
 
 export const about = {
   title: "Marcelo Felipe",
 
   role:
-    "Desenvolvedor Full Stack em Taubaté, SP",
+    "E-commerce e experiências digitais em Taubaté, SP",
 
   paragraphs: [
-    "Sou desenvolvedor Full Stack em Taubaté, SP. Trabalho com sites, e-commerce e sistemas web, principalmente em projetos em que a tecnologia precisa resolver uma necessidade concreta do negócio.",
+    "Sou Marcelo Felipe e trabalho com e-commerce e experiências digitais em Taubaté, SP. Construo presenças digitais para negócios que precisam se apresentar melhor, vender, organizar uma operação ou dar forma a uma ideia.",
 
-    "Estou construindo minha atuação profissional como freelancer e trabalho diretamente nos projetos. Isso significa comunicação próxima, participação nas decisões e acompanhamento de cada etapa do desenvolvimento.",
+    "Trabalho diretamente nos projetos, com comunicação próxima e participação nas decisões de posicionamento, conteúdo, interface e desenvolvimento.",
 
-    "Os projetos deste portfólio mostram minha forma de trabalhar: entender o problema, estruturar a solução e só então escolher as ferramentas necessárias para construí-la.",
+    "Os cases deste portfólio mostram essa combinação na prática: entender o contexto, estruturar a experiência e escolher a tecnologia necessária para construí-la.",
   ],
 
   likes: [
-    "Sites e lojas virtuais para negócios locais",
+    "Presenças digitais para negócios locais",
 
-    "Sistemas que organizam processos e operações",
+    "E-commerces que conectam produto e experiência",
 
-    "Interfaces claras, rápidas e fáceis de manter",
+    "Interfaces claras, rápidas e fáceis de evoluir",
   ],
 };
 
 export const contact = {
   title:
-    "Tem uma ideia ou um problema que precisa de uma solução digital?",
+    "Seu negócio precisa ganhar uma presença digital melhor?",
 
   kicker: "Vamos conversar?",
 
   text:
-    "Se você já sabe o que precisa ou ainda está tentando entender o melhor caminho, podemos começar por uma conversa e organizar o próximo passo.",
+    "Se você tem um negócio, produto ou ideia para apresentar, vender ou organizar, podemos conversar sobre o caminho mais coerente para esse projeto.",
 
   primaryCta: "Vamos conversar",
 };

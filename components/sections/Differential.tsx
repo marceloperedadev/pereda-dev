@@ -3,6 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionRule } from "@/components/ui/SectionRule";
 
 import { differential } from "@/lib/content/home";
+import { siteConfig } from "@/lib/config/site";
 import { getProject } from "@/lib/data/projects";
 
 import styles from "./Differential.module.css";
@@ -24,6 +25,38 @@ export function Differential() {
           </h2>
 
           <p className={styles.lead}>{differential.lead}</p>
+        </div>
+
+        <div className={styles.services}>
+          <div className={styles.servicesHead}>
+            <h3 className={styles.servicesTitle}>
+              {differential.servicesTitle}
+            </h3>
+
+            <p className={styles.servicesLead}>
+              {differential.servicesLead}
+            </p>
+          </div>
+
+          <ul className={styles.servicesList}>
+            {siteConfig.commercial.offerings.map((offering) => (
+              <li key={offering.name} className={styles.service}>
+                <div>
+                  <h4 className={styles.serviceName}>
+                    {offering.name}
+                  </h4>
+
+                  <p className={styles.serviceDescription}>
+                    {offering.description}
+                  </p>
+                </div>
+
+                <p className={styles.servicePrice}>
+                  {offering.price}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <ul className={styles.grid}>

@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             <h2 id="p5">Responsável pelo site</h2>
 
             <p>
-              {siteConfig.name}, desenvolvedor Full Stack em{" "}
+              {siteConfig.name}, profissional de e-commerce e experiências digitais em{" "}
               {siteConfig.city} — {siteConfig.region}.
             </p>
 

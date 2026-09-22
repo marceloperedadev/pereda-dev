@@ -96,6 +96,11 @@ export function Contact({
                 {siteConfig.city} — {siteConfig.region}
               </dd>
             </div>
+
+            <div className={styles.commercial}>
+              <dt>{siteConfig.commercial.availability}</dt>
+              <dd>Atendimento sob escopo · Brasil · remoto</dd>
+            </div>
           </dl>
         </div>
       </div>

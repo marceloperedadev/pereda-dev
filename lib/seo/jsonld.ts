@@ -38,7 +38,7 @@ export function personSchema() {
     jobTitle: siteConfig.role,
 
     description:
-      "Desenvolvedor Full Stack em TaubatÃ©, SP. Desenvolve sites, lojas virtuais e sistemas web para empresas, negÃ³cios locais, profissionais e empreendedores.",
+      "Profissional de e-commerce e experiências digitais em Taubaté, SP. Constrói presenças digitais para negócios, marcas, profissionais e empreendedores.",
 
     url: siteConfig.url,
 
@@ -54,8 +54,10 @@ export function personSchema() {
     },
 
     knowsAbout: [
-      "Desenvolvimento web",
+      "Presença digital",
+      "Experiências digitais",
       "E-commerce",
+      "Desenvolvimento web",
       "Sistemas web",
       "Next.js",
       "React",
@@ -109,7 +111,7 @@ export function homeGraph() {
         name: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
 
         description:
-          "Desenvolvedor Full Stack em TaubatÃ©, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negÃ³cios locais e profissionais.",
+          "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais.",
 
         inLanguage: siteConfig.lang,
 

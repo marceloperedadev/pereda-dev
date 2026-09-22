@@ -19,6 +19,63 @@
   align-self: end;
   color: var(--muted);
 }
+.services {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: clamp(48px, 7vw, 88px);
+  padding-block: 24px;
+  border-block: 1px solid var(--line);
+}
+.servicesHead {
+  grid-column: 1 / 5;
+}
+.servicesTitle {
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.1;
+}
+.servicesLead {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 30ch;
+}
+.servicesList {
+  grid-column: 6 / -1;
+  list-style: none;
+}
+.service {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: baseline;
+  padding-block: 14px;
+  border-top: 1px solid var(--line);
+}
+.service:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.service:last-child {
+  padding-bottom: 0;
+}
+.serviceName {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.serviceDescription {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 48ch;
+}
+.servicePrice {
+  color: var(--muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
 
 /* Grid assimétrico, mas alinhado em 12 colunas */
 .grid {
@@ -156,6 +213,17 @@
   .title,
   .lead {
     grid-column: 1 / -1;
+  }
+  .services {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .servicesHead,
+  .servicesList {
+    grid-column: 1 / -1;
+  }
+  .service {
+    gap: 12px;
   }
   .grid {
     grid-template-columns: 1fr;

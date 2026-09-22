@@ -73,6 +73,15 @@
 .channels a:hover {
   border-bottom-color: var(--signal);
 }
+.commercial dt,
+.commercial dd {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.commercial dd {
+  max-width: 30rem;
+}
 @media (max-width: 900px) {
   .copy,
   .channels {

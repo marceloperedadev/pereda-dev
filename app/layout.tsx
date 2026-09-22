@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Desenvolvedor Full Stack em Taubaté, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais.",
+    "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
 
   applicationName: siteConfig.name,
 
@@ -74,14 +74,14 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
     description:
-      "Desenvolvedor Full Stack em Taubaté, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais.",
+      "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
 
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
     description:
-      "Desenvolvedor Full Stack em Taubaté, SP. Crio sites profissionais, lojas virtuais e sistemas web para empresas, negócios locais e profissionais.",
+      "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
 
   ...(siteConfig.googleVerification

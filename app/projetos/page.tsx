@@ -7,9 +7,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import styles from "./page.module.css";
 
 export const metadata = buildMetadata({
-  title: "Projetos — Marcelo Felipe | Desenvolvedor Full Stack",
+  title: "Cases — Marcelo Felipe | E-commerce e experiências digitais",
   description:
-    "Projetos de sites profissionais, e-commerce e sistemas web desenvolvidos por Marcelo Felipe, desenvolvedor Full Stack em Taubaté, SP.",
+    "Cases de presença digital, e-commerce e experiências digitais construídos por Marcelo Felipe para diferentes tipos de negócios.",
   path: "/projetos",
 });
 
@@ -40,7 +40,7 @@ export default function ProjetosPage() {
             <p className={styles.index}>SELEÇÃO</p>
 
             <h2 id="projetos-lista-title" className={styles.category}>
-              Projetos em movimento
+              Cases em contexto
             </h2>
           </header>
 
