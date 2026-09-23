@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   ],
 
   creator: siteConfig.name,
+
   publisher: siteConfig.name,
 
   alternates: {
@@ -58,6 +59,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
@@ -72,14 +74,18 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
+
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
+
     description:
       "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
 
   twitter: {
     card: "summary_large_image",
+
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
+
     description:
       "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
@@ -95,17 +101,21 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   width: "device-width",
+
   initialScale: 1,
+
   themeColor: [
     {
       media: "(prefers-color-scheme: dark)",
       color: "#08070A",
     },
+
     {
       media: "(prefers-color-scheme: light)",
       color: "#F3F1EB",
     },
   ],
+
   colorScheme: "dark light",
 };
 

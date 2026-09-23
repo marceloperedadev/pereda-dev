@@ -13,7 +13,7 @@
  * - caminhos principais de imagens.
  */
 
-const DEFAULT_SITE_URL = "https://marcelopereda.dev";
+const DEFAULT_SITE_URL = "https://www.peredadev.com.br";
 
 const rawUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
@@ -33,7 +33,7 @@ function normalizeSiteUrl(value: string): string {
 export const siteConfig = {
   name: "Marcelo Felipe",
 
-  domain: "marcelopereda.dev",
+  domain: "www.peredadev.com.br",
 
   url: normalizeSiteUrl(rawUrl),
 
@@ -47,28 +47,22 @@ export const siteConfig = {
     offerings: [
       {
         name: "Landing pages",
-
         description:
           "Uma página focada em apresentar, captar contatos, divulgar uma oferta ou conduzir a uma ação.",
-
         price: "A partir de R$ 900",
       },
 
       {
         name: "Presença digital",
-
         description:
           "Identidade, estrutura e experiência para apresentar e posicionar um negócio no digital.",
-
         price: "A partir de R$ 1.500",
       },
 
       {
         name: "Projetos sob medida",
-
         description:
           "Soluções de design, experiência e tecnologia construídas a partir das necessidades específicas do projeto.",
-
         price: "A partir de R$ 2.000+",
       },
     ],
@@ -112,10 +106,10 @@ export const siteConfig = {
    * A imagem fica dentro de /public.
    *
    * Arquivo:
-   * public/marcelo-felipe.webp
+   * public/projects/marcelo-felipe.webp
    *
    * Referência pública:
-   * /marcelo-felipe.webp
+   * /projects/marcelo-felipe.webp
    *
    * O projeto utiliza WebP para essa imagem.
    */
@@ -142,13 +136,13 @@ export const siteConfig = {
  * Exemplos:
  *
  * absoluteUrl()
- * → https://marcelopereda.dev/
+ * → https://www.peredadev.com.br/
  *
  * absoluteUrl("/projetos")
- * → https://marcelopereda.dev/projetos
+ * → https://www.peredadev.com.br/projetos
  *
  * absoluteUrl("projetos")
- * → https://marcelopereda.dev/projetos
+ * → https://www.peredadev.com.br/projetos
  */
 export function absoluteUrl(path = "/"): string {
   const normalizedPath =
