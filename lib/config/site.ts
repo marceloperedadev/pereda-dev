@@ -1,16 +1,17 @@
- /**
-  * Configuração central do site.
-  *
-  * Dados de identidade, contato, localização e perfis externos
-  * devem permanecer centralizados aqui.
-  *
-  * Nenhum componente deve precisar escrever manualmente:
-  * - e-mail;
-  * - telefone;
-  * - WhatsApp;
-  * - domínio;
-  * - perfis sociais.
-  */
+/**
+ * Configuração central do site.
+ *
+ * Dados de identidade, contato, localização e perfis externos
+ * devem permanecer centralizados aqui.
+ *
+ * Nenhum componente deve precisar escrever manualmente:
+ * - e-mail;
+ * - telefone;
+ * - WhatsApp;
+ * - domínio;
+ * - perfis sociais;
+ * - caminhos principais de imagens.
+ */
 
 const DEFAULT_SITE_URL = "https://marcelopereda.dev";
 
@@ -46,20 +47,28 @@ export const siteConfig = {
     offerings: [
       {
         name: "Landing pages",
+
         description:
           "Uma página focada em apresentar, captar contatos, divulgar uma oferta ou conduzir a uma ação.",
+
         price: "A partir de R$ 900",
       },
+
       {
         name: "Presença digital",
+
         description:
           "Identidade, estrutura e experiência para apresentar e posicionar um negócio no digital.",
+
         price: "A partir de R$ 1.500",
       },
+
       {
         name: "Projetos sob medida",
+
         description:
           "Soluções de design, experiência e tecnologia construídas a partir das necessidades específicas do projeto.",
+
         price: "A partir de R$ 2.000+",
       },
     ],
@@ -100,10 +109,17 @@ export const siteConfig = {
   /**
    * Foto utilizada na seção "Sobre".
    *
-   * Vazio = utilizar o tratamento editorial/monograma
-   * definido pelo componente.
+   * A imagem fica dentro de /public.
+   *
+   * Arquivo:
+   * public/marcelo-felipe.webp
+   *
+   * Referência pública:
+   * /marcelo-felipe.webp
+   *
+   * O projeto utiliza WebP para essa imagem.
    */
-  photo: "" as string,
+  photo: "/projects/marcelo-felipe.webp",
 
   photoAlt:
     "Marcelo Felipe, especialista em e-commerce e experiências digitais em Taubaté, SP",
