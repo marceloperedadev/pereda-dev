@@ -8,6 +8,7 @@
 }
 .photo {
   object-fit: cover;
+  object-position: center 5%;
 }
 .mono {
   position: absolute;
