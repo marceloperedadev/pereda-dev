@@ -1,64 +1,376 @@
 .section {
-  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+  padding-block:
+    clamp(24px, 4vw, 48px)
+    clamp(64px, 9vw, 128px);
 }
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
   column-gap: 24px;
-  row-gap: 40px;
+
+  row-gap:
+    clamp(32px, 5vw, 40px);
+
   align-items: center;
 }
+
+/* =========================================================
+   RETRATO
+   ========================================================= */
+
 .portrait {
   grid-column: 1 / 6;
+
+  position: relative;
 }
+
+.portrait::before {
+  content: "";
+
+  position: absolute;
+
+  top: -12px;
+  left: -12px;
+
+  width: 42px;
+  height: 42px;
+
+  border-top:
+    1px solid var(--signal);
+
+  border-left:
+    1px solid var(--signal);
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+.portrait::after {
+  content: "";
+
+  position: absolute;
+
+  right: -12px;
+  bottom: -12px;
+
+  width: 42px;
+  height: 42px;
+
+  border-right:
+    1px solid var(--line-strong);
+
+  border-bottom:
+    1px solid var(--line-strong);
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
 .copy {
   grid-column: 7 / -1;
+
+  min-width: 0;
 }
+
 .title {
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-  letter-spacing: -0.045em;
+  max-width: 10ch;
+
+  font-size:
+    clamp(
+      2.4rem,
+      5vw,
+      4.4rem
+    );
+
   font-weight: 700;
+
+  letter-spacing: -0.055em;
+
+  line-height: 0.94;
+
+  text-wrap: balance;
 }
+
 .role {
-  margin-top: 10px;
+  margin-top: 12px;
+
   color: var(--muted);
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
 }
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
 .paras {
   display: grid;
+
   gap: 16px;
-  margin-top: 28px;
+
   max-width: 34rem;
+
+  margin-top:
+    clamp(24px, 3vw, 32px);
 }
+
+.paras p {
+  text-wrap: pretty;
+}
+
 .paras p:first-child {
+  color: var(--text);
+
   font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+
+  font-size:
+    clamp(
+      1.2rem,
+      1.7vw,
+      1.5rem
+    );
+
+  font-style: italic;
+
   line-height: 1.4;
 }
+
 .paras p:not(:first-child) {
   color: var(--muted);
+
+  font-size: 0.98rem;
+
+  line-height: 1.55;
 }
+
+/* =========================================================
+   LISTA / MARCADORES
+   ========================================================= */
+
 .likes {
   list-style: none;
-  margin-block: 28px 20px;
+
   max-width: 34rem;
+
+  margin:
+    28px 0 20px;
+
+  padding: 0;
+
+  border-top:
+    1px solid var(--line);
 }
+
 .likes li {
+  position: relative;
+
+  display: flex;
+
+  align-items: baseline;
+
+  min-height: 48px;
+
   padding-block: 12px;
-  border-top: 1px solid var(--line);
+
+  padding-left: 18px;
+
+  border-bottom:
+    1px solid var(--line);
+
+  color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+
+  transition:
+    color 0.2s var(--ease),
+    padding-left 0.25s var(--ease);
 }
-.likes li:last-child {
-  border-bottom: 1px solid var(--line);
+
+.likes li::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 50%;
+
+  width: 5px;
+  height: 5px;
+
+  background: var(--signal);
+
+  transform:
+    translateY(-50%)
+    rotate(-6deg);
+
+  transition:
+    transform 0.2s var(--ease);
 }
+
+.likes li:hover {
+  color: var(--text);
+
+  padding-left: 24px;
+}
+
+.likes li:hover::before {
+  transform:
+    translateY(-50%)
+    rotate(45deg);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
+  .grid {
+    align-items: start;
+  }
+
   .portrait {
     grid-column: 1 / 9;
   }
+
   .copy {
     grid-column: 1 / -1;
   }
+
+  .title {
+    max-width: 12ch;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 520px) {
+  .section {
+    padding-bottom: 72px;
+  }
+
+  .grid {
+    row-gap: 32px;
+  }
+
   .portrait {
     grid-column: 1 / -1;
+  }
+
+  .portrait::before {
+    top: -8px;
+    left: -8px;
+
+    width: 30px;
+    height: 30px;
+  }
+
+  .portrait::after {
+    right: -8px;
+    bottom: -8px;
+
+    width: 30px;
+    height: 30px;
+  }
+
+  .title {
+    max-width: 10ch;
+
+    font-size:
+      clamp(
+        2.35rem,
+        12vw,
+        3.4rem
+      );
+
+    line-height: 0.95;
+  }
+
+  .role {
+    margin-top: 10px;
+
+    font-size: 0.66rem;
+  }
+
+  .paras {
+    gap: 14px;
+
+    margin-top: 24px;
+  }
+
+  .paras p:first-child {
+    font-size: 1.2rem;
+  }
+
+  .paras p:not(:first-child) {
+    font-size: 0.95rem;
+  }
+
+  .likes {
+    margin-block:
+      24px 16px;
+  }
+
+  .likes li {
+    min-height: 46px;
+
+    padding-block: 11px;
+  }
+
+  .likes li:hover {
+    padding-left: 18px;
+  }
+
+  .likes li:hover::before {
+    transform:
+      translateY(-50%)
+      rotate(-6deg);
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .likes li,
+  .likes li::before {
+    transition: none;
+  }
+
+  .likes li:hover {
+    padding-left: 18px;
+  }
+
+  .likes li:hover::before {
+    transform:
+      translateY(-50%)
+      rotate(-6deg);
   }
 }

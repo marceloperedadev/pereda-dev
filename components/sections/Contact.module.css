@@ -1,96 +1,392 @@
 .section {
-  padding-block: clamp(72px, 11vw, 168px);
+  position: relative;
+
+  padding-block:
+    clamp(72px, 11vw, 168px);
+
   background: var(--surface);
-  border-top: 1px solid var(--line);
+
+  border-top:
+    1px solid var(--line);
+
+  overflow: hidden;
 }
+
+/* =========================================================
+   DETALHE ESTRUTURAL
+   ========================================================= */
+
+.section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 1px;
+  height: 100%;
+
+  background: var(--line);
+
+  opacity: 0.45;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   KICKER
+   ========================================================= */
+
 .kicker {
+  position: relative;
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 10px;
+
+  margin-bottom:
+    clamp(20px, 3vw, 32px);
+
   color: var(--muted);
-  margin-bottom: clamp(20px, 3vw, 32px);
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--signal);
-}
-.title {
-  font-size: clamp(2.4rem, 6.4vw, 6rem);
-  letter-spacing: -0.05em;
+
+  font-size: 0.68rem;
+
   font-weight: 700;
-  line-height: 0.98;
-  max-width: 16ch;
+
+  letter-spacing: 0.16em;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
 }
+
+.dot {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  background: var(--signal);
+
+  transform: rotate(-6deg);
+}
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.title {
+  position: relative;
+
+  max-width: 16ch;
+
+  color: var(--text);
+
+  font-size:
+    clamp(
+      2.6rem,
+      6.4vw,
+      6rem
+    );
+
+  font-weight: 700;
+
+  letter-spacing: -0.06em;
+
+  line-height: 0.92;
+
+  text-wrap: balance;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
 .row {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
   column-gap: 24px;
-  row-gap: 48px;
-  margin-top: clamp(36px, 5vw, 72px);
+
+  row-gap:
+    clamp(40px, 6vw, 48px);
+
+  margin-top:
+    clamp(36px, 5vw, 72px);
 }
+
 .copy {
   grid-column: 1 / 7;
 }
+
 .text {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-  line-height: 1.4;
   max-width: 30rem;
+
+  color: var(--text);
+
+  font-family: var(--font-serif);
+
+  font-size:
+    clamp(
+      1.2rem,
+      1.8vw,
+      1.55rem
+    );
+
+  font-style: italic;
+
+  line-height: 1.4;
+
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   AÇÕES
+   ========================================================= */
+
 .actions {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 12px;
+
   margin-top: 32px;
 }
+
+/* =========================================================
+   CANAIS
+   ========================================================= */
+
 .channels {
   grid-column: 8 / -1;
+
   display: grid;
+
   gap: 0;
+
   align-self: end;
+
+  margin: 0;
+
+  padding: 0;
 }
+
 .channels > div {
   display: grid;
-  grid-template-columns: 7rem 1fr;
+
+  grid-template-columns:
+    7rem minmax(0, 1fr);
+
   gap: 16px;
+
   padding-block: 14px;
-  border-top: 1px solid var(--line);
+
+  border-top:
+    1px solid var(--line);
 }
+
 .channels > div:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom:
+    1px solid var(--line);
 }
+
 .channels dt {
   color: var(--muted);
-  font-size: 0.9rem;
+
+  font-size: 0.66rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
 }
+
+.channels dd {
+  min-width: 0;
+
+  margin: 0;
+}
+
 .channels a {
-  border-bottom: 1px solid var(--line);
+  display: inline;
+
+  width: fit-content;
+
+  max-width: 100%;
+
+  color: var(--text);
+
+  border-bottom:
+    1px solid var(--line);
+
   overflow-wrap: anywhere;
-  transition: border-color 0.2s var(--ease);
+
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
 }
+
 .channels a:hover {
-  border-bottom-color: var(--signal);
+  color: var(--signal);
+
+  border-bottom-color:
+    var(--signal);
 }
+
+/* =========================================================
+   INFORMAÇÕES COMERCIAIS
+   ========================================================= */
+
 .commercial dt,
 .commercial dd {
   color: var(--muted);
-  font-size: 0.82rem;
+
+  font-size: 0.78rem;
+
   line-height: 1.45;
 }
+
 .commercial dd {
   max-width: 30rem;
 }
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
+  .section::before {
+    display: none;
+  }
+
   .copy,
   .channels {
     grid-column: 1 / -1;
   }
+
+  .copy {
+    max-width: 42rem;
+  }
+
+  .channels {
+    margin-top: 8px;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .section {
+    padding-block:
+      72px
+      88px;
+  }
+
+  .kicker {
+    margin-bottom: 22px;
+
+    font-size: 0.64rem;
+  }
+
+  .title {
+    max-width: 12ch;
+
+    font-size:
+      clamp(
+        2.4rem,
+        12vw,
+        4rem
+      );
+
+    line-height: 0.94;
+  }
+
+  .row {
+    row-gap: 40px;
+
+    margin-top: 40px;
+  }
+
+  .text {
+    font-size: 1.2rem;
+  }
+
+  .actions {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 28px;
+  }
+
+  .channels {
+    margin-top: 4px;
+  }
+
+  .channels > div {
+    grid-template-columns:
+      6.5rem minmax(0, 1fr);
+
+    gap: 12px;
+
+    padding-block: 13px;
+  }
+
+  .channels dt {
+    font-size: 0.62rem;
+  }
+
+  .channels a {
+    font-size: 0.92rem;
+  }
+
+  .commercial dt,
+  .commercial dd {
+    font-size: 0.74rem;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+   ========================================================= */
+
 @media (max-width: 420px) {
   .channels > div {
     grid-template-columns: 1fr;
-    gap: 2px;
+
+    gap: 4px;
+
+    padding-block: 13px;
+  }
+
+  .channels dt {
+    font-size: 0.6rem;
+  }
+
+  .channels a {
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .channels a {
+    transition: none;
   }
 }

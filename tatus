@@ -1,0 +1,57 @@
+warning: in the working copy of 'app/contato/page.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/privacidade/page.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/projetos/[slug]/page.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/projetos/page.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/sobre/page.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/analytics/Analytics.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/layout/Footer.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/layout/Header.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/layout/Header.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/About.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Contact.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Differential.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Hero.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/HeroVisual.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Process.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Projects.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/ProjectsCarousel.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Proof.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/sections/Stack.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/AboutPortrait.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/ButtonLink.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/ConsentPreferences.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/ContactForm.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/PageHeader.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/ProjectCover.module.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/SectionRule.module.css', LF will be replaced by CRLF the next time Git touches it
+ app/contato/page.module.css                     | 237 [32m+++++[m[31m-[m
+ app/globals.css                                 | 274 [32m++++++[m[31m-[m
+ app/layout.tsx                                  |  16 [32m+[m[31m-[m
+ app/privacidade/page.module.css                 | 120 [32m++[m[31m-[m
+ app/projetos/[slug]/page.module.css             | 645 [32m+++++++++++++++[m[31m--[m
+ app/projetos/page.module.css                    | 410 [32m++++++++++[m[31m-[m
+ app/sobre/page.module.css                       |  83 [32m++[m[31m-[m
+ components/analytics/Analytics.module.css       | 241 [32m+++++[m[31m-[m
+ components/layout/Footer.module.css             | 200 [32m++++[m[31m-[m
+ components/layout/Header.module.css             | 756 [32m++++++++++++++++++[m[31m-[m
+ components/layout/Header.tsx                    | 162 [32m+++[m[31m--[m
+ components/sections/About.module.css            | 336 [32m++++++++[m[31m-[m
+ components/sections/Contact.module.css          | 344 [32m++++++++[m[31m-[m
+ components/sections/Differential.module.css     | 722 [32m++++++++++++++++[m[31m--[m
+ components/sections/Hero.module.css             | 298 [32m+++++++[m[31m-[m
+ components/sections/HeroVisual.module.css       | 527 [32m+++++++++++[m[31m---[m
+ components/sections/Process.module.css          | 247 [32m++++++[m[31m-[m
+ components/sections/Projects.module.css         | 116 [32m++[m[31m-[m
+ components/sections/ProjectsCarousel.module.css | 924 [32m+++++++++++++++++++[m[31m-----[m
+ components/sections/Proof.module.css            | 276 [32m++++++[m[31m-[m
+ components/sections/Stack.module.css            | 254 [32m++++++[m[31m-[m
+ components/ui/AboutPortrait.module.css          |  35 [32m+[m[31m-[m
+ components/ui/ButtonLink.module.css             |  62 [32m+[m[31m-[m
+ components/ui/ConsentPreferences.module.css     |  57 [32m+[m[31m-[m
+ components/ui/ContactForm.module.css            |  92 [32m++[m[31m-[m
+ components/ui/PageHeader.module.css             |  26 [32m+[m[31m-[m
+ components/ui/ProjectCover.module.css           |  66 [32m+[m[31m-[m
+ components/ui/SectionRule.module.css            |  27 [32m+[m[31m-[m
+ 28 files changed, 6838 insertions(+), 715 deletions(-)

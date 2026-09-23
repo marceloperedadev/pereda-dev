@@ -1,94 +1,462 @@
 .list {
   display: grid;
-  gap: clamp(56px, 8vw, 120px);
-  padding-bottom: clamp(72px, 10vw, 144px);
-}
-.item {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 24px;
-  row-gap: 24px;
-  align-items: end;
-}
-.media {
-  position: relative;
-  display: block;
-  grid-column: 1 / 8;
-  aspect-ratio: 16 / 10;
-  clip-path: polygon(0 0, calc(100% - 64px) 0, 100% 64px, 100% 100%, 0 100%);
-}
-.body {
-  grid-column: 8 / -1;
-  display: grid;
-  gap: 10px;
-  justify-items: start;
-  padding-bottom: 4px;
-}
-.item[data-flip="true"] .media {
-  grid-column: 6 / -1;
-  grid-row: 1;
-  clip-path: polygon(64px 0, 100% 0, 100% 100%, 0 100%, 0 64px);
-}
-.item[data-flip="true"] .body {
-  grid-column: 1 / 6;
-  grid-row: 1;
-}
-.index {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.name {
-  font-size: clamp(2.2rem, 4.4vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
-}
-.category {
-  color: var(--muted);
-}
-.summary {
-  font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-  line-height: 1.4;
-  max-width: 30ch;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+
+  gap:
+    clamp(
+      56px,
+      8vw,
+      120px
+    );
+
+  margin: 0;
+  padding: 0 0
+    clamp(
+      72px,
+      10vw,
+      144px
+    );
+
   list-style: none;
 }
-.tags li {
-  padding: 4px 9px;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  font-size: 0.78rem;
-  color: var(--muted);
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
+.item {
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
+  column-gap: 24px;
+
+  row-gap: 24px;
+
+  align-items: end;
 }
+
+/* =========================================================
+   IMAGEM
+   ========================================================= */
+
+.media {
+  position: relative;
+
+  display: block;
+
+  grid-column: 1 / 8;
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  background: var(--surface);
+
+  clip-path:
+    polygon(
+      0 0,
+      calc(100% - 64px) 0,
+      100% 64px,
+      100% 100%,
+      0 100%
+    );
+}
+
+.media::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  border:
+    1px solid
+    rgba(245, 243, 245, 0.12);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s var(--ease),
+    filter 0.4s var(--ease);
+}
+
+.item:hover .media img {
+  transform:
+    scale(1.025);
+}
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.body {
+  grid-column: 8 / -1;
+
+  display: grid;
+
+  gap: 10px;
+
+  justify-items: start;
+
+  padding-bottom: 4px;
+}
+
+/* =========================================================
+   ALTERNÂNCIA
+   ========================================================= */
+
+.item[data-flip="true"] .media {
+  grid-column: 6 / -1;
+
+  grid-row: 1;
+
+  clip-path:
+    polygon(
+      64px 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 64px
+    );
+}
+
+.item[data-flip="true"] .body {
+  grid-column: 1 / 6;
+
+  grid-row: 1;
+}
+
+/* =========================================================
+   METADADOS
+   ========================================================= */
+
+.index {
+  color: var(--muted);
+
+  font-size: 0.66rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1.2;
+
+  font-variant-numeric: tabular-nums;
+
+  transition:
+    color 0.2s var(--ease);
+}
+
+.item:hover .index {
+  color: var(--signal);
+}
+
+.category {
+  color: var(--muted);
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1.3;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.name {
+  max-width: 10ch;
+
+  color: var(--text);
+
+  font-size:
+    clamp(
+      2.2rem,
+      4.4vw,
+      4rem
+    );
+
+  font-weight: 700;
+
+  letter-spacing: -0.055em;
+
+  line-height: 0.93;
+
+  text-wrap: balance;
+
+  transition:
+    color 0.2s var(--ease);
+}
+
+.item:hover .name {
+  color: var(--signal);
+}
+
+/* =========================================================
+   RESUMO
+   ========================================================= */
+
+.summary {
+  max-width: 30ch;
+
+  color: var(--text);
+
+  font-family: var(--font-serif);
+
+  font-size:
+    clamp(
+      1.1rem,
+      1.5vw,
+      1.35rem
+    );
+
+  font-style: italic;
+
+  line-height: 1.4;
+
+  text-wrap: pretty;
+}
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  list-style: none;
+
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.tags li {
+  padding:
+    5px 9px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 2px;
+
+  color: var(--muted);
+
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  line-height: 1.3;
+
+  text-transform: uppercase;
+
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+
+.item:hover .tags li {
+  border-color:
+    var(--line-strong);
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
 .cta {
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
+
   min-height: 44px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--signal);
-  transition: color 0.2s var(--ease), gap 0.25s var(--ease);
+
+  margin-top: 2px;
+
+  color: var(--text);
+
+  border-bottom:
+    1px solid var(--signal);
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+
+  transition:
+    color 0.2s var(--ease),
+    gap 0.25s var(--ease);
 }
+
 .cta:hover {
-  color: var(--signal);
   gap: 12px;
+
+  color: var(--signal);
 }
+
+.cta svg {
+  transition:
+    transform 0.25s var(--ease);
+}
+
+.cta:hover svg {
+  transform:
+    translate(
+      2px,
+      -2px
+    );
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
+  .list {
+    gap:
+      clamp(
+        64px,
+        10vw,
+        88px
+      );
+  }
+
   .media,
   .item[data-flip="true"] .media {
     grid-column: 1 / -1;
+
     grid-row: 1;
-    clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+
+    clip-path:
+      polygon(
+        0 0,
+        calc(100% - 40px) 0,
+        100% 40px,
+        100% 100%,
+        0 100%
+      );
   }
+
   .body,
   .item[data-flip="true"] .body {
     grid-column: 1 / -1;
+
     grid-row: 2;
+  }
+
+  .summary {
+    max-width: 42rem;
+  }
+
+  .name {
+    max-width: 12ch;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .list {
+    gap: 64px;
+  }
+
+  .item {
+    column-gap: 16px;
+
+    row-gap: 20px;
+  }
+
+  .media,
+  .item[data-flip="true"] .media {
+    aspect-ratio: 4 / 3;
+
+    clip-path:
+      polygon(
+        0 0,
+        calc(100% - 28px) 0,
+        100% 28px,
+        100% 100%,
+        0 100%
+      );
+  }
+
+  .name {
+    max-width: 11ch;
+
+    font-size:
+      clamp(
+        2rem,
+        11vw,
+        3rem
+      );
+  }
+
+  .summary {
+    max-width: none;
+
+    font-size: 1.15rem;
+  }
+
+  .tags {
+    gap: 5px;
+  }
+
+  .tags li {
+    font-size: 0.58rem;
+  }
+
+  .cta {
+    margin-top: 2px;
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .media img,
+  .name,
+  .index,
+  .tags li,
+  .cta,
+  .cta svg {
+    transition: none;
+  }
+
+  .item:hover .media img {
+    transform: none;
+  }
+
+  .cta:hover svg {
+    transform: none;
   }
 }

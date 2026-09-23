@@ -1,63 +1,272 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
   column-gap: 24px;
-  row-gap: 56px;
-  padding-bottom: clamp(72px, 10vw, 144px);
+
+  row-gap:
+    clamp(40px, 6vw, 56px);
+
+  padding-bottom:
+    clamp(72px, 10vw, 144px);
 }
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
 .formCol {
   grid-column: 1 / 7;
 }
+
+/* =========================================================
+   CANAIS
+   ========================================================= */
+
 .channels {
   grid-column: 8 / -1;
 }
+
 .h2 {
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
-  letter-spacing: -0.035em;
+  max-width: 18ch;
+
   margin-bottom: 24px;
+
+  color: var(--text);
+
+  font-size:
+    clamp(
+      1.45rem,
+      2.2vw,
+      2rem
+    );
+
+  font-weight: 600;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1.05;
+
+  text-wrap: balance;
 }
+
+/* =========================================================
+   LISTA
+   ========================================================= */
+
 .list {
   list-style: none;
-  border-top: 1px solid var(--line);
+
+  margin: 0;
+  padding: 0;
+
+  border-top:
+    1px solid var(--line);
 }
+
 .list li {
   display: grid;
-  grid-template-columns: 7rem 1fr;
+
+  grid-template-columns:
+    7rem minmax(0, 1fr);
+
   gap: 16px;
+
+  align-items: baseline;
+
   padding-block: 16px;
-  border-bottom: 1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+
+  transition:
+    padding-left 0.25s var(--ease),
+    border-color 0.2s var(--ease);
 }
+
+.list li:hover {
+  padding-left: 5px;
+
+  border-color:
+    var(--line-strong);
+}
+
 .label {
   color: var(--muted);
-  font-size: 0.9rem;
+
+  font-size: 0.66rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
 }
+
 .list a {
+  display: inline;
+
   width: fit-content;
-  border-bottom: 1px solid var(--line);
+
+  max-width: 100%;
+
+  color: var(--text);
+
+  border-bottom:
+    1px solid var(--line);
+
   overflow-wrap: anywhere;
-  transition: border-color 0.2s var(--ease);
+
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
 }
+
 .list a:hover {
-  border-bottom-color: var(--signal);
+  color: var(--signal);
+
+  border-bottom-color:
+    var(--signal);
 }
+
+/* =========================================================
+   INFORMAÇÃO EXTRA
+   ========================================================= */
+
 .more {
+  max-width: 34rem;
+
   margin-top: 24px;
+
   color: var(--muted);
+
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+
+  text-wrap: pretty;
 }
+
 .more a {
   color: var(--text);
+
   text-decoration: underline;
-  text-underline-offset: 3px;
+
+  text-decoration-color:
+    var(--signal);
+
+  text-decoration-thickness: 1px;
+
+  text-underline-offset: 4px;
+
+  transition:
+    color 0.2s var(--ease);
 }
+
+.more a:hover {
+  color: var(--signal);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
   .formCol,
   .channels {
     grid-column: 1 / -1;
   }
+
+  .formCol {
+    max-width: 44rem;
+  }
+
+  .channels {
+    padding-top: 8px;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .grid {
+    row-gap: 40px;
+  }
+
+  .h2 {
+    margin-bottom: 20px;
+
+    font-size: 1.45rem;
+  }
+
+  .list li {
+    grid-template-columns:
+      6rem minmax(0, 1fr);
+
+    gap: 12px;
+
+    padding-block: 15px;
+  }
+
+  .list li:hover {
+    padding-left: 0;
+  }
+
+  .label {
+    font-size: 0.62rem;
+  }
+
+  .list a {
+    font-size: 0.94rem;
+  }
+
+  .more {
+    margin-top: 20px;
+
+    font-size: 0.86rem;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+   ========================================================= */
+
 @media (max-width: 420px) {
   .list li {
     grid-template-columns: 1fr;
-    gap: 2px;
+
+    gap: 4px;
+
+    padding-block: 14px;
+  }
+
+  .label {
+    font-size: 0.6rem;
+  }
+
+  .list a {
+    font-size: 0.92rem;
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .list li,
+  .list a,
+  .more a {
+    transition: none;
+  }
+
+  .list li:hover {
+    padding-left: 0;
   }
 }

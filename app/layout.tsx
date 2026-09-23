@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { siteConfig } from "@/lib/config/site";
 
-import "./globals.css";
+import "@/app/globals.css";
 
 const display = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -96,8 +96,17 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#08070A",
-  colorScheme: "dark",
+  themeColor: [
+    {
+      media: "(prefers-color-scheme: dark)",
+      color: "#08070A",
+    },
+    {
+      media: "(prefers-color-scheme: light)",
+      color: "#F3F1EB",
+    },
+  ],
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -109,6 +118,7 @@ export default function RootLayout({
     <html
       lang={siteConfig.lang}
       className={`${display.variable} ${serif.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <noscript>

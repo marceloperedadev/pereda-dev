@@ -1,20 +1,128 @@
 .prose {
   display: grid;
-  gap: 40px;
+
+  gap:
+    clamp(
+      32px,
+      5vw,
+      40px
+    );
+
   max-width: 46rem;
-  padding-bottom: clamp(72px, 10vw, 144px);
+
+  padding-bottom:
+    clamp(
+      72px,
+      10vw,
+      144px
+    );
 }
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
 .prose h2 {
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  letter-spacing: -0.03em;
   margin-bottom: 12px;
+
+  color: var(--text);
+
+  font-size:
+    clamp(
+      1.3rem,
+      2vw,
+      1.7rem
+    );
+
+  font-weight: 600;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1.08;
+
+  text-wrap: balance;
 }
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
 .prose p {
-  color: var(--muted);
   margin-bottom: 16px;
+
+  color: var(--muted);
+
+  font-size: 0.98rem;
+
+  line-height: 1.65;
+
+  text-wrap: pretty;
 }
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
 .prose a {
   color: var(--text);
+
   text-decoration: underline;
-  text-underline-offset: 3px;
+
+  text-decoration-color:
+    var(--signal);
+
+  text-decoration-thickness: 1px;
+
+  text-underline-offset: 4px;
+
+  transition:
+    color 0.2s var(--ease),
+    text-decoration-color 0.2s var(--ease);
+}
+
+.prose a:hover {
+  color: var(--signal);
+
+  text-decoration-color:
+    var(--signal);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .prose {
+    gap: 32px;
+
+    padding-bottom: 72px;
+  }
+
+  .prose h2 {
+    margin-bottom: 10px;
+
+    font-size: 1.3rem;
+  }
+
+  .prose p {
+    margin-bottom: 14px;
+
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .prose a {
+    transition: none;
+  }
 }

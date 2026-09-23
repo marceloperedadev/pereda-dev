@@ -1,25 +1,46 @@
 .rule {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
   padding-top: 14px;
-  border-top: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
   margin-bottom: clamp(28px, 4vw, 56px);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
+
 .label {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
+
 .dot {
+  flex: 0 0 7px;
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: var(--signal);
 }
+
 .meta {
+  flex: 0 0 auto;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .rule {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+    font-size: 0.78rem;
+  }
+
+  .label {
+    gap: 8px;
+  }
 }

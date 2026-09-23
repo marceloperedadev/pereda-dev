@@ -1,52 +1,300 @@
 .section {
-  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+  padding-block:
+    clamp(24px, 4vw, 48px)
+    clamp(72px, 9vw, 128px);
 }
+
+/* =========================================================
+   GRID PRINCIPAL
+   ========================================================= */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
   column-gap: 24px;
-  row-gap: 40px;
+  row-gap: clamp(40px, 6vw, 64px);
 }
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
 .head {
   grid-column: 1 / 6;
 }
+
 .title {
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  letter-spacing: -0.04em;
+  max-width: 8ch;
+
+  font-size:
+    clamp(
+      2.4rem,
+      4.6vw,
+      4.2rem
+    );
+
+  font-weight: 700;
+
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+
+  text-wrap: balance;
 }
+
 .lead {
-  margin-top: 18px;
+  max-width: 25rem;
+
+  margin-top:
+    clamp(20px, 2.5vw, 28px);
+
   color: var(--muted);
-  max-width: 24rem;
+
+  font-size: 1rem;
+
+  line-height: 1.55;
+
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   LISTA
+   ========================================================= */
+
 .list {
   grid-column: 6 / -1;
-  list-style: none;
+
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   column-gap: 32px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
 }
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
 .item {
-  padding-block: 22px 30px;
+  position: relative;
+
+  padding:
+    22px
+    0
+    32px;
+
   border-top: 1px solid var(--line);
+
+  transition:
+    padding-left 0.25s var(--ease),
+    border-color 0.25s var(--ease);
 }
+
+.item::before {
+  content: attr(data-index);
+
+  position: absolute;
+
+  top: 23px;
+  right: 0;
+
+  color: var(--soft);
+
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * O índice é acrescentado visualmente usando
+ * os próprios itens sem alterar o TSX.
+ *
+ * nth-child mantém a lógica completamente intacta.
+ */
+
+.item:nth-child(1)::before {
+  content: "01";
+}
+
+.item:nth-child(2)::before {
+  content: "02";
+}
+
+.item:nth-child(3)::before {
+  content: "03";
+}
+
+.item:nth-child(4)::before {
+  content: "04";
+}
+
+.item:hover {
+  padding-left: 6px;
+
+  border-color: var(--line-strong);
+}
+
+/* =========================================================
+   TÍTULO DO ITEM
+   ========================================================= */
+
 .itemTitle {
-  font-size: clamp(1.4rem, 2vw, 1.9rem);
-  letter-spacing: -0.03em;
+  max-width: 12ch;
+
+  padding-right: 28px;
+
+  font-size:
+    clamp(
+      1.35rem,
+      2vw,
+      1.85rem
+    );
+
+  font-weight: 600;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1.08;
+
+  text-wrap: balance;
 }
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
 .itemText {
-  margin-top: 10px;
+  max-width: 21rem;
+
+  margin-top: 12px;
+
   color: var(--muted);
-  max-width: 20rem;
+
+  font-size: 0.94rem;
+
+  line-height: 1.55;
+
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
   .head,
   .list {
     grid-column: 1 / -1;
   }
+
+  .head {
+    max-width: 42rem;
+  }
+
+  .title {
+    max-width: 10ch;
+  }
+
+  .lead {
+    max-width: 38rem;
+  }
+
+  .list {
+    column-gap: 24px;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 560px) {
+  .section {
+    padding-block:
+      24px
+      88px;
+  }
+
+  .grid {
+    row-gap: 36px;
+  }
+
+  .title {
+    max-width: 9ch;
+
+    font-size:
+      clamp(
+        2.35rem,
+        11vw,
+        3.3rem
+      );
+  }
+
+  .lead {
+    margin-top: 18px;
+
+    font-size: 0.98rem;
+  }
+
   .list {
     grid-template-columns: 1fr;
+
+    column-gap: 0;
+  }
+
+  .item {
+    padding:
+      20px
+      0
+      28px;
+  }
+
+  .item::before {
+    top: 21px;
+  }
+
+  .item:hover {
+    padding-left: 0;
+  }
+
+  .itemTitle {
+    max-width: 14ch;
+
+    padding-right: 32px;
+
+    font-size: 1.4rem;
+  }
+
+  .itemText {
+    max-width: none;
+
+    margin-top: 10px;
+
+    font-size: 0.94rem;
+  }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+
+  .item:hover {
+    padding-left: 0;
   }
 }

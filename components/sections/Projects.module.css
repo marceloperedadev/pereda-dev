@@ -1,30 +1,132 @@
+
 .section {
-  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+  position: relative;
+  padding-block:
+    clamp(28px, 4.5vw, 56px)
+    clamp(72px, 9vw, 128px);
+  overflow: hidden;
 }
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
 .head {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 24px;
-  row-gap: 16px;
-  margin-bottom: clamp(24px, 4vw, 48px);
+  row-gap: clamp(24px, 3vw, 36px);
+  margin-bottom: clamp(40px, 5.5vw, 68px);
 }
+
+.head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
+
 .title {
-  grid-column: 1 / 8;
-  font-size: clamp(2.4rem, 5.6vw, 5rem);
-  letter-spacing: -0.045em;
+  grid-column: 1 / 7;
+  max-width: 8ch;
+  padding-bottom: clamp(24px, 3vw, 34px);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+  text-wrap: balance;
 }
+
 .lead {
   grid-column: 9 / -1;
   align-self: end;
+  max-width: 29rem;
+  padding-bottom: clamp(24px, 3vw, 34px);
   color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   RODAPÉ DA SEÇÃO
+   ========================================================= */
+
 .foot {
-  margin-top: clamp(20px, 3vw, 36px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(32px, 4vw, 48px);
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 900px) {
   .title,
   .lead {
     grid-column: 1 / -1;
+  }
+
+  .title {
+    max-width: 9ch;
+  }
+
+  .lead {
+    max-width: 42rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .section {
+    padding-block: 24px 80px;
+  }
+
+  .head {
+    row-gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .head::after {
+    bottom: 0;
+  }
+
+  .title {
+    max-width: 8ch;
+    padding-bottom: 20px;
+    font-size: clamp(
+      2.65rem,
+      13vw,
+      4rem
+    );
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+  }
+
+  .lead {
+    max-width: none;
+    padding-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .foot {
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 26px;
+    padding-top: 16px;
   }
 }

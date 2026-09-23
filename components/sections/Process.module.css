@@ -1,45 +1,72 @@
+
 .section {
-  padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 128px);
+  position: relative;
+  padding-block:
+    clamp(24px, 4vw, 48px)
+    clamp(72px, 9vw, 128px);
 }
+
+/* =========================================================
+   ESTRUTURA
+   ========================================================= */
+
 .layout {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 24px;
   row-gap: 40px;
 }
+
 .head {
   grid-column: 1 / 5;
   align-self: start;
   position: sticky;
   top: calc(var(--header-h) + 32px);
 }
+
 .title {
+  max-width: 9ch;
   font-size: clamp(2rem, 4vw, 3.6rem);
-  letter-spacing: -0.04em;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+  text-wrap: balance;
 }
+
 .lead {
-  margin-top: 16px;
-  color: var(--muted);
   max-width: 22rem;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   LISTA
+   ========================================================= */
+
 .list {
+  --p: 0;
+
   grid-column: 6 / -1;
-  list-style: none;
   position: relative;
-  padding-left: clamp(28px, 4vw, 56px);
-  --p: 1;
+  padding-left: clamp(32px, 4vw, 60px);
 }
-.steps {
-  list-style: none;
-}
+
+/* =========================================================
+   TRILHO
+   ========================================================= */
+
 .rail {
   position: absolute;
-  left: 0;
   top: 0;
   bottom: 0;
+  left: 0;
   width: 1px;
   background: var(--line);
 }
+
 .railFill {
   display: block;
   width: 100%;
@@ -49,64 +76,222 @@
   transform-origin: top;
   will-change: transform;
 }
+
+/* =========================================================
+   PASSOS
+   ========================================================= */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .step {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(64px, 96px) 1fr;
-  column-gap: 16px;
-  padding-block: clamp(24px, 3vw, 40px);
+  grid-template-columns: minmax(64px, 88px) minmax(0, 1fr);
+  column-gap: clamp(18px, 2.5vw, 32px);
+  padding-block: clamp(30px, 4vw, 48px);
   border-bottom: 1px solid var(--line);
-  transition: opacity 0.5s var(--ease);
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease);
 }
-.step:first-of-type {
+
+.step:first-child {
   padding-top: 0;
 }
-.step:last-of-type {
+
+.step:last-child {
   border-bottom: 0;
 }
+
 .list[data-js="true"] .step[data-active="false"] {
-  opacity: 0.4;
+  opacity: 0.38;
 }
+
+/* =========================================================
+   NÚMERO
+   ========================================================= */
+
 .num {
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  font-variant-numeric: tabular-nums;
+  position: relative;
+  display: block;
   color: var(--text);
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  font-variant-numeric: tabular-nums;
+  transition:
+    color 0.45s var(--ease),
+    transform 0.45s var(--ease);
 }
+
+.step[data-active="true"] .num {
+  color: var(--signal);
+}
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.body {
+  min-width: 0;
+  padding-top: 2px;
+}
+
 .stepTitle {
-  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-  letter-spacing: -0.035em;
+  max-width: 16ch;
+  color: var(--text);
+  font-size: clamp(1.65rem, 2.7vw, 2.45rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  text-wrap: balance;
 }
+
 .tagline {
-  margin-top: 6px;
+  max-width: 30ch;
+  margin-top: 8px;
+  color: var(--text);
   font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 1.55vw, 1.3rem);
   font-style: italic;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.35;
+  text-wrap: pretty;
 }
+
 .stepText {
-  margin-top: 12px;
+  max-width: 36rem;
+  margin-top: 14px;
   color: var(--muted);
-  max-width: 34rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
+
+/* =========================================================
+   MARCAÇÃO DO PASSO ATIVO
+   ========================================================= */
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(clamp(32px, 4vw, 60px) * -1);
+  width: 7px;
+  height: 7px;
+  background: var(--line-strong);
+  transform: translateX(-3px) rotate(-6deg);
+  transition:
+    background-color 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.step:first-child::before {
+  top: 0;
+}
+
+.step[data-active="true"]::before {
+  background: var(--signal);
+  transform: translateX(-3px) rotate(45deg) scale(1.15);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
   .head {
     grid-column: 1 / -1;
     position: static;
   }
+
   .list {
     grid-column: 1 / -1;
   }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 520px) {
+  .section {
+    padding-block: 24px 88px;
+  }
+
+  .layout {
+    row-gap: 32px;
+  }
+
+  .title {
+    max-width: 10ch;
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem);
+  }
+
+  .lead {
+    margin-top: 14px;
+    font-size: 0.94rem;
+  }
+
+  .list {
+    padding-left: 26px;
+  }
+
   .step {
     grid-template-columns: 1fr;
-    row-gap: 10px;
+    row-gap: 12px;
+    padding-block: 30px;
+  }
+
+  .step:first-child {
+    padding-top: 0;
+  }
+
+  .num {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+
+  .stepTitle {
+    max-width: 13ch;
+    font-size: clamp(1.55rem, 7.5vw, 2rem);
+  }
+
+  .tagline {
+    max-width: 30ch;
+    margin-top: 7px;
+    font-size: 1.12rem;
+  }
+
+  .stepText {
+    margin-top: 10px;
+    font-size: 0.93rem;
+  }
+
+  .step::before {
+    left: -26px;
   }
 }
 
-.body {
-  min-width: 0;
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .railFill {
+    will-change: auto;
+  }
+
+  .step,
+  .num,
+  .step::before {
+    transition: none;
+  }
+
+  .step[data-active="false"] {
+    opacity: 1;
+  }
 }
