@@ -137,6 +137,44 @@ export const products: readonly Product[] = [
     updatedAt: "2026-09-21",
   },
   {
+    id: "monitor-gamer-24-100",
+    name: "Monitor gamer 24\" Full HD IPS 100 Hz",
+    slug: "monitor-gamer-24-full-hd-100hz",
+    category: "Monitor",
+    brand: "Não informado no anúncio",
+    summary: "Anúncio de monitor 24\" Full HD com painel IPS e taxa anunciada de 100 Hz. Confirme marca, modelo e especificações na página da loja.",
+    forWho: "Quem procura um monitor Full HD para jogos e uso geral e vai confirmar os detalhes do modelo antes da compra.",
+    notFor: "Quem precisa de um modelo já identificado e com especificações verificadas para comparar desempenho.",
+    specs: [
+      { label: "Tamanho anunciado", value: "24 polegadas" },
+      { label: "Resolução anunciada", value: "Full HD (1920 × 1080)" },
+      { label: "Painel anunciado", value: "IPS" },
+      { label: "Frequência anunciada", value: "100 Hz" },
+      { label: "Resposta anunciada", value: "3 ms" },
+      { label: "Recursos anunciados", value: "HDR e HDMI" },
+    ],
+    useCases: ["Gaming", "Uso geral"],
+    profile: "Econômico",
+    tags: ["monitor", "100hz", "full-hd", "ips"],
+    offers: [
+      {
+        store: "Mercado Livre",
+        availability: "Sob consulta",
+        affiliateUrl: "https://meli.la/2VuYxGP",
+        updatedAt: "2026-09-24",
+      },
+    ],
+    status: "illustrative",
+    sources: [
+      {
+        label: "Mercado Livre — anúncio de monitor gamer 24\" Full HD 100 Hz",
+        url: "https://www.mercadolivre.com.br/monitor-gamer-24--ips-full-hd-100hz-3ms-hdr-hdmi-jogos-e-pc/up/MLBU5084204576?pdp_filters=item_id:MLB5171883451",
+        accessedAt: "2026-09-24",
+      },
+    ],
+    updatedAt: "2026-09-24",
+  },
+  {
     id: "mouse-wireless-59",
     name: "Mouse wireless leve para FPS",
     slug: "mouse-wireless-leve-fps",
@@ -251,7 +289,7 @@ export const setups: readonly Setup[] = [
     focus: ["Alto FPS", "Baixa latência", "Mesa compacta"],
     budget: "Orçamento intermediário",
     description: "Uma combinação ordenada para colocar desempenho e responsividade antes de efeitos visuais.",
-    productIds: ["ryzen-5-5600", "monitor-24-144", "mouse-wireless-59", "headset-anc", "mousepad-desk"],
+    productIds: ["ryzen-5-5600", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc", "mousepad-desk"],
   },
   {
     slug: "setup-dev-hibrido",
@@ -260,7 +298,7 @@ export const setups: readonly Setup[] = [
     focus: ["Multitarefa", "Teclado compacto", "Conforto"],
     budget: "Investimento progressivo",
     description: "Componentes pensados para alternar entre código, chamadas e sessões de jogo com menos ruído visual.",
-    productIds: ["teclado-redragon-fizz", "monitor-24-144", "mouse-wireless-59", "headset-anc"],
+    productIds: ["teclado-redragon-fizz", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc"],
   },
   {
     slug: "setup-minimalista",
