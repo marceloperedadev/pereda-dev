@@ -5,7 +5,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 
 import { track } from "@/lib/analytics/events";
-import { gamePath, games, guidePath, guides, products, setupPath, setups } from "@/lib/data/setup";
+import { gamePath, games, guidePath, guides, products, productsByPriority, setupPath, setups } from "@/lib/data/setup";
 
 import styles from "./SetupExplorer.module.css";
 
@@ -30,7 +30,7 @@ export function SetupExplorer() {
 
   const results = useMemo(() => {
     const terms = queryTerms(query.trim());
-    return products.filter((product) => {
+    return productsByPriority.filter((product) => {
       const searchable = normalize([
         product.name, product.brand, product.category, product.profile,
         product.summary, product.forWho, product.notFor, ...product.tags,

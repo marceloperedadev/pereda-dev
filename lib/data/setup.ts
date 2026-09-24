@@ -281,6 +281,13 @@ export const products: readonly Product[] = [
   },
 ] as const;
 
+/** Ofertas afiliadas cadastradas aparecem primeiro nas vitrines de produtos. */
+export const productsByPriority: readonly Product[] = [...products].sort(
+  (first, second) =>
+    Number(second.offers.some((offer) => offer.affiliateUrl)) -
+    Number(first.offers.some((offer) => offer.affiliateUrl)),
+);
+
 export const setups: readonly Setup[] = [
   {
     slug: "setup-fps-1080p",
