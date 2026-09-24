@@ -9,6 +9,7 @@ import {
   projectPath,
   projects,
 } from "@/lib/data/projects";
+import { productPath, products } from "@/lib/data/setup";
 
 /**
  * Sitemap das páginas públicas e relevantes para indexação.
@@ -67,8 +68,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }));
 
+  const setupPages: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl("/setup"),
+      lastModified: siteLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...["/setup/produtos", "/setup/guias", "/setup/jogos", "/setup/setups", "/setup/metodologia", "/setup/transparencia"].map((path) => ({
+      url: absoluteUrl(path),
+      lastModified: siteLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path.includes("metodologia") ? 0.6 : 0.7,
+    })),
+    ...products.filter((product) => product.status === "verified").map((product) => ({
+      url: absoluteUrl(productPath(product.slug)),
+      lastModified: new Date(product.updatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+
   return [
     ...staticPages,
     ...projectPages,
+    ...setupPages,
   ];
 }

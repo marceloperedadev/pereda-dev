@@ -1,0 +1,141 @@
+.guide {
+    max-width: 760px;
+}
+
+.progress {
+    height: 2px;
+    background: var(--line);
+    margin-bottom: 22px;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    background: var(--signal);
+    transition: width .2s var(--ease);
+}
+
+.step,
+.resultIntro p {
+    color: var(--signal);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.guide h3,
+.resultIntro h3 {
+    margin: 16px 0 24px;
+    font-size: clamp(2rem, 4vw, 3.7rem);
+    line-height: .98;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.options button {
+    min-height: 52px;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    text-align: left;
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+}
+
+.options button:hover {
+    border-color: var(--signal);
+    color: var(--signal);
+}
+
+.back,
+.restart {
+    margin-top: 16px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+}
+
+.back:hover,
+.restart:hover {
+    border-color: var(--signal);
+    color: var(--signal);
+}
+
+.note {
+    margin-top: 20px;
+    color: var(--soft);
+    font-size: .7rem;
+}
+
+.result {
+    max-width: 900px;
+}
+
+.resultIntro span {
+    color: var(--muted);
+}
+
+.components {
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+}
+
+.components li {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 18px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.components li>span {
+    color: var(--signal);
+    font-size: .7rem;
+}
+
+.components p {
+    color: var(--muted);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.components h4 {
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.components small {
+    color: var(--muted);
+}
+
+.components a {
+    color: var(--signal);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+@media (max-width: 600px) {
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .components li {
+        grid-template-columns: 28px 1fr;
+    }
+
+    .components a {
+        grid-column: 2;
+    }
+}

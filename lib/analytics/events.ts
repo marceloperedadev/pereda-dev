@@ -33,7 +33,15 @@ export type EventName =
   | "submit_contact"
   | "scroll_50"
   | "scroll_75"
-  | "scroll_90";
+  | "scroll_90"
+  | "setup_search"
+  | "setup_filter"
+  | "setup_guide_step"
+  | "setup_guide_complete"
+  | "setup_content_view"
+  | "setup_product_view"
+  | "setup_product_click"
+  | "setup_affiliate_click";
 
 export type EventParams = Record<
   string,

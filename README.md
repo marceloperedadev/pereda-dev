@@ -90,3 +90,12 @@ lib/seo/             metadata, jsonld
 - [ ] Testar o carrossel no celular real (arrastar, rolagem vertical)
 - [ ] GA4 Tempo real recebendo eventos apÃ³s aceitar o aviso
 
+## Preparar integraÃ§Ãµes de afiliados
+
+As variÃ¡veis de API ficam em `.env.local` no computador (copie de `.env.example`) ou nas Environment Variables do servidor. Nunca use prefixo `NEXT_PUBLIC_` em segredos. O arquivo `.env.local` jÃ¡ estÃ¡ ignorado pelo Git.
+
+Os nomes em `.env.example` sÃ£o espaÃ§os reservados para credenciais emitidas pelos prÃ³prios programas; preenchÃª-los nÃ£o inicia consultas de preÃ§o. Cada integraÃ§Ã£o sÃ³ poderÃ¡ ser ligada quando houver acesso aprovado e documentaÃ§Ã£o oficial com autenticaÃ§Ã£o, endpoints, limites e regras de uso. KaBuM/Awin e Terabyte podem oferecer apenas links de parceiro, sem API de preÃ§o.
+
+`lib/server/affiliate-env.ts` lÃª essas variÃ¡veis exclusivamente em cÃ³digo de servidor e retorna `undefined` quando faltam credenciais. NÃ£o importe esse mÃ³dulo em componentes cliente nem envie o retorno ao navegador. Os adaptadores que chamam as APIs ainda dependem da documentaÃ§Ã£o de cada loja.
+
+Para o Mercado Livre, o inÃ­cio OAuth estÃ¡ em `/api/afiliados/mercadolivre/connect` e o retorno em `/api/afiliados/mercadolivre/callback`. Antes de usar, cadastre a URI exata do callback nas configuraÃ§Ãµes do app, configure o projeto Supabase com a migraÃ§Ã£o `supabase/migrations/202609240001_affiliate_oauth_tokens.sql` e preencha `SUPABASE_URL` e `SUPABASE_SECRET_KEY` apenas no servidor. Tokens de acesso e refresh sÃ£o rotacionados e ficam nessa tabela privada; nÃ£o devem ser postos manualmente no `.env.local`.

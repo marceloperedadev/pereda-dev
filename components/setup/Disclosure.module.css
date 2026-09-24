@@ -1,0 +1,45 @@
+.disclosure {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 14px;
+    margin: 14px 0;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+    color: var(--soft);
+    font-size: .68rem;
+    line-height: 1.45;
+}
+
+.disclosure p {
+    flex: 1 1 340px;
+}
+
+.disclosure nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.disclosure a {
+    color: var(--muted);
+    font-size: .65rem;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 3px;
+}
+
+.disclosure a:hover {
+    color: var(--signal);
+    text-decoration-color: currentColor;
+}
+
+@media (max-width: 500px) {
+    .disclosure {
+        gap: 6px;
+    }
+
+    .disclosure p {
+        flex-basis: 100%;
+    }
+}

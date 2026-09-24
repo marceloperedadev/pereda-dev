@@ -6,17 +6,8 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type KeyboardEvent,
-  type PointerEvent,
 } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-} from "lucide-react";
-
-import { ProjectCover } from "@/components/ui/ProjectCover";
-import { TrackedLink } from "@/components/ui/TrackedLink";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import {
   ctaParams,
@@ -26,6 +17,9 @@ import {
 
 import type { Project } from "@/lib/data/projects";
 
+import { ProjectCarouselSlide } from "./ProjectCarouselSlide";
+import { useProjectsCarouselDrag } from "./useProjectsCarouselDrag";
+import { useProjectsCarouselKeyboard } from "./useProjectsCarouselKeyboard";
 import styles from "./ProjectsCarousel.module.css";
 
 export type CarouselProject = {
@@ -45,16 +39,6 @@ type Interaction =
   | "keyboard"
   | "indicator"
   | "peek";
-
-type DragState = {
-  id: number;
-  x: number;
-  y: number;
-  dx: number;
-  startedAt: number;
-  decided: boolean;
-  horizontal: boolean;
-};
 
 type TrackStyle = CSSProperties & {
   "--i": number;
@@ -81,9 +65,23 @@ export function ProjectsCarousel({
     useRef<HTMLSpanElement>(null);
 
   const seenInitialView = useRef(false);
-  const suppressClick = useRef(false);
+  const [suppressClick, setSuppressClick] = useState(false);
 
-  const drag = useRef<DragState | null>(null);
+  useEffect(() => {
+    const nextActive =
+      total === 0
+        ? 0
+        : Math.max(
+            0,
+            Math.min(total - 1, active),
+          );
+
+    activeRef.current = nextActive;
+
+    if (nextActive !== active) {
+      setActive(nextActive);
+    }
+  }, [active, projects, total]);
 
   const goTo = useCallback(
     (
@@ -179,258 +177,26 @@ export function ProjectsCarousel({
     };
   }, [projects, total]);
 
-  const resetDrag = useCallback(() => {
-    const element = trackRef.current;
+  const {
+    onPointerDown,
+    onPointerMove,
+    endDrag,
+    shouldSuppressClick,
+  } = useProjectsCarouselDrag({
+    total,
+    activeRef,
+    trackRef,
+    viewportRef,
+    hintRef,
+    goTo: (index, interaction) => goTo(index, interaction),
+    setSuppressClick,
+  });
 
-    if (!element) {
-      return;
-    }
-
-    element.style.setProperty(
-      "--drag",
-      "0px",
-    );
-
-    delete element.dataset.dragging;
-  }, []);
-
-  const onPointerDown = (
-    event: PointerEvent<HTMLDivElement>,
-  ) => {
-    if (
-      event.pointerType === "mouse" &&
-      event.button !== 0
-    ) {
-      return;
-    }
-
-    drag.current = {
-      id: event.pointerId,
-      x: event.clientX,
-      y: event.clientY,
-      dx: 0,
-      startedAt: performance.now(),
-      decided: false,
-      horizontal: false,
-    };
-  };
-
-  const onPointerMove = (
-    event: PointerEvent<HTMLDivElement>,
-  ) => {
-    if (
-      event.pointerType === "mouse" &&
-      hintRef.current &&
-      viewportRef.current
-    ) {
-      const bounds =
-        viewportRef.current.getBoundingClientRect();
-
-      const target = event.target;
-
-      const overControl =
-        target instanceof HTMLElement
-          ? Boolean(
-              target.closest(
-                "a, button",
-              ),
-            )
-          : false;
-
-      hintRef.current.style.transform =
-        `translate3d(${
-          event.clientX -
-          bounds.left +
-          16
-        }px, ${
-          event.clientY -
-          bounds.top +
-          16
-        }px, 0)`;
-
-      hintRef.current.dataset.visible =
-        overControl
-          ? "false"
-          : "true";
-    }
-
-    const state = drag.current;
-
-    if (
-      !state ||
-      state.id !== event.pointerId
-    ) {
-      return;
-    }
-
-    const dx =
-      event.clientX - state.x;
-    const dy =
-      event.clientY - state.y;
-
-    if (!state.decided) {
-      if (
-        Math.abs(dx) < 6 &&
-        Math.abs(dy) < 6
-      ) {
-        return;
-      }
-
-      state.decided = true;
-
-      state.horizontal =
-        Math.abs(dx) > Math.abs(dy);
-
-      if (state.horizontal) {
-        try {
-          event.currentTarget.setPointerCapture(
-            event.pointerId,
-          );
-        } catch {
-          // Pointer capture is not available
-          // in every browser/context.
-        }
-
-        if (trackRef.current) {
-          trackRef.current.dataset.dragging =
-            "true";
-        }
-      }
-    }
-
-    if (!state.horizontal) {
-      return;
-    }
-
-    state.dx = dx;
-
-    const atStart =
-      activeRef.current === 0 &&
-      dx > 0;
-
-    const atEnd =
-      activeRef.current ===
-        total - 1 &&
-      dx < 0;
-
-    const displacement =
-      atStart || atEnd
-        ? dx * 0.3
-        : dx;
-
-    trackRef.current?.style.setProperty(
-      "--drag",
-      `${displacement}px`,
-    );
-  };
-
-  const endDrag = (
-    event: PointerEvent<HTMLDivElement>,
-  ) => {
-    const state = drag.current;
-
-    if (
-      !state ||
-      state.id !== event.pointerId
-    ) {
-      return;
-    }
-
-    drag.current = null;
-
-    if (!state.horizontal) {
-      return;
-    }
-
-    const elapsed = Math.max(
-      1,
-      performance.now() -
-        state.startedAt,
-    );
-
-    const velocity =
-      state.dx / elapsed;
-
-    if (
-      state.dx < -60 ||
-      velocity < -0.5
-    ) {
-      goTo(
-        activeRef.current + 1,
-        "drag",
-      );
-    } else if (
-      state.dx > 60 ||
-      velocity > 0.5
-    ) {
-      goTo(
-        activeRef.current - 1,
-        "drag",
-      );
-    }
-
-    resetDrag();
-
-    suppressClick.current = true;
-
-    window.setTimeout(() => {
-      suppressClick.current = false;
-    }, 60);
-  };
-
-  const onKeyDown = (
-    event: KeyboardEvent<HTMLDivElement>,
-  ) => {
-    if (
-      event.target !==
-        event.currentTarget ||
-      total === 0
-    ) {
-      return;
-    }
-
-    switch (event.key) {
-      case "ArrowRight":
-        event.preventDefault();
-
-        goTo(
-          activeRef.current + 1,
-          "keyboard",
-        );
-
-        break;
-
-      case "ArrowLeft":
-        event.preventDefault();
-
-        goTo(
-          activeRef.current - 1,
-          "keyboard",
-        );
-
-        break;
-
-      case "Home":
-        event.preventDefault();
-
-        goTo(0, "keyboard");
-
-        break;
-
-      case "End":
-        event.preventDefault();
-
-        goTo(
-          total - 1,
-          "keyboard",
-        );
-
-        break;
-
-      default:
-        break;
-    }
-  };
+  const onKeyDown = useProjectsCarouselKeyboard({
+    total,
+    activeRef,
+    goTo: (index, interaction) => goTo(index, interaction),
+  });
 
   if (total === 0) {
     return null;
@@ -526,7 +292,7 @@ export function ProjectsCarousel({
           event.preventDefault()
         }
         onClickCapture={(event) => {
-          if (!suppressClick.current) {
+          if (!suppressClick && !shouldSuppressClick()) {
             return;
           }
 
@@ -539,148 +305,18 @@ export function ProjectsCarousel({
           className={styles.track}
           style={trackStyle}
         >
-          {projects.map(
-            (project, index) => {
-              const isActive =
-                index === active;
-
-              return (
-                <div
-                  key={project.slug}
-                  className={
-                    styles.slide
-                  }
-                  data-active={
-                    isActive
-                  }
-                >
-                  <article
-                    className={
-                      styles.card
-                    }
-                    inert={!isActive}
-                    aria-label={`${project.name} — projeto ${
-                      index + 1
-                    } de ${total}`}
-                  >
-                    <div
-                      className={
-                        styles.media
-                      }
-                    >
-                      <ProjectCover
-                        project={
-                          project
-                        }
-                        sizes="(min-width: 1200px) 1100px, 84vw"
-                        priority={
-                          index === 0
-                        }
-                      />
-                    </div>
-
-                    <div
-                      className={
-                        styles.info
-                      }
-                    >
-                      <p
-                        className={
-                          styles.index
-                        }
-                      >
-                        {pad(index + 1)}{" "}
-                        /{" "}
-                        {pad(total)}
-                      </p>
-
-                      <h3
-                        className={
-                          styles.name
-                        }
-                      >
-                        {project.name}
-                      </h3>
-
-                      <p
-                        className={
-                          styles.category
-                        }
-                      >
-                        {project.category}
-                      </p>
-
-                      <p
-                        className={
-                          styles.summary
-                        }
-                      >
-                        {project.summary}
-                      </p>
-
-                      <ul
-                        className={
-                          styles.tags
-                        }
-                        aria-label="Características do projeto"
-                      >
-                        {project.tags.map(
-                          (tag) => (
-                            <li key={tag}>
-                              {tag}
-                            </li>
-                          ),
-                        )}
-                      </ul>
-
-                      <TrackedLink
-                        href={`/projetos/${project.slug}`}
-                        className={
-                          styles.cta
-                        }
-                        event="click_project"
-                        eventParams={{
-                          ...projectParams(
-                            project,
-                          ),
-                          ...ctaParams(
-                            "carousel",
-                            "Ver projeto",
-                          ),
-                          project_position:
-                            index +
-                            1,
-                        }}
-                      >
-                        Ver projeto
-
-                        <ArrowUpRight
-                          size={18}
-                          aria-hidden="true"
-                        />
-                      </TrackedLink>
-                    </div>
-                  </article>
-
-                  {!isActive ? (
-                    <button
-                      type="button"
-                      className={
-                        styles.peek
-                      }
-                      aria-label={`Ver o projeto ${project.name}`}
-                      onClick={() =>
-                        goTo(
-                          index,
-                          "peek",
-                        )
-                      }
-                    />
-                  ) : null}
-                </div>
-              );
-            },
-          )}
+          {projects.map((project, index) => (
+            <ProjectCarouselSlide
+              key={project.slug}
+              project={project}
+              index={index}
+              total={total}
+              isActive={index === active}
+              onSelect={(next, interaction) =>
+                goTo(next, interaction)
+              }
+            />
+          ))}
         </div>
 
         <span

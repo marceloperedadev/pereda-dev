@@ -1,0 +1,200 @@
+.page {
+    padding-bottom: 120px;
+}
+
+.hero {
+    padding-block: clamp(70px, 10vw, 150px) clamp(60px, 8vw, 120px);
+}
+
+.eyebrow,
+.sectionLabel {
+    color: var(--signal);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    max-width: 13ch;
+    margin-top: 24px;
+    font-size: clamp(3rem, 7.4vw, 7.5rem);
+    letter-spacing: -.07em;
+    line-height: .88;
+}
+
+.lead {
+    max-width: 42rem;
+    margin-top: 32px;
+    color: var(--muted);
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2vw, 1.65rem);
+    line-height: 1.4;
+}
+
+.heroActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 36px;
+}
+
+.heroActions a {
+    min-height: 44px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line-strong);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.heroActions a:first-child {
+    background: var(--signal);
+    color: var(--bg);
+    border-color: var(--signal);
+}
+
+.offerLink {
+    width: fit-content;
+    min-height: 44px;
+    margin-top: 24px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.offerLink small {
+    margin-left: 10px;
+    color: var(--muted);
+    font-size: .6rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.sectionLead a {
+    color: var(--signal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.paths,
+.guideSection,
+.explorerSection,
+.linksSection {
+    border-top: 1px solid var(--line);
+    padding-block: 64px;
+}
+
+.pathGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.pathGrid article {
+    min-height: 270px;
+    padding: 20px 0;
+    border-top: 2px solid var(--signal);
+}
+
+.pathGrid span,
+.pathGrid a {
+    color: var(--signal);
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.pathGrid h2 {
+    max-width: 14ch;
+    margin: 42px 0 12px;
+    font-size: 1.6rem;
+    line-height: 1.05;
+}
+
+.pathGrid p {
+    color: var(--muted);
+}
+
+.pathGrid a {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--text);
+}
+
+.sectionLead {
+    max-width: 42rem;
+    margin-top: 18px;
+    color: var(--muted);
+}
+
+.guideSection h2,
+.explorerSection h2,
+.linksSection h2 {
+    margin: 18px 0;
+    font-size: clamp(2.4rem, 4vw, 4.2rem);
+    line-height: .95;
+}
+
+.explorerSection>h2 {
+    margin-bottom: 36px;
+}
+
+.linkColumns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+}
+
+.linkColumns>div {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+}
+
+.linkColumns h3 {
+    margin-bottom: 14px;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.linkColumns a {
+    display: block;
+    padding: 7px 0;
+    color: var(--muted);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+}
+
+.linkColumns a:hover {
+    color: var(--signal);
+}
+
+@media (max-width: 720px) {
+
+    .pathGrid,
+    .linkColumns {
+        grid-template-columns: 1fr;
+    }
+
+    .pathGrid article {
+        min-height: auto;
+    }
+
+    .pathGrid h2 {
+        margin-top: 24px;
+    }
+}
