@@ -41,7 +41,26 @@ export async function GET(request: NextRequest) {
       body,
       cache: "no-store",
     });
-    if (!tokenResponse.ok) return NextResponse.json({ error: "O Mercado Livre não concluiu a troca do código por token." }, { status: 502 });
+    if (!tokenResponse.ok) {
+      const responseText = await tokenResponse.text();
+      let errorDetails: Record<string, unknown> = {};
+      try {
+        const parsed = JSON.parse(responseText) as Record<string, unknown>;
+        errorDetails = {
+          error: parsed.error,
+          message: parsed.message,
+          error_description: parsed.error_description,
+          cause: parsed.cause,
+        };
+      } catch {
+        // If the response is not JSON, record only its HTTP status.
+      }
+      console.error("Mercado Livre OAuth token exchange rejected", {
+        status: tokenResponse.status,
+        ...errorDetails,
+      });
+      return NextResponse.json({ error: "O Mercado Livre não concluiu a troca do código por token." }, { status: 502 });
+    }
 
     const token = (await tokenResponse.json()) as {
       access_token?: string;
