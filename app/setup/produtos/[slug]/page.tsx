@@ -50,7 +50,9 @@ export default async function ProductPage({ params }: Props) {
       <section className={`container ${styles.linksSection}`}>
         {!verified ? (
           <p className={styles.sectionLead} role="status">
-            Ficha ilustrativa: modelo, especificações, fontes, preço e disponibilidade ainda não foram verificados. Não use esta página como recomendação de compra.
+            {sources.length
+              ? "Dados técnicos baseados nas fontes citadas; este produto não foi testado pela equipe. Preço e estoque não foram verificados. Confirme a variante no anúncio."
+              : "Ficha ilustrativa: modelo, especificações, fontes, preço e disponibilidade ainda não foram verificados. Não use esta página como recomendação de compra."}
             <Link href="/setup/metodologia"> Como avaliamos informações</Link>
           </p>
         ) : null}

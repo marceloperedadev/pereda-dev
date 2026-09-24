@@ -21,7 +21,7 @@ export default function MethodologyPage() {
       <article className={`container ${styles.linksSection}`}>
         <section>
           <h2>Estado atual</h2>
-          <p>As fichas atuais são exemplos editoriais ilustrativos. Não houve teste físico dos produtos, verificação de preços ou estoque, consulta documentada a fabricantes, validação de compatibilidade nem conferência de ofertas afiliadas. Elas não devem ser tratadas como recomendações de compra.</p>
+          <p>A maioria das fichas continua ilustrativa. A página do Redragon Fizz identifica um modelo e cita fontes do fabricante e do anúncio, mas o produto não foi testado pela equipe e o preço e o estoque não foram verificados. As fichas não devem ser tratadas como recomendações de compra.</p>
         </section>
         <section>
           <h2>Como uma ficha poderá ser publicada como verificada</h2>
@@ -29,7 +29,7 @@ export default function MethodologyPage() {
         </section>
         <section>
           <h2>Preços e links</h2>
-          <p>Preço e disponibilidade podem mudar. Só exibiremos uma oferta quando houver um endereço específico do produto e uma data de verificação. Links de afiliado serão identificados; eventual comissão não substitui os critérios editoriais.</p>
+          <p>Preço e disponibilidade podem mudar. O link do Redragon Fizz leva a um anúncio específico, sem preço exibido até que ele seja conferido. Links afiliados podem gerar comissão; isso não substitui os critérios editoriais.</p>
         </section>
         <p><Link href="/setup/transparencia">Leia também a transparência sobre afiliados.</Link></p>
       </article>

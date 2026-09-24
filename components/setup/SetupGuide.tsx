@@ -49,7 +49,7 @@ export function SetupGuide() {
     if (responses.use?.includes("Jogar") || responses.use === "Criar conteúdo") ids.push("ryzen-5-5600");
     if (responses.resolution === "1440p" || responses.resolution === "4K") ids.push("monitor-24-144");
     if (needsPeripherals) {
-      if (responses.use?.includes("estudar") || responses.priority === "Organização") ids.push("teclado-mecanico-65");
+      if (responses.use?.includes("estudar") || responses.priority === "Organização") ids.push("teclado-redragon-fizz");
       if (responses.game?.includes("competitivos") || responses.priority === "Desempenho") ids.push("mouse-wireless-59");
       if (responses.use?.includes("trabalhar") || responses.use === "Criar conteúdo") ids.push("headset-anc");
     }

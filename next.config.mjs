@@ -6,6 +6,15 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/setup/produtos/teclado-mecanico-65-hot-swap",
+        destination: "/setup/produtos/teclado-redragon-fizz-60",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
