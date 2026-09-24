@@ -1,11 +1,11 @@
 ﻿/**
- * Dados estruturados (JSON-LD) do portfÃ³lio.
+ * Dados estruturados (JSON-LD) do portfólio.
  *
  * Este arquivo centraliza os schemas utilizados pelo site.
  *
  * Regra principal:
- * o JSON-LD deve representar informaÃ§Ãµes que tambÃ©m possam
- * ser encontradas e compreendidas pelo usuÃ¡rio na pÃ¡gina.
+ * o JSON-LD deve representar informações que também possam
+ * ser encontradas e compreendidas pelo usuário na página.
  */
 
 import {
@@ -38,7 +38,7 @@ export function personSchema() {
     jobTitle: siteConfig.role,
 
     description:
-      "Profissional de e-commerce e experiências digitais em Taubaté, SP. Constrói presenças digitais para negócios, marcas, profissionais e empreendedores.",
+      "Desenvolvedor web e especialista em e-commerce em Taubaté, SP. Constrói sites, lojas virtuais e sistemas web para negócios, marcas e profissionais.",
 
     url: siteConfig.url,
 
@@ -54,10 +54,10 @@ export function personSchema() {
     },
 
     knowsAbout: [
-      "Presença digital",
-      "Experiências digitais",
-      "E-commerce",
       "Desenvolvimento web",
+      "Criação de sites",
+      "E-commerce",
+      "Lojas virtuais",
       "Sistemas web",
       "Next.js",
       "React",
@@ -86,7 +86,7 @@ export function websiteSchema() {
 
     url: siteConfig.url,
 
-    name: `${siteConfig.name} â€” ${siteConfig.role}`,
+    name: `${siteConfig.name} — ${siteConfig.role}`,
 
     inLanguage: siteConfig.lang,
 
@@ -111,7 +111,7 @@ export function homeGraph() {
         name: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
 
         description:
-          "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais.",
+          "Desenvolvimento de sites, lojas virtuais (e-commerce) e sistemas web personalizados para negócios, marcas e profissionais.",
 
         inLanguage: siteConfig.lang,
 
@@ -284,7 +284,7 @@ export function projectGraph(
       {
         ...breadcrumbSchema([
           {
-            name: "InÃ­cio",
+            name: "Início",
             path: "/",
           },
           {

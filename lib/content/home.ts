@@ -8,26 +8,26 @@
  */
 
 export const hero = {
-  identity: "Marcelo Felipe · E-commerce & experiências digitais",
+  identity: "Marcelo Felipe · Desenvolvimento Web & E-commerce",
 
   location: "Taubaté, SP",
 
-  headlineLead: "Presença digital",
+  headlineLead: "Criação de sites",
 
   headlineTail:
-    "com identidade, experiência e tecnologia.",
+    "com estratégia, performance e tecnologia.",
 
   text:
-    "Ajudo negócios a transformar uma ideia, produto ou operação em uma presença digital clara, reconhecível e pronta para apresentar, vender e evoluir.",
+    "Ajudo negócios a transformar uma ideia, produto ou operação em um site claro, funcional e pronto para apresentar, vender e evoluir.",
 
   primaryCta: "Conhecer projetos",
 
   secondaryCta: "Vamos conversar",
 
   specialties: [
-    "Presença digital",
-    "Identidade digital",
-    "E-commerce",
+    "Criação de sites",
+    "Lojas virtuais (E-commerce)",
+    "Sistemas web",
   ],
 };
 
@@ -35,35 +35,35 @@ export const proof = {
   title: "A forma como um negócio aparece importa.",
 
   lead:
-    "Antes da interface, existe uma decisão: como esse negócio deve ser percebido, entendido e lembrado no digital.",
+    "Antes da interface, existe uma decisão: como esse negócio deve ser percebido, entendido e lembrado na internet.",
 
   items: [
     {
       title: "Estratégia",
 
       text:
-        "Entender o negócio, o público e a percepção que a presença digital precisa construir.",
+        "Entender o negócio, o público e a estrutura que o site precisa construir para gerar resultados.",
     },
 
     {
-      title: "Experiência",
+      title: "Interface",
 
       text:
-        "Dar forma ao posicionamento com conteúdo, navegação e interface que façam sentido juntos.",
+        "Dar forma ao posicionamento com conteúdo organizado, navegação intuitiva e design responsivo.",
     },
 
     {
       title: "Tecnologia",
 
       text:
-        "Usar tecnologia para transformar a experiência em uma solução funcional, rápida e sustentável.",
+        "Usar ferramentas modernas para transformar o projeto em uma solução funcional, rápida e sustentável.",
     },
 
     {
       title: "Negócio",
 
       text:
-        "Construir um caminho claro para apresentar, vender, agendar ou iniciar uma conversa.",
+        "Construir um caminho claro para apresentar produtos, vender, agendar ou iniciar uma conversa.",
     },
   ],
 };
@@ -72,38 +72,38 @@ export const projectsSection = {
   title: "Cases em contexto",
 
   lead:
-    "Cada projeto parte de uma necessidade real: uma operação para organizar, uma marca para apresentar ou uma experiência para melhorar.",
+    "Cada projeto parte de uma necessidade real: uma operação para organizar, uma marca para apresentar ou uma loja para vender mais.",
 };
 
 export const process = {
   title: "Como eu trabalho",
 
   lead:
-    "Um processo direto para transformar contexto, conteúdo e intenção em uma experiência digital bem estruturada.",
+    "Um processo direto para transformar contexto, conteúdo e intenção em um projeto web bem estruturado.",
 
   steps: [
     {
       title: "Entender",
 
-      tagline: "O negócio antes da interface.",
+      tagline: "O negócio antes do código.",
 
       text:
-        "Converso sobre o negócio, o público e o que precisa acontecer quando alguém chega ao projeto.",
+        "Converso sobre o negócio, o público e o que precisa acontecer quando alguém chega ao site.",
     },
 
     {
       title: "Estruturar",
 
-      tagline: "Arquitetura, conteúdo e experiência.",
+      tagline: "Arquitetura e fluxo de navegação.",
 
       text:
-        "Organizo páginas, informações, fluxos e prioridades antes de transformar a ideia em interface.",
+        "Organizo páginas, informações e prioridades antes de começar o desenvolvimento visual.",
     },
 
     {
       title: "Construir",
 
-      tagline: "Design, código e integração.",
+      tagline: "Design, código e integrações.",
 
       text:
         "Desenvolvo a interface e a parte técnica do projeto, conectando as ferramentas necessárias para cada solução.",
@@ -115,7 +115,7 @@ export const process = {
       tagline: "Testes, responsividade e ajustes.",
 
       text:
-        "Reviso o projeto em diferentes telas, verifico navegação, desempenho, acessibilidade e pontos que podem dificultar a experiência.",
+        "Reviso o projeto em diferentes telas, verificando a velocidade, o SEO e a facilidade de uso.",
     },
   ],
 };
@@ -141,45 +141,45 @@ export const differential = {
   title: "Não é apenas uma página.",
 
   lead:
-    "É a forma como um negócio se apresenta, orienta escolhas e constrói confiança no digital. Interface, experiência, estrutura e tecnologia precisam trabalhar na mesma direção.",
+    "É a forma como um negócio se apresenta, orienta escolhas e constrói confiança no digital. Design, estrutura e tecnologia precisam trabalhar na mesma direção.",
 
   servicesTitle: "O formato parte da necessidade.",
 
   servicesLead:
-    "Alguns projetos pedem foco. Outros precisam organizar uma presença inteira. Há também os que exigem uma solução própria.",
+    "Alguns projetos pedem foco em conversão. Outros precisam de uma loja virtual completa. Há também os que exigem um sistema sob medida.",
 };
 
 export const about = {
   title: "Marcelo Felipe",
 
   role:
-    "E-commerce e experiências digitais em Taubaté, SP",
+    "Desenvolvedor Web e E-commerce em Taubaté, SP",
 
   paragraphs: [
-    "Sou Marcelo Felipe e trabalho com e-commerce e experiências digitais em Taubaté, SP. Construo presenças digitais para negócios que precisam se apresentar melhor, vender, organizar uma operação ou dar forma a uma ideia.",
+    "Sou Marcelo Felipe e trabalho com desenvolvimento web e e-commerce em Taubaté, SP. Construo sites e lojas virtuais para negócios que precisam se apresentar melhor, vender online ou organizar uma operação.",
 
-    "Trabalho diretamente nos projetos, com comunicação próxima e participação nas decisões de posicionamento, conteúdo, interface e desenvolvimento.",
+    "Trabalho diretamente nos projetos, com comunicação próxima e participação nas decisões de estrutura, interface e desenvolvimento técnico.",
 
-    "Os cases deste portfólio mostram essa combinação na prática: entender o contexto, estruturar a experiência e escolher a tecnologia necessária para construí-la.",
+    "Os cases deste portfólio mostram essa combinação na prática: entender o contexto, estruturar a navegação e escolher a tecnologia ideal para construir a solução.",
   ],
 
   likes: [
-    "Presenças digitais para negócios locais",
+    "Sites profissionais para negócios locais e marcas",
 
-    "E-commerces que conectam produto e experiência",
+    "E-commerces estruturados para venda e conversão",
 
-    "Interfaces claras, rápidas e fáceis de evoluir",
+    "Interfaces claras, rápidas e fáceis de gerenciar",
   ],
 };
 
 export const contact = {
   title:
-    "Seu negócio precisa ganhar uma presença digital melhor?",
+    "Seu negócio precisa de um site ou e-commerce melhor?",
 
   kicker: "Vamos conversar?",
 
   text:
-    "Se você tem um negócio, produto ou ideia para apresentar, vender ou organizar, podemos conversar sobre o caminho mais coerente para esse projeto.",
+    "Se você tem um negócio, produto ou ideia para apresentar ou vender na internet, podemos conversar sobre a solução mais adequada para o seu projeto.",
 
   primaryCta: "Vamos conversar",
 };

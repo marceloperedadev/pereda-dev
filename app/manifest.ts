@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${siteConfig.name} — ${siteConfig.role}`,
     short_name: siteConfig.name,
     description:
-      "Portfólio de Marcelo Felipe, com projetos de presença digital, e-commerce e experiências digitais.",
+      "Portfólio de Marcelo Felipe, com projetos de desenvolvimento de sites, e-commerce e sistemas web.",
 
     start_url: "/",
     display: "standalone",

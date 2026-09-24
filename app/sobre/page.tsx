@@ -15,9 +15,9 @@ import { whatsappUrl } from "@/lib/utils/contact";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Sobre Marcelo Felipe — E-commerce e experiências digitais",
+  title: "Sobre Marcelo Felipe — Desenvolvimento Web e E-commerce",
   description:
-    "Conheça Marcelo Felipe, profissional de e-commerce e experiências digitais em Taubaté, SP. Veja como trabalha e os projetos que constrói.",
+    "Conheça Marcelo Felipe, desenvolvedor web e especialista em e-commerce em Taubaté, SP. Veja como trabalha e os sites e sistemas que constrói.",
   path: "/sobre",
 });
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
           <p className={styles.eyebrow}>Marcelo Felipe · Taubaté, SP</p>
 
           <h1 id="about-title" className={styles.title}>
-            E-commerce & experiências digitais
+            Desenvolvimento web & e-commerce
           </h1>
 
           <div className={styles.paras}>

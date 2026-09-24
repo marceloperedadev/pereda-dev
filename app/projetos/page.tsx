@@ -7,9 +7,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import styles from "./page.module.css";
 
 export const metadata = buildMetadata({
-  title: "Cases — Marcelo Felipe | E-commerce e experiências digitais",
+  title: "Cases — Marcelo Felipe | Desenvolvimento Web e E-commerce",
   description:
-    "Cases de presença digital, e-commerce e experiências digitais construídos por Marcelo Felipe para diferentes tipos de negócios.",
+    "Cases de desenvolvimento de sites, lojas virtuais e sistemas web construídos por Marcelo Felipe para diferentes tipos de negócios.",
   path: "/projetos",
 });
 

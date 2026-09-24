@@ -37,9 +37,9 @@ export const siteConfig = {
 
   url: normalizeSiteUrl(rawUrl),
 
-  role: "E-commerce e experiências digitais",
+  role: "Desenvolvedor Web Full-Stack",
 
-  specialty: "E-commerce e experiências digitais",
+  specialty: "Desenvolvimento de Sites e E-commerce",
 
   commercial: {
     availability: "Projetos autorais e comerciais",
@@ -55,7 +55,7 @@ export const siteConfig = {
       {
         name: "Presença digital",
         description:
-          "Identidade, estrutura e experiência para apresentar e posicionar um negócio no digital.",
+          "Identidade, estrutura e performance para apresentar e posicionar um negócio no digital.",
         price: "A partir de R$ 1.500",
       },
 
@@ -116,7 +116,7 @@ export const siteConfig = {
   photo: "/projects/marcelo-felipe.webp",
 
   photoAlt:
-    "Marcelo Felipe, especialista em e-commerce e experiências digitais em Taubaté, SP",
+    "Marcelo Felipe, desenvolvedor web e especialista em e-commerce em Taubaté, SP",
 
   /**
    * Data da última revisão do conteúdo.

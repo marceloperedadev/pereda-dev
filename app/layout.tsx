@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
+    "Desenvolvimento de sites, lojas virtuais (e-commerce) e sistemas web personalizados para negócios, marcas e profissionais em Taubaté e remotamente.",
 
   applicationName: siteConfig.name,
 
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
 
     description:
-      "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
+      "Desenvolvimento de sites, lojas virtuais (e-commerce) e sistemas web personalizados para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
 
   twitter: {
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | ${siteConfig.role} em ${siteConfig.city}, ${siteConfig.region}`,
 
     description:
-      "Marcelo Felipe trabalha com presença digital, e-commerce e experiências digitais para negócios, marcas e profissionais em Taubaté e remotamente.",
+      "Desenvolvimento de sites, lojas virtuais (e-commerce) e sistemas web personalizados para negócios, marcas e profissionais em Taubaté e remotamente.",
   },
 
   ...(siteConfig.googleVerification

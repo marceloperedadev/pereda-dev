@@ -15,9 +15,9 @@ import { mailtoUrl, whatsappUrl } from "@/lib/utils/contact";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contato | Marcelo Felipe — E-commerce e experiências digitais",
+  title: "Contato | Marcelo Felipe — Desenvolvimento Web e E-commerce",
   description:
-    "Entre em contato com Marcelo Felipe para conversar sobre presença digital, e-commerce e experiências digitais para negócios e marcas.",
+    "Entre em contato com Marcelo Felipe para conversar sobre criação de sites, desenvolvimento de e-commerce e sistemas web para negócios e marcas.",
   path: "/contato",
 });
 
