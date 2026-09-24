@@ -32,7 +32,24 @@ export async function saveMercadoLivreTokens(tokens: StoredTokens): Promise<void
     body: JSON.stringify(tokens),
     cache: "no-store",
   });
-  if (!response.ok) throw new Error("Could not save Mercado Livre tokens");
+  if (!response.ok) {
+    const responseText = await response.text();
+    let databaseError: { code?: string; message?: string } = {};
+    try {
+      const parsed = JSON.parse(responseText) as { code?: unknown; message?: unknown };
+      databaseError = {
+        code: typeof parsed.code === "string" ? parsed.code : undefined,
+        message: typeof parsed.message === "string" ? parsed.message : undefined,
+      };
+    } catch {
+      // Do not log an unstructured response body; keep only the HTTP status.
+    }
+    console.error("Supabase rejected Mercado Livre token storage", {
+      status: response.status,
+      ...databaseError,
+    });
+    throw new Error(`Supabase token storage failed (${response.status}${databaseError.code ? ` ${databaseError.code}` : ""})`);
+  }
 }
 
 export async function getMercadoLivreTokens(): Promise<StoredTokens | undefined> {

@@ -82,7 +82,10 @@ export async function GET(request: NextRequest) {
     response.cookies.delete("ml_oauth_state");
     response.cookies.delete("ml_oauth_verifier");
     return response;
-  } catch {
+  } catch (error) {
+    console.error("Mercado Livre OAuth callback failed while saving tokens", {
+      error: error instanceof Error ? error.message : "Unknown token storage error",
+    });
     return NextResponse.json({ error: "Não foi possível salvar os tokens. Confira o banco de dados e tente novamente." }, { status: 503 });
   }
 }
