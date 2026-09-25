@@ -2,17 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ProductStoreLink } from "@/components/setup/ProductStoreLink";
-import { isSafeExternalUrl, productPath, type Product } from "@/lib/data/setup";
+import { hasMercadoLivreOffer, isMercadoLivreUrl, productPath, type Product } from "@/lib/data/setup";
 
 import styles from "./ProductList.module.css";
 
 export function ProductList({ items, limit, source = "product-list" }: { items: readonly Product[]; limit?: number; source?: string }) {
-  const visible = limit ? items.slice(0, limit) : items;
+  const linkedItems = items.filter(hasMercadoLivreOffer);
+  const visible = limit ? linkedItems.slice(0, limit) : linkedItems;
 
   return (
     <div className={styles.list}>
       {visible.map((product, index) => {
-        const offer = product.offers.find((item) => isSafeExternalUrl(item.affiliateUrl));
+        const offer = product.offers.find((item) => item.store === "Mercado Livre"
+          && (isMercadoLivreUrl(item.affiliateUrl) || isMercadoLivreUrl(item.productUrl)));
+        const outboundUrl = isMercadoLivreUrl(offer?.affiliateUrl) ? offer.affiliateUrl : offer?.productUrl;
         const detailHref = `${productPath(product.slug)}?source=${encodeURIComponent(source)}`;
 
         return (
@@ -28,11 +31,11 @@ export function ProductList({ items, limit, source = "product-list" }: { items: 
               <h3><Link href={detailHref}>{product.name}</Link></h3>
               <p>{product.summary}</p>
               <small><strong>Faz sentido para:</strong> {product.forWho}</small>
-              {offer ? (
+              {offer && outboundUrl ? (
                 <div className={styles.offerBlock}>
                   <ProductStoreLink
                     className={styles.offer}
-                    href={offer.affiliateUrl!}
+                    href={outboundUrl}
                     productId={product.id}
                     productName={product.name}
                     category={product.category}
@@ -41,7 +44,7 @@ export function ProductList({ items, limit, source = "product-list" }: { items: 
                   >
                     Confira no {offer.store} ↗
                   </ProductStoreLink>
-                  <small className={styles.affiliateNote}>Link de afiliado; pode gerar comissão sem custo adicional.</small>
+                  {isMercadoLivreUrl(offer.affiliateUrl) ? <small className={styles.affiliateNote}>Link de afiliado; pode gerar comissão sem custo adicional.</small> : null}
                 </div>
               ) : null}
             </div>

@@ -6,7 +6,7 @@ import { Disclosure } from "@/components/setup/Disclosure";
 import { SetupContentViewTracker } from "@/components/setup/SetupContentViewTracker";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { absoluteUrl, siteConfig } from "@/lib/config/site";
-import { getGuide, guidePath, guides, productById, productPath } from "@/lib/data/setup";
+import { getGuide, guidePath, guides, hasMercadoLivreOffer, productById, productPath } from "@/lib/data/setup";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 import styles from "../../page.module.css";
@@ -26,7 +26,7 @@ export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) notFound();
-  const related = guide.productIds.map(productById).filter((item) => item !== undefined);
+  const related = guide.productIds.map(productById).filter((item) => item !== undefined && hasMercadoLivreOffer(item));
   const articleGraph = guide.index ? {
     "@context": "https://schema.org",
     "@type": "Article",

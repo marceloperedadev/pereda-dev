@@ -36,10 +36,11 @@ function formatDate(value: string) {
 
 export default async function CuradoriaPage() {
   let products = [] as Awaited<ReturnType<typeof getPublishedCuration>>;
+  let dataAvailable = true;
   try {
     products = await getPublishedCuration();
   } catch {
-    // A migration ou as credenciais podem ainda não estar configuradas.
+    dataAvailable = false;
   }
 
   return (
@@ -105,6 +106,12 @@ export default async function CuradoriaPage() {
               );
             })}
           </ol>
+        ) : !dataAvailable ? (
+          <div className={styles.empty} role="status">
+            <h3>A curadoria está temporariamente indisponível.</h3>
+            <p>Não foi possível consultar as recomendações agora. Tente novamente mais tarde.</p>
+            <Link href="/setup/metodologia">Como funciona a curadoria ↗</Link>
+          </div>
         ) : (
           <div className={styles.empty}>
             <h3>Nenhuma recomendação publicada agora.</h3>
@@ -112,7 +119,7 @@ export default async function CuradoriaPage() {
             <Link href="/setup/metodologia">Como funciona a revisão ↗</Link>
           </div>
         )}
-        <p className={styles.disclosure}>O preço e a situação do anúncio são uma consulta pontual e podem mudar. A indicação é editorial e não garante compatibilidade com toda configuração. <Link href="/setup/transparencia">Transparência sobre afiliados</Link> · <Link href="/setup/metodologia">Metodologia</Link></p>
+        <p className={styles.disclosure}>O Pereda Dev faz a seleção editorial; não vende os produtos. A compra e o atendimento acontecem no Mercado Livre e com o vendedor do anúncio. Preço e situação podem mudar após a consulta, e a indicação não garante compatibilidade com toda configuração. <Link href="/setup/transparencia">Transparência sobre afiliados</Link> · <Link href="/setup/metodologia">Metodologia</Link></p>
       </section>
     </main>
   );

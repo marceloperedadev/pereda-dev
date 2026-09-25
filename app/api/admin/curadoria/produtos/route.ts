@@ -17,7 +17,7 @@ function safeAffiliateUrl(value: unknown): string | null | undefined {
   if (typeof value !== "string") return undefined;
   try {
     const url = new URL(value);
-    if (url.protocol !== "https:" || !affiliateHosts.has(url.hostname.toLowerCase()) || url.pathname.length < 2) return undefined;
+    if (url.protocol !== "https:" || url.username || url.password || url.port || !affiliateHosts.has(url.hostname.toLowerCase()) || url.pathname.length < 2) return undefined;
     return url.toString();
   } catch {
     return undefined;

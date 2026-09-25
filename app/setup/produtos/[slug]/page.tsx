@@ -6,7 +6,7 @@ import { AffiliateLink } from "@/components/setup/AffiliateLink";
 import { Disclosure } from "@/components/setup/Disclosure";
 import { ProductViewTracker } from "@/components/setup/ProductViewTracker";
 import { ProductStoreLink } from "@/components/setup/ProductStoreLink";
-import { getProduct, isSafeExternalUrl, products, productPath } from "@/lib/data/setup";
+import { getProduct, hasMercadoLivreOffer, isMercadoLivreUrl, isSafeExternalUrl, productsWithMercadoLivreLinks, productPath } from "@/lib/data/setup";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 import styles from "../../page.module.css";
@@ -14,7 +14,7 @@ import styles from "../../page.module.css";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return productsWithMercadoLivreLinks.map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -35,8 +35,9 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   const verified = product.status === "verified";
-  const affiliateOffers = product.offers.filter((offer) => isSafeExternalUrl(offer.affiliateUrl));
-  const productOffers = product.offers.filter((offer) => isSafeExternalUrl(offer.productUrl));
+  if (!hasMercadoLivreOffer(product)) notFound();
+  const affiliateOffers = product.offers.filter((offer) => offer.store === "Mercado Livre" && isMercadoLivreUrl(offer.affiliateUrl));
+  const productOffers = product.offers.filter((offer) => offer.store === "Mercado Livre" && isMercadoLivreUrl(offer.productUrl));
   const sources = (product.sources ?? []).filter((source) => isSafeExternalUrl(source.url));
 
   return (

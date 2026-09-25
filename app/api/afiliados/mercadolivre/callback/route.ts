@@ -40,18 +40,14 @@ export async function GET(request: NextRequest) {
       headers: { Accept: "application/json", "Content-Type": "application/x-www-form-urlencoded" },
       body,
       cache: "no-store",
+      signal: AbortSignal.timeout(8_000),
     });
     if (!tokenResponse.ok) {
       const responseText = await tokenResponse.text();
       let errorDetails: Record<string, unknown> = {};
       try {
         const parsed = JSON.parse(responseText) as Record<string, unknown>;
-        errorDetails = {
-          error: parsed.error,
-          message: parsed.message,
-          error_description: parsed.error_description,
-          cause: parsed.cause,
-        };
+        errorDetails = { error: typeof parsed.error === "string" ? parsed.error.slice(0, 80) : undefined };
       } catch {
         // If the response is not JSON, record only its HTTP status.
       }

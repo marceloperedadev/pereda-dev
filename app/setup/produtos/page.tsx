@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Disclosure } from "@/components/setup/Disclosure";
 import { ProductList } from "@/components/setup/ProductList";
-import { products } from "@/lib/data/setup";
+import { productsWithMercadoLivreLinks } from "@/lib/data/setup";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 import styles from "../page.module.css";
@@ -18,7 +18,7 @@ export default function ProductsPage() {
         <p className={styles.lead}>Use estas referências para comparar recursos e limites. Confira o modelo, o preço e a disponibilidade na loja antes de decidir.</p>
       </section>
       <section className={`container ${styles.linksSection}`}>
-        <ProductList items={products} />
+        <ProductList items={productsWithMercadoLivreLinks} />
         <Disclosure />
       </section>
     </div>

@@ -363,8 +363,32 @@ export const products: readonly Product[] = [
 
 /** Fonte única para listar as fichas que atualmente têm links afiliados. */
 export const affiliateProducts: readonly Product[] = products.filter((product) =>
-  product.offers.some((offer) => Boolean(offer.affiliateUrl)),
+  product.offers.some((offer) => offer.store === "Mercado Livre" && isMercadoLivreUrl(offer.affiliateUrl)),
 );
+
+/** Um produto só pode aparecer como item de compra se tiver saída válida para o Mercado Livre. */
+export function isMercadoLivreUrl(value?: string): value is string {
+  if (!value) return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:"
+      && !url.username
+      && !url.password
+      && !url.port
+      && (url.hostname.toLowerCase() === "meli.la"
+        || url.hostname.toLowerCase() === "mercadolivre.com.br"
+        || url.hostname.toLowerCase().endsWith(".mercadolivre.com.br"));
+  } catch {
+    return false;
+  }
+}
+
+export function hasMercadoLivreOffer(product: Product | undefined): product is Product {
+  return Boolean(product?.offers.some((offer) => offer.store === "Mercado Livre"
+    && (isMercadoLivreUrl(offer.affiliateUrl) || isMercadoLivreUrl(offer.productUrl))));
+}
+
+export const productsWithMercadoLivreLinks: readonly Product[] = products.filter(hasMercadoLivreOffer);
 
 export const setups: readonly Setup[] = [
   {
@@ -506,11 +530,11 @@ export const categories: readonly ProductCategory[] = [
   "PC", "Monitor", "Teclado", "Mouse", "Headset", "Mousepad", "Webcam", "Microfone", "Iluminação", "Cadeira", "Acessórios",
 ];
 
-export function getProduct(slug: string) { return products.find((product) => product.slug === slug); }
+export function getProduct(slug: string) { return productsWithMercadoLivreLinks.find((product) => product.slug === slug); }
 export function getSetup(slug: string) { return setups.find((setup) => setup.slug === slug); }
 export function getGuide(slug: string) { return guides.find((guide) => guide.slug === slug); }
 export function getGame(slug: string) { return games.find((game) => game.slug === slug); }
-export function productById(id: string) { return products.find((product) => product.id === id); }
+export function productById(id: string) { return productsWithMercadoLivreLinks.find((product) => product.id === id); }
 export function isSafeExternalUrl(value?: string): value is string {
   if (!value) return false;
   try {

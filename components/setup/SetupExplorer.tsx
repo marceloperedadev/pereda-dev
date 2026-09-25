@@ -5,14 +5,14 @@ import { useMemo, useState, type FormEvent } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 
 import { track } from "@/lib/analytics/events";
-import { gamePath, games, guidePath, guides, products, setupPath, setups } from "@/lib/data/setup";
+import { gamePath, games, guidePath, guides, productsWithMercadoLivreLinks, setupPath, setups } from "@/lib/data/setup";
 
 import styles from "./SetupExplorer.module.css";
 
 const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("pt-BR");
-const categories = [...new Set(products.map((product) => product.category))];
-const profiles = [...new Set(products.map((product) => product.profile))];
-const useCases = [...new Set(products.flatMap((product) => product.useCases))];
+const categories = [...new Set(productsWithMercadoLivreLinks.map((product) => product.category))];
+const profiles = [...new Set(productsWithMercadoLivreLinks.map((product) => product.profile))];
+const useCases = [...new Set(productsWithMercadoLivreLinks.flatMap((product) => product.useCases))];
 const contentItems = [
   ...games.map((item) => ({ type: "Jogo", title: item.name, summary: item.description, href: gamePath(item.slug), search: [item.name, item.genre, item.description, ...item.targets.map((target) => target.detail)].join(" ") })),
   ...guides.map((item) => ({ type: "Guia", title: item.title, summary: item.description, href: guidePath(item.slug), search: [item.title, item.description, item.eyebrow, ...(item.searchTerms ?? []), ...item.sections.flatMap((section) => [section.title, section.content])].join(" ") })),
@@ -30,7 +30,7 @@ export function SetupExplorer() {
 
   const results = useMemo(() => {
     const terms = queryTerms(query.trim());
-    return products.filter((product) => {
+    return productsWithMercadoLivreLinks.filter((product) => {
       const searchable = normalize([
         product.name, product.brand, product.category, product.profile,
         product.summary, product.forWho, product.notFor, ...product.tags,

@@ -14,25 +14,33 @@ import styles from "./page.module.css";
 export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
+type Product = Awaited<ReturnType<typeof getPublishedCuration>>[number];
+type ProductLookup = { available: true; product: Product | undefined } | { available: false };
 
-async function findProduct(slug: string) {
+async function findProduct(slug: string): Promise<ProductLookup> {
   try {
-    return (await getPublishedCuration()).find((item) => item.slug === slug);
+    return { available: true, product: (await getPublishedCuration()).find((item) => item.slug === slug) };
   } catch {
-    return undefined;
+    return { available: false };
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = await findProduct(slug);
+  const result = await findProduct(slug);
+  if (!result.available) return buildMetadata({ title: "Curadoria temporariamente indisponível | Pereda Dev", description: "Não foi possível consultar esta recomendação agora.", path: `/setup/curadoria/${slug}`, index: false });
+  const product = result.product;
   if (!product) return buildMetadata({ title: "Recomendação não encontrada | Pereda Dev", description: "Esta recomendação não está publicada ou precisa de nova verificação.", path: `/setup/curadoria/${slug}`, index: false });
   return buildMetadata({ title: `${product.editorial_title} | Curadoria Pereda Dev`, description: product.recommendation_reason!, path: `/setup/curadoria/${slug}`, type: "article" });
 }
 
 export default async function CuratedProductPage({ params }: Props) {
   const { slug } = await params;
-  const product = await findProduct(slug);
+  const result = await findProduct(slug);
+  if (!result.available) {
+    return <main className={`container ${styles.page}`} role="status"><h1>Curadoria temporariamente indisponível.</h1><p>Não foi possível consultar esta recomendação agora. Tente novamente mais tarde.</p><Link className={styles.back} href="/setup/curadoria">Voltar à curadoria ↗</Link></main>;
+  }
+  const product = result.product;
   if (!product) notFound();
 
   const link = product.affiliate_url ?? product.source_url!;
@@ -75,7 +83,7 @@ export default async function CuratedProductPage({ params }: Props) {
           {product.affiliate_url ? <small>Link afiliado; pode gerar comissão sem custo adicional.</small> : null}
         </aside>
       </section>
-      <p className={styles.notice}>Preço, anúncio e disponibilidade podem mudar depois da consulta. Confirme variante, frete e condições na loja. A recomendação não substitui uma análise da compatibilidade com o seu equipamento.</p>
+      <p className={styles.notice}>A compra e o atendimento são realizados no Mercado Livre pelo vendedor do anúncio; o Pereda Dev não é o vendedor. Preço e disponibilidade podem mudar depois da consulta. Confirme variante, frete e condições na loja. A recomendação não substitui uma análise da compatibilidade com o seu equipamento.</p>
       <Link className={styles.back} href="/setup/curadoria">← Voltar à curadoria</Link>
     </main>
   );

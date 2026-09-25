@@ -9,7 +9,7 @@ import {
   projectPath,
   projects,
 } from "@/lib/data/projects";
-import { guidePath, guides, productPath, products } from "@/lib/data/setup";
+import { guidePath, guides, productPath, productsWithMercadoLivreLinks } from "@/lib/data/setup";
 import { getPublishedCuration } from "@/lib/server/curation-store";
 
 /**
@@ -82,7 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: path.includes("metodologia") ? 0.6 : 0.7,
     })),
-    ...products.filter((product) => product.status === "verified").map((product) => ({
+    ...productsWithMercadoLivreLinks.filter((product) => product.status === "verified").map((product) => ({
       url: absoluteUrl(productPath(product.slug)),
       lastModified: new Date(product.updatedAt),
       changeFrequency: "monthly" as const,

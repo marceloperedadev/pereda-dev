@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { track } from "@/lib/analytics/events";
-import { getProduct } from "@/lib/data/setup";
+import { getProduct, hasMercadoLivreOffer } from "@/lib/data/setup";
 
 import styles from "./SetupGuide.module.css";
 
@@ -55,7 +55,7 @@ export function SetupGuide() {
       if (use.includes("trabalhar") || responses.use === "Criar conteúdo" || responses.priority === "Conforto") ids.push("headset-anc");
     }
 
-    return [...new Set(ids)].map(getProduct).filter((product) => product !== undefined);
+    return [...new Set(ids)].map(getProduct).filter((product) => product !== undefined && hasMercadoLivreOffer(product));
   }, [responses]);
 
   function restart() {
