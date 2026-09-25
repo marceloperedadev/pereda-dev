@@ -11,9 +11,9 @@ import { siteConfig } from "@/lib/config/site";
 import styles from "./Header.module.css";
 
 const NAV = [
-  { href: "/setup", label: "Setup" },
   { href: "/projetos", label: "Projetos" },
   { href: "/sobre", label: "Sobre" },
+  { href: "/setup", label: "Setup" },
   { href: "/contato", label: "Contato" },
 ] as const;
 

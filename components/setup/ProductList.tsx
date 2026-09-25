@@ -24,22 +24,25 @@ export function ProductList({ items, limit, source = "product-list" }: { items: 
               </Link>
             ) : null}
             <div className={styles.content}>
-              <p>{product.category} / {product.profile}{offer ? " · oferta no Mercado Livre" : ""}</p>
+              <p>{product.category} / {product.profile}</p>
               <h3><Link href={detailHref}>{product.name}</Link></h3>
               <p>{product.summary}</p>
               <small><strong>Faz sentido para:</strong> {product.forWho}</small>
               {offer ? (
-                <ProductStoreLink
-                  className={styles.offer}
-                  href={offer.affiliateUrl!}
-                  productId={product.id}
-                  productName={product.name}
-                  category={product.category}
-                  store={offer.store}
-                  position="product-list-card"
-                >
-                  Ver oferta no {offer.store} ↗
-                </ProductStoreLink>
+                <div className={styles.offerBlock}>
+                  <ProductStoreLink
+                    className={styles.offer}
+                    href={offer.affiliateUrl!}
+                    productId={product.id}
+                    productName={product.name}
+                    category={product.category}
+                    store={offer.store}
+                    position="product-list-card"
+                  >
+                    Confira no {offer.store} ↗
+                  </ProductStoreLink>
+                  <small className={styles.affiliateNote}>Link de afiliado; pode gerar comissão sem custo adicional.</small>
+                </div>
               ) : null}
             </div>
             <Link className={styles.context} href={detailHref}>Ver detalhes ↗</Link>

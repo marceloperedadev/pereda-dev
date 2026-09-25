@@ -5,7 +5,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
 
 import { track } from "@/lib/analytics/events";
-import { gamePath, games, guidePath, guides, products, productsByPriority, setupPath, setups } from "@/lib/data/setup";
+import { gamePath, games, guidePath, guides, products, setupPath, setups } from "@/lib/data/setup";
 
 import styles from "./SetupExplorer.module.css";
 
@@ -15,10 +15,10 @@ const profiles = [...new Set(products.map((product) => product.profile))];
 const useCases = [...new Set(products.flatMap((product) => product.useCases))];
 const contentItems = [
   ...games.map((item) => ({ type: "Jogo", title: item.name, summary: item.description, href: gamePath(item.slug), search: [item.name, item.genre, item.description, ...item.targets.map((target) => target.detail)].join(" ") })),
-  ...guides.map((item) => ({ type: "Guia", title: item.title, summary: item.description, href: guidePath(item.slug), search: [item.title, item.description, item.eyebrow, ...item.sections.flatMap((section) => [section.title, section.content])].join(" ") })),
-  ...setups.map((item) => ({ type: "Setup", title: item.name, summary: item.description, href: setupPath(item.slug), search: [item.name, item.profile, item.budget, item.description, ...item.focus].join(" ") })),
+  ...guides.map((item) => ({ type: "Guia", title: item.title, summary: item.description, href: guidePath(item.slug), search: [item.title, item.description, item.eyebrow, ...(item.searchTerms ?? []), ...item.sections.flatMap((section) => [section.title, section.content])].join(" ") })),
+  ...setups.map((item) => ({ type: "Setup", title: item.name, summary: item.description, href: setupPath(item.slug), search: [item.name, item.profile, item.budget, item.description, ...(item.searchTerms ?? []), ...item.focus].join(" ") })),
 ];
-const ignoredTerms = new Set(["a", "ao", "ate", "com", "de", "do", "e", "para", "pc", "por", "que"]);
+const ignoredTerms = new Set(["a", "ao", "ate", "com", "como", "de", "deixar", "do", "e", "esta", "está", "eu", "meu", "minha", "mais", "para", "pc", "preciso", "quero", "que", "ta", "um", "uma"]);
 const queryTerms = (query: string) => normalize(query).split(/\s+/).filter((term) => term.length > 1 && !ignoredTerms.has(term));
 const isBudgetQuery = (query: string) => /\b(ate|orcamento|limite|abaixo)\b/.test(normalize(query));
 
@@ -30,7 +30,7 @@ export function SetupExplorer() {
 
   const results = useMemo(() => {
     const terms = queryTerms(query.trim());
-    return productsByPriority.filter((product) => {
+    return products.filter((product) => {
       const searchable = normalize([
         product.name, product.brand, product.category, product.profile,
         product.summary, product.forWho, product.notFor, ...product.tags,
@@ -73,7 +73,7 @@ export function SetupExplorer() {
           id="setup-search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Pesquisar produtos, jogos, guias ou setups"
+          placeholder="O que você quer resolver? Ex.: PC lento, setup para programar"
           type="search"
         />
         <button type="submit">Buscar</button>

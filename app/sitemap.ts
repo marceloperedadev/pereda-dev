@@ -9,7 +9,7 @@ import {
   projectPath,
   projects,
 } from "@/lib/data/projects";
-import { productPath, products } from "@/lib/data/setup";
+import { guidePath, guides, productPath, products } from "@/lib/data/setup";
 
 /**
  * Sitemap das páginas públicas e relevantes para indexação.
@@ -84,6 +84,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...products.filter((product) => product.status === "verified").map((product) => ({
       url: absoluteUrl(productPath(product.slug)),
       lastModified: new Date(product.updatedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...guides.filter((guide) => guide.index === true).map((guide) => ({
+      url: absoluteUrl(guidePath(guide.slug)),
+      lastModified: new Date(guide.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

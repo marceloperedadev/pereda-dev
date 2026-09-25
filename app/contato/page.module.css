@@ -1,221 +1,131 @@
-.grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(12, minmax(0, 1fr));
-
-  column-gap: 24px;
-
-  row-gap:
-    clamp(40px, 6vw, 56px);
-
-  padding-bottom:
-    clamp(72px, 10vw, 144px);
+.contactOptions {
+  padding-bottom: clamp(64px, 9vw, 112px);
 }
-
-/* =========================================================
-   FORMULÁRIO
-   ========================================================= */
-
-.formCol {
-  grid-column: 1 / 7;
-}
-
-/* =========================================================
-   CANAIS
-   ========================================================= */
 
 .channels {
-  grid-column: 8 / -1;
+  padding-block: 24px;
+  border-block: 1px solid var(--line);
 }
 
 .h2 {
   max-width: 18ch;
-
-  margin-bottom: 24px;
-
   color: var(--text);
-
-  font-size:
-    clamp(
-      1.45rem,
-      2.2vw,
-      2rem
-    );
-
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
   font-weight: 600;
-
   letter-spacing: -0.04em;
-
   line-height: 1.05;
-
   text-wrap: balance;
 }
 
-/* =========================================================
-   LISTA
-   ========================================================= */
-
 .list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 5vw, 72px);
   list-style: none;
-
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
-
-  border-top:
-    1px solid var(--line);
 }
 
 .list li {
   display: grid;
-
-  grid-template-columns:
-    7rem minmax(0, 1fr);
-
-  gap: 16px;
-
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 12px;
   align-items: baseline;
-
-  padding-block: 16px;
-
-  border-bottom:
-    1px solid var(--line);
-
-  transition:
-    padding-left 0.25s var(--ease),
-    border-color 0.2s var(--ease);
-}
-
-.list li:hover {
-  padding-left: 5px;
-
-  border-color:
-    var(--line-strong);
+  min-width: 0;
+  padding-block: 14px;
+  border-top: 1px solid var(--line);
 }
 
 .label {
   color: var(--muted);
-
   font-size: 0.66rem;
-
   font-weight: 700;
-
   letter-spacing: 0.12em;
-
   line-height: 1.4;
-
   text-transform: uppercase;
 }
 
 .list a {
-  display: inline;
-
   width: fit-content;
-
   max-width: 100%;
-
   color: var(--text);
-
-  border-bottom:
-    1px solid var(--line);
-
+  border-bottom: 1px solid var(--line);
   overflow-wrap: anywhere;
-
-  transition:
-    color 0.2s var(--ease),
-    border-color 0.2s var(--ease);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 
 .list a:hover {
   color: var(--signal);
-
-  border-bottom-color:
-    var(--signal);
+  border-color: var(--signal);
 }
 
-/* =========================================================
-   INFORMAÇÃO EXTRA
-   ========================================================= */
+.formSection {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 8vw, 112px);
+  align-items: start;
+  padding-block: clamp(40px, 6vw, 72px) clamp(72px, 10vw, 128px);
+  border-top: 1px solid var(--line);
+}
+
+.formIntro {
+  max-width: 33rem;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--signal);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.formLead,
+.more {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.formLead {
+  margin-top: 16px;
+}
 
 .more {
-  max-width: 34rem;
-
-  margin-top: 24px;
-
-  color: var(--muted);
-
-  font-size: 0.9rem;
-
-  line-height: 1.5;
-
-  text-wrap: pretty;
+  margin-top: 20px;
+  font-size: 0.88rem;
 }
 
 .more a {
   color: var(--text);
-
   text-decoration: underline;
-
-  text-decoration-color:
-    var(--signal);
-
-  text-decoration-thickness: 1px;
-
+  text-decoration-color: var(--signal);
   text-underline-offset: 4px;
-
-  transition:
-    color 0.2s var(--ease);
 }
 
-.more a:hover {
-  color: var(--signal);
+.formSection form {
+  width: 100%;
+  max-width: 520px;
 }
 
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-  .formCol,
-  .channels {
-    grid-column: 1 / -1;
-  }
-
-  .formCol {
-    max-width: 44rem;
-  }
-
-  .channels {
-    padding-top: 8px;
+@media (max-width: 760px) {
+  .formSection {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
   }
 }
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
 
 @media (max-width: 560px) {
-  .grid {
-    row-gap: 40px;
-  }
-
-  .h2 {
-    margin-bottom: 20px;
-
-    font-size: 1.45rem;
+  .list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .list li {
-    grid-template-columns:
-      6rem minmax(0, 1fr);
-
+    grid-template-columns: 6rem minmax(0, 1fr);
     gap: 12px;
-
-    padding-block: 15px;
-  }
-
-  .list li:hover {
-    padding-left: 0;
+    padding-block: 13px;
   }
 
   .label {
@@ -225,48 +135,17 @@
   .list a {
     font-size: 0.94rem;
   }
-
-  .more {
-    margin-top: 20px;
-
-    font-size: 0.86rem;
-  }
 }
 
-/* =========================================================
-   MOBILE PEQUENO
-   ========================================================= */
-
-@media (max-width: 420px) {
+@media (max-width: 380px) {
   .list li {
-    grid-template-columns: 1fr;
-
+    grid-template-columns: minmax(0, 1fr);
     gap: 4px;
-
-    padding-block: 14px;
-  }
-
-  .label {
-    font-size: 0.6rem;
-  }
-
-  .list a {
-    font-size: 0.92rem;
   }
 }
-
-/* =========================================================
-   REDUÇÃO DE MOVIMENTO
-   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .list li,
-  .list a,
-  .more a {
+  .list a {
     transition: none;
-  }
-
-  .list li:hover {
-    padding-left: 0;
   }
 }

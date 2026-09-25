@@ -48,7 +48,7 @@ export function Contact({
 
               <ButtonLink
                 href="/contato"
-                variant="secondary"
+                variant="text"
                 event="start_contact"
                 eventParams={ctaParams(location, "Iniciar um projeto")}
               >

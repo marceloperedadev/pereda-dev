@@ -47,15 +47,25 @@
     grid-column: 4;
 }
 
+.offerBlock {
+    margin-top: 16px;
+}
+
 .offer {
     display: inline-flex;
-    margin-top: 16px;
     padding: 11px 16px;
     color: #fff;
     background: var(--signal);
     font-size: .72rem;
     font-weight: 700;
     letter-spacing: .04em;
+}
+
+.affiliateNote {
+    margin: 9px 0 0;
+    color: var(--soft);
+    font-size: .68rem;
+    line-height: 1.4;
 }
 
 .context {

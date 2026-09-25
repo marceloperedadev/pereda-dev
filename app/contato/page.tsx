@@ -23,7 +23,6 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   const socials = socialLinks();
-
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -37,12 +36,8 @@ export default function ContactPage() {
         name: "Contato",
         url: absoluteUrl("/contato"),
         inLanguage: siteConfig.lang,
-        isPartOf: {
-          "@id": `${siteConfig.url}/#website`,
-        },
-        about: {
-          "@id": `${siteConfig.url}/#person`,
-        },
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        about: { "@id": `${siteConfig.url}/#person` },
       },
     ],
   };
@@ -57,32 +52,17 @@ export default function ContactPage() {
       />
 
       <section
-        className={`container ${styles.grid}`}
-        aria-labelledby="contact-form-title"
+        className={`container ${styles.contactOptions}`}
+        aria-labelledby="contact-direct-title"
       >
-        <div className={styles.formCol}>
-          <h2 id="contact-form-title" className={styles.h2}>
-            Conte o essencial
-          </h2>
-
-          <p>
-            Explique brevemente o que você precisa, o que já existe e qual
-            objetivo gostaria de alcançar. A partir disso, podemos entender o
-            próximo passo.
-          </p>
-
-          <ContactForm />
-        </div>
-
-        <aside className={styles.channels} aria-labelledby="contact-direct-title">
+        <div className={styles.channels}>
           <h2 id="contact-direct-title" className={styles.h2}>
-            Ou fale direto
+            Prefere conversar direto?
           </h2>
 
           <ul className={styles.list}>
             <li>
               <span className={styles.label}>WhatsApp</span>
-
               <TrackedLink
                 href={whatsappUrl()}
                 event="click_whatsapp"
@@ -93,10 +73,8 @@ export default function ContactPage() {
                 {siteConfig.whatsappDisplay}
               </TrackedLink>
             </li>
-
             <li>
               <span className={styles.label}>E-mail</span>
-
               <TrackedLink
                 href={mailtoUrl()}
                 event="click_email"
@@ -105,26 +83,16 @@ export default function ContactPage() {
                 {siteConfig.email}
               </TrackedLink>
             </li>
-
             <li>
               <span className={styles.label}>Localização</span>
-
-              <span>
-                {siteConfig.city} — {siteConfig.region}
-              </span>
+              <span>{siteConfig.city} — {siteConfig.region}</span>
             </li>
-
             {socials.map((social) => (
               <li key={social.key}>
                 <span className={styles.label}>{social.label}</span>
-
                 <TrackedLink
                   href={social.href}
-                  event={
-                    social.key === "github"
-                      ? "click_github"
-                      : "click_linkedin"
-                  }
+                  event={social.key === "github" ? "click_github" : "click_linkedin"}
                   eventParams={ctaParams("contact_page", social.label)}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -135,13 +103,29 @@ export default function ContactPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
 
+      <section
+        className={`container ${styles.formSection}`}
+        aria-labelledby="contact-form-title"
+      >
+        <div className={styles.formIntro}>
+          <p className={styles.eyebrow}>Se já sabe o que precisa</p>
+          <h2 id="contact-form-title" className={styles.h2}>
+            Começar pelo briefing
+          </h2>
+          <p className={styles.formLead}>
+            Escolha o tipo de projeto e conte, em poucas linhas, o contexto e o
+            objetivo. A mensagem abre pronta no WhatsApp para você revisar antes
+            de enviar.
+          </p>
           <p className={styles.more}>
-            Quer conhecer meu trabalho antes de entrar em contato?{" "}
-            <Link href="/projetos">Veja os projetos</Link> ou{" "}
+            Ainda conhecendo meu trabalho? <Link href="/projetos">Veja os projetos</Link> ou{" "}
             <Link href="/sobre">conheça meu processo</Link>.
           </p>
-        </aside>
+        </div>
+        <ContactForm />
       </section>
     </>
   );

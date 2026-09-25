@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
+import { affiliateProducts } from "@/lib/data/setup";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -21,7 +22,7 @@ export default function MethodologyPage() {
       <article className={`container ${styles.linksSection}`}>
         <section>
           <h2>Estado atual</h2>
-          <p>A maioria das fichas continua ilustrativa. As páginas do Redragon Fizz, dos monitores de 100 Hz e LG UltraGear, e do kit Goodvision apontam anúncios específicos, mas os produtos não foram testados pela equipe e os preços e estoques não foram verificados. A marca e o modelo exatos do monitor de 100 Hz também precisam ser confirmados no anúncio. As fichas não devem ser tratadas como recomendações de compra.</p>
+          <p>A maioria das fichas continua ilustrativa. As {affiliateProducts.length} fichas com links afiliados apontam anúncios específicos, mas os produtos não foram testados pela equipe e os preços e estoques não foram verificados. A marca e o modelo exatos do monitor de 100 Hz também precisam ser confirmados no anúncio. As fichas não devem ser tratadas como recomendações de compra.</p>
         </section>
         <section>
           <h2>Como uma ficha poderá ser publicada como verificada</h2>
@@ -29,7 +30,7 @@ export default function MethodologyPage() {
         </section>
         <section>
           <h2>Preços e links</h2>
-          <p>Preço e disponibilidade podem mudar. Os links dessas quatro fichas levam a anúncios específicos, sem preço exibido até que ele seja conferido. Links afiliados podem gerar comissão; isso não substitui os critérios editoriais.</p>
+          <p>Preço e disponibilidade podem mudar. Os links afiliados levam a anúncios específicos, sem preço exibido até que ele seja conferido. Links afiliados podem gerar comissão; isso não substitui os critérios editoriais.</p>
         </section>
         <p><Link href="/setup/transparencia">Leia também a transparência sobre afiliados.</Link></p>
       </article>

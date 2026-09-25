@@ -68,6 +68,7 @@ export type Setup = {
   budget: string;
   description: string;
   productIds: readonly string[];
+  searchTerms?: readonly string[];
 };
 
 export type Guide = {
@@ -78,6 +79,9 @@ export type Guide = {
   sections: readonly { title: string; content: string }[];
   productIds: readonly string[];
   updatedAt: string;
+  index?: boolean;
+  searchTerms?: readonly string[];
+  sources?: readonly { label: string; url: string; accessedAt: string }[];
 };
 
 export type Game = {
@@ -357,11 +361,9 @@ export const products: readonly Product[] = [
   },
 ] as const;
 
-/** Ofertas afiliadas cadastradas aparecem primeiro nas vitrines de produtos. */
-export const productsByPriority: readonly Product[] = [...products].sort(
-  (first, second) =>
-    Number(second.offers.some((offer) => offer.affiliateUrl)) -
-    Number(first.offers.some((offer) => offer.affiliateUrl)),
+/** Fonte única para listar as fichas que atualmente têm links afiliados. */
+export const affiliateProducts: readonly Product[] = products.filter((product) =>
+  product.offers.some((offer) => Boolean(offer.affiliateUrl)),
 );
 
 export const setups: readonly Setup[] = [
@@ -373,6 +375,7 @@ export const setups: readonly Setup[] = [
     budget: "Orçamento intermediário",
     description: "Uma combinação ordenada para colocar desempenho e responsividade antes de efeitos visuais.",
     productIds: ["ryzen-5-5600", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc", "mousepad-desk"],
+    searchTerms: ["jogos", "fps", "gamer", "jogar"],
   },
   {
     slug: "setup-dev-hibrido",
@@ -382,6 +385,7 @@ export const setups: readonly Setup[] = [
     budget: "Investimento progressivo",
     description: "Componentes pensados para alternar entre código, chamadas e sessões de jogo com menos ruído visual.",
     productIds: ["teclado-redragon-fizz", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc"],
+    searchTerms: ["programação", "programar", "desenvolvimento", "home office", "montar setup", "trabalho e jogos", "trabalho e jogar", "trabalhar e jogar", "programador"],
   },
   {
     slug: "setup-minimalista",
@@ -391,10 +395,40 @@ export const setups: readonly Setup[] = [
     budget: "Por componentes",
     description: "Uma seleção enxuta para quem quer que o setup organize o ambiente sem competir com o trabalho.",
     productIds: ["teclado-redragon-fizz", "monitor-24-144", "mouse-wireless-59", "mousepad-desk"],
+    searchTerms: ["mesa organizada", "minimalista", "organização"],
   },
 ] as const;
 
 export const guides: readonly Guide[] = [
+  {
+    slug: "pc-lento-o-que-verificar",
+    title: "PC lento: o que verificar antes de comprar peças",
+    description: "Um roteiro curto para separar lentidão de inicialização, falta de espaço e uso alto de CPU, memória ou disco antes de gastar com um upgrade.",
+    eyebrow: "Resolver um problema",
+    sections: [
+      { title: "Descubra quando a lentidão acontece", content: "Anote se o computador demora para iniciar, fica lento só com um programa específico ou perde velocidade depois de algum tempo ligado. Esses sinais apontam causas diferentes e ajudam a evitar uma compra que não resolve o problema." },
+      { title: "Observe o que está sendo usado", content: "No Windows, abra o Gerenciador de Tarefas com Ctrl + Shift + Esc. Em Processos e Desempenho, observe CPU, memória e disco durante a lentidão. Procure uso alto que se mantém por alguns minutos e confira quais aplicativos aparecem no topo; um pico rápido, sozinho, não prova que uma peça precisa ser trocada." },
+      { title: "Tente os ajustes sem custo primeiro", content: "Confira os aplicativos que iniciam junto com o Windows, feche programas que não está usando, verifique se há espaço livre e instale atualizações pendentes. Se suspeitar de software malicioso, faça uma verificação com a Segurança do Windows. Reinicie e repita a observação para ver se algo mudou." },
+      { title: "Só então avalie um upgrade", content: "Se o problema persistir, compare o gargalo observado com a tarefa que você quer melhorar. Um SSD só faz sentido como prioridade se o computador ainda usa HD e a demora de inicialização ou acesso ao disco for relevante; mais memória pode ajudar quando o uso habitual se aproxima do limite. Antes de comprar, confirme compatibilidade, faça backup e peça ajuda técnica se não souber identificar as peças." },
+      { title: "Quando não comprar ainda", content: "Se CPU, memória e disco não ficam sob pressão durante o problema, ou se a lentidão começou após uma mudança de software, investigue atualizações, aplicativos e suporte técnico antes de trocar componentes. O catálogo atual ainda não tem SSD ou memória com modelo e compatibilidade verificados para recomendar." },
+    ],
+    productIds: [],
+    updatedAt: "2026-09-24",
+    index: true,
+    searchTerms: ["pc lento", "computador lento", "máquina lenta", "upgrade", "ssd", "ram", "memória", "deixar computador mais rápido", "lentidão"],
+    sources: [
+      {
+        label: "Microsoft Support — dicas para melhorar o desempenho do PC no Windows",
+        url: "https://support.microsoft.com/en-us/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+        accessedAt: "2026-09-24",
+      },
+      {
+        label: "Microsoft Support — configurar aplicativos de inicialização no Windows",
+        url: "https://support.microsoft.com/en-us/windows/experience/startup-boot/configure-startup-applications-in-windows",
+        accessedAt: "2026-09-24",
+      },
+    ],
+  },
   {
     slug: "como-escolher-um-pc-gamer",
     title: "Como escolher um PC gamer sem comprar peças pela moda",

@@ -8,8 +8,6 @@ import { Differential } from "@/components/sections/Differential";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Projects } from "@/components/sections/Projects";
-import { Proof } from "@/components/sections/Proof";
-import { Stack } from "@/components/sections/Stack";
 
 import { siteConfig } from "@/lib/config/site";
 
@@ -35,15 +33,11 @@ export default function HomePage() {
 
       <Hero />
 
-      <Proof />
-
       <Projects />
 
-      <Process />
-
-      <Stack />
-
       <Differential />
+
+      <Process />
 
       <About />
 

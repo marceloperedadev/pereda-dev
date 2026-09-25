@@ -95,12 +95,12 @@
 
 .lineInner {
   display: block;
-  animation: rise 0.9s var(--ease) both;
+  animation: rise 0.58s var(--ease) both;
   will-change: transform;
 }
 
 .line:nth-of-type(2) .lineInner {
-  animation-delay: 0.1s;
+  animation-delay: 0.08s;
 }
 
 /* =========================================================
@@ -258,9 +258,8 @@
   }
 
   .actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    align-items: center;
+    gap: 18px;
     margin-top: 28px;
   }
 

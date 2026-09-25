@@ -3,7 +3,7 @@
   position: relative;
   padding-block:
     clamp(28px, 4.5vw, 56px)
-    clamp(72px, 9vw, 128px);
+    clamp(56px, 7vw, 96px);
   overflow: hidden;
 }
 

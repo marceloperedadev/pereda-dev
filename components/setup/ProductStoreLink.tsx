@@ -13,7 +13,7 @@ export function ProductStoreLink({ href, productId, productName, category, store
       className={className}
       href={href}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="sponsored nofollow noopener noreferrer"
       onClick={() => track("setup_product_click", {
         product_id: productId,
         product_name: productName,

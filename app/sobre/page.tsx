@@ -127,7 +127,7 @@ export default function AboutPage() {
 
           <ButtonLink
             href="/projetos"
-            variant="secondary"
+            variant="text"
             event="click_project"
             eventParams={ctaParams("about_page", "Conhecer projetos")}
           >

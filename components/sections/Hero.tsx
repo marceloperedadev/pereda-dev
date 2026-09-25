@@ -57,7 +57,7 @@ export function Hero() {
 
             <ButtonLink
               href={whatsappUrl()}
-              variant="secondary"
+              variant="text"
               event="click_whatsapp"
               eventParams={ctaParams("hero", hero.secondaryCta)}
             >
