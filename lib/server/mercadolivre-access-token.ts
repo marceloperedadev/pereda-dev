@@ -21,6 +21,7 @@ export async function getMercadoLivreAccessToken(): Promise<string> {
       refresh_token: saved.refresh_token,
     }),
     cache: "no-store",
+    signal: AbortSignal.timeout(8_000),
   });
   if (!response.ok) throw new Error("Mercado Livre token refresh failed");
 

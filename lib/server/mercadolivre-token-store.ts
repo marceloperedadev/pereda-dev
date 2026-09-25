@@ -31,6 +31,7 @@ export async function saveMercadoLivreTokens(tokens: StoredTokens): Promise<void
     }),
     body: JSON.stringify(tokens),
     cache: "no-store",
+    signal: AbortSignal.timeout(8_000),
   });
   if (!response.ok) {
     const responseText = await response.text();
@@ -62,6 +63,7 @@ export async function getMercadoLivreTokens(): Promise<StoredTokens | undefined>
   const response = await fetch(url, {
     headers: headers(store.secretKey),
     cache: "no-store",
+    signal: AbortSignal.timeout(8_000),
   });
   if (!response.ok) throw new Error("Could not read Mercado Livre tokens");
   const rows = (await response.json()) as StoredTokens[];

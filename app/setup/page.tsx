@@ -75,6 +75,7 @@ export default function SetupPage() {
           <div><h3>Guias</h3>{guides.map((guide) => <Link key={guide.slug} href={guidePath(guide.slug)}>{guide.title} ↗</Link>)}</div>
           <div><h3>Jogos</h3>{games.map((game) => <Link key={game.slug} href={gamePath(game.slug)}>{game.name} ↗</Link>)}</div>
           <div><h3>Setups</h3>{setups.map((setup) => <Link key={setup.slug} href={setupPath(setup.slug)}>{setup.name} ↗</Link>)}</div>
+          <div><h3>Curadoria</h3><Link href="/setup/curadoria">Recomendações revisadas ↗</Link></div>
         </div>
         <Disclosure />
       </section>

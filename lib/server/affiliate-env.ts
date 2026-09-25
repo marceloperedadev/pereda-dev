@@ -43,3 +43,7 @@ export function getMercadoLivreConnectGuard(): MercadoLivreConnectGuard | undefi
   const password = read("MERCADOLIVRE_CONNECT_PASSWORD");
   return username && password ? { username, password } : undefined;
 }
+
+export function getCronSecret(): string | undefined {
+  return read("CRON_SECRET");
+}

@@ -10,6 +10,7 @@ import {
   projects,
 } from "@/lib/data/projects";
 import { guidePath, guides, productPath, products } from "@/lib/data/setup";
+import { getPublishedCuration } from "@/lib/server/curation-store";
 
 /**
  * Sitemap das páginas públicas e relevantes para indexação.
@@ -17,7 +18,7 @@ import { guidePath, guides, productPath, products } from "@/lib/data/setup";
  * Páginas que não devem aparecer nos resultados de busca,
  * como /privacidade, não são incluídas aqui.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteLastModified = new Date(
     siteConfig.updatedAt,
   );
@@ -95,9 +96,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  let curatedPages: MetadataRoute.Sitemap = [];
+  try {
+    curatedPages = (await getPublishedCuration())
+      .filter((product) => product.slug)
+      .map((product) => ({
+        url: absoluteUrl(`/setup/curadoria/${product.slug}`),
+        lastModified: new Date(product.updated_at),
+        changeFrequency: "daily" as const,
+        priority: 0.65,
+      }));
+  } catch {
+    // Keep the site map useful when Supabase is not configured yet.
+  }
+
+  const publishedCurationPages: MetadataRoute.Sitemap = curatedPages.length > 0
+    ? [{
+        url: absoluteUrl("/setup/curadoria"),
+        lastModified: siteLastModified,
+        changeFrequency: "daily",
+        priority: 0.7,
+      }, ...curatedPages]
+    : [];
+
   return [
     ...staticPages,
     ...projectPages,
     ...setupPages,
+    ...publishedCurationPages,
   ];
 }
