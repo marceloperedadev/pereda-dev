@@ -33,6 +33,7 @@ export function Differential() {
                 </span>
 
                 <div className={styles.serviceCopy}>
+                  <p className={styles.context}>{offering.context}</p>
                   <h3 className={styles.serviceName}>{offering.name}</h3>
                   <p className={styles.description}>{offering.description}</p>
                 </div>

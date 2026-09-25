@@ -83,7 +83,7 @@ export const projects = [
     updatedAt: "2026-09-22",
     cover: {
       src: "/projects/mimo-pet.webp",
-      alt: "Site Mimo Pet apresentado em uma tela de computador",
+      alt: "Mockup ilustrativo da proposta visual do site Mimo Pet em uma tela de computador; não é uma captura fiel do site publicado",
       width: 1600,
       height: 1000,
       art: {
@@ -141,7 +141,7 @@ export const projects = [
     updatedAt: "2026-09-22",
     cover: {
       src: "/projects/pereda-engenharia.webp",
-      alt: "Site da Pereda Engenharia apresentado em uma tela de computador",
+      alt: "Mockup ilustrativo da proposta visual da Pereda Engenharia em uma tela de computador; não é uma captura fiel do site publicado",
       width: 1600,
       height: 1000,
       art: {
@@ -197,7 +197,7 @@ export const projects = [
     updatedAt: "2026-09-21",
     cover: {
       src: "/projects/ortoclinica-taubate.webp",
-      alt: "Site institucional da Ortoclínica Taubaté apresentado em uma tela de computador",
+      alt: "Mockup ilustrativo da proposta visual da Ortoclínica Taubaté em uma tela de computador; não é uma captura fiel do site publicado",
       width: 1600,
       height: 1000,
       art: {
@@ -252,7 +252,7 @@ export const projects = [
     updatedAt: "2026-09-22",
     cover: {
       src: "/projects/dra-valesca.webp",
-      alt: "Site institucional da Dra. Valesca apresentado em uma tela de computador",
+      alt: "Mockup ilustrativo da proposta visual do site da Dra. Valesca em uma tela de computador; não é uma captura fiel do site publicado",
       width: 1600,
       height: 1000,
       art: {

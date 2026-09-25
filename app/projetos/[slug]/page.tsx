@@ -281,7 +281,7 @@ export default async function ProjectPage({ params }: Props) {
 
             <ButtonLink
               href="/sobre"
-              variant="secondary"
+              variant="text"
               event="project_cta_click"
               eventParams={{
                 ...projectAnalyticsParams,

@@ -161,56 +161,6 @@
 }
 
 /* =========================================================
-   ESPECIALIDADES
-   ========================================================= */
-
-.chips {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0;
-  list-style: none;
-  margin: clamp(36px, 4.5vw, 52px) 0 0;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
-
-.chips li {
-  position: relative;
-  padding-right: 16px;
-  margin-right: 16px;
-  color: var(--soft);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  transition: color 0.2s var(--ease);
-}
-
-.chips li::after {
-  content: "/";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  color: var(--signal);
-  transform: translateY(-50%);
-}
-
-.chips li:last-child {
-  padding-right: 0;
-  margin-right: 0;
-}
-
-.chips li:last-child::after {
-  display: none;
-}
-
-.chips li:hover {
-  color: var(--text);
-}
-
-/* =========================================================
    TABLET
    ========================================================= */
 
@@ -263,10 +213,6 @@
     margin-top: 28px;
   }
 
-  .chips {
-    margin-top: 40px;
-    row-gap: 12px;
-  }
 }
 
 /* =========================================================
@@ -315,14 +261,6 @@
     margin-top: 27px;
   }
 
-  .chips {
-    margin-top: 36px;
-    padding-top: 16px;
-  }
-
-  .chips li {
-    font-size: 0.58rem;
-  }
 }
 
 /* =========================================================
@@ -335,7 +273,4 @@
     transform: none;
   }
 
-  .chips li {
-    transition: none;
-  }
 }

@@ -46,23 +46,26 @@ export const siteConfig = {
 
     offerings: [
       {
-        name: "Landing pages",
-        description:
-          "Uma página focada em apresentar, captar contatos, divulgar uma oferta ou conduzir a uma ação.",
-        price: "A partir de R$ 900",
-      },
-
-      {
         name: "Presença digital",
+        context: "A empresa precisa explicar melhor o que faz.",
         description:
-          "Identidade, estrutura e performance para apresentar e posicionar um negócio no digital.",
+          "Estrutura e conteúdo para apresentar e posicionar um negócio com clareza no digital.",
         price: "A partir de R$ 1.500",
       },
 
       {
-        name: "Projetos sob medida",
+        name: "Landing pages",
+        context: "Uma oferta precisa de um caminho claro até a ação.",
         description:
-          "Soluções de design, experiência e tecnologia construídas a partir das necessidades específicas do projeto.",
+          "Uma página para divulgar uma oferta, captar contatos ou orientar uma ação específica.",
+        price: "A partir de R$ 900",
+      },
+
+      {
+        name: "Projetos sob medida",
+        context: "A operação pede uma solução além de uma página institucional.",
+        description:
+          "Sites, e-commerces e sistemas web estruturados conforme as necessidades reais do projeto.",
         price: "A partir de R$ 2.000+",
       },
     ],

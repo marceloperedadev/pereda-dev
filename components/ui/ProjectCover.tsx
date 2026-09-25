@@ -45,6 +45,7 @@ export function ProjectCover({
           priority={priority}
           className={styles.img}
         />
+        <span className={styles.caption}>Mockup ilustrativo</span>
       </div>
     );
   }

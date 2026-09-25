@@ -10,7 +10,6 @@ import styles from "./Hero.module.css";
 
 export function Hero() {
   const leadProject = getProject("mimo-pet");
-  const secondaryProject = getProject("pereda-engenharia");
 
   return (
     <section
@@ -46,7 +45,7 @@ export function Hero() {
 
           <div className={styles.actions}>
             <ButtonLink
-              href="/projetos"
+              href="#projetos"
               variant="primary"
               arrow
               event="click_project"
@@ -65,30 +64,10 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <ul
-            className={styles.chips}
-            aria-label="Principais áreas de atuação"
-          >
-            {hero.specialties.map((specialty) => (
-              <li key={specialty}>{specialty}</li>
-            ))}
-          </ul>
         </div>
 
-        {leadProject && secondaryProject ? (
-          <HeroVisual
-            lead={{
-              name: leadProject.name,
-              slug: leadProject.slug,
-              category: leadProject.category,
-              type: leadProject.type,
-              cover: leadProject.cover,
-            }}
-            second={{
-              name: secondaryProject.name,
-              cover: secondaryProject.cover,
-            }}
-          />
+        {leadProject ? (
+          <HeroVisual lead={leadProject} />
         ) : null}
       </div>
     </section>

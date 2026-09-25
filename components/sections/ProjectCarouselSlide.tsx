@@ -45,39 +45,45 @@ export function ProjectCarouselSlide({
         <div className={styles.media}>
           <ProjectCover
             project={project}
-            sizes="(min-width: 1200px) 1100px, 84vw"
-            priority={index === 0}
+            sizes="(min-width: 1440px) 1280px, 88vw"
           />
         </div>
 
         <div className={styles.info}>
-          <p className={styles.index}>
-            {pad(index + 1)} / {pad(total)}
-          </p>
-          <h3 className={styles.name}>{project.name}</h3>
-          <p className={styles.category}>{project.category}</p>
-          <p className={styles.summary}>{project.summary}</p>
-          <ul
-            className={styles.tags}
-            aria-label="Características do projeto"
-          >
-            {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-          <TrackedLink
-            href={`/projetos/${project.slug}`}
-            className={styles.cta}
-            event="click_project"
-            eventParams={{
-              ...projectParams(project),
-              ...ctaParams("carousel", "Ver projeto"),
-              project_position: index + 1,
-            }}
-          >
-            Ver projeto
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </TrackedLink>
+          <div className={styles.copy}>
+            <p className={styles.index}>
+              CASE {pad(index + 1)} / {pad(total)}
+            </p>
+            <h3 className={styles.name}>{project.name}</h3>
+            <p className={styles.category}>
+              {project.type} · {project.category}
+            </p>
+            <p className={styles.summary}>{project.summary}</p>
+          </div>
+          <div className={styles.details}>
+            <p className={styles.stackLabel}>Construído com</p>
+            <ul
+              className={styles.stack}
+              aria-label={`Tecnologias utilizadas em ${project.name}`}
+            >
+              {project.stack.map((technology) => (
+                <li key={technology}>{technology}</li>
+              ))}
+            </ul>
+            <TrackedLink
+              href={`/projetos/${project.slug}`}
+              className={styles.cta}
+              event="click_project"
+              eventParams={{
+                ...projectParams(project),
+                ...ctaParams("carousel", "Ver como foi construído"),
+                project_position: index + 1,
+              }}
+            >
+              Ver como foi construído
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </TrackedLink>
+          </div>
         </div>
       </article>
 

@@ -8,27 +8,22 @@
  */
 
 export const hero = {
-  identity: "Marcelo Felipe · Desenvolvimento Web & E-commerce",
+  identity: "Marcelo Felipe · Desenvolvedor Full Stack",
 
   location: "Taubaté, SP",
 
-  headlineLead: "Criação de sites",
+  headlineLead: "Experiências digitais",
 
   headlineTail:
-    "com estratégia, performance e tecnologia.",
+    "para negócios reais.",
 
   text:
-    "Ajudo negócios a transformar uma ideia, produto ou operação em um site claro, funcional e pronto para apresentar, vender e evoluir.",
+    "Desenvolvo sites, e-commerces e sistemas web para empresas que precisam apresentar melhor o que fazem, vender online ou organizar sua operação.",
 
   primaryCta: "Conhecer projetos",
 
   secondaryCta: "Vamos conversar",
 
-  specialties: [
-    "Criação de sites",
-    "Lojas virtuais (E-commerce)",
-    "Sistemas web",
-  ],
 };
 
 export const proof = {
@@ -143,10 +138,10 @@ export const differential = {
   lead:
     "É a forma como um negócio se apresenta, orienta escolhas e constrói confiança no digital. Design, estrutura e tecnologia precisam trabalhar na mesma direção.",
 
-  servicesTitle: "O formato parte da necessidade.",
+  servicesTitle: "O que seu negócio precisa resolver?",
 
   servicesLead:
-    "Alguns projetos pedem foco em conversão. Outros precisam de uma loja virtual completa. Há também os que exigem um sistema sob medida.",
+    "A solução pode ser uma presença digital mais clara, uma página para apresentar uma oferta ou uma estrutura construída em torno da operação.",
 };
 
 export const about = {

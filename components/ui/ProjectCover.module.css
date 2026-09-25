@@ -8,6 +8,21 @@
   object-fit: cover;
 }
 
+.caption {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  padding: 6px 8px;
+  background: rgb(12 11 14 / 78%);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .art {
   position: absolute;
   inset: 0;

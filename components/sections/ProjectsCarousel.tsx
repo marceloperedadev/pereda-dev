@@ -28,7 +28,7 @@ export type CarouselProject = {
   category: string;
   type: string;
   summary: string;
-  tags: readonly string[];
+  stack: readonly string[];
   cover: Project["cover"];
 };
 

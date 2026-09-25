@@ -13,17 +13,18 @@ import {
 import styles from "./Projects.module.css";
 
 export function Projects() {
-  const items: CarouselProject[] = projects.map(
-    (project) => ({
+  const featuredProjectSlug = "mimo-pet";
+  const items: CarouselProject[] = projects
+    .filter((project) => project.slug !== featuredProjectSlug)
+    .map((project) => ({
       slug: project.slug,
       name: project.name,
       category: project.category,
       type: project.type,
       summary: project.shortDescription,
-      tags: project.tags,
+      stack: project.stack,
       cover: project.cover,
-    }),
-  );
+    }));
 
   return (
     <section
@@ -34,7 +35,7 @@ export function Projects() {
       <div className="container">
         <SectionRule
           label="Projetos"
-          meta={`${projects.length} projetos`}
+          meta={`${items.length} cases em destaque`}
         />
 
         <header className={styles.head}>

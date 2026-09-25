@@ -53,12 +53,21 @@
 
 .offer {
     display: inline-flex;
-    padding: 11px 16px;
-    color: #fff;
-    background: var(--signal);
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    color: var(--text);
+    border-bottom: 1px solid var(--signal);
     font-size: .72rem;
     font-weight: 700;
-    letter-spacing: .04em;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+
+.offer:hover {
+    color: var(--signal);
+    border-color: var(--signal);
 }
 
 .affiliateNote {
