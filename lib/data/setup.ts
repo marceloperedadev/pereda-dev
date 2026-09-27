@@ -18,7 +18,7 @@ export type Product = {
   category: ProductCategory;
   subcategory?: string;
   brand: string;
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; caption?: string };
   summary: string;
   forWho: string;
   notFor: string;
@@ -184,6 +184,11 @@ export const products: readonly Product[] = [
     slug: "monitor-lg-ultragear-24g411a-144hz",
     category: "Monitor",
     brand: "LG",
+    image: {
+      src: "https://media.us.lg.com/transform/ecomm-PDPGallery-1100x730/ec1085d3-6afc-463c-9600-175fe41ab6e0/Monitor-24G411A-B-digital-trends-gallery-1_5000x5000?io=transform%3Afill%2Cwidth%3A1536",
+      alt: "Monitor LG UltraGear 24G411A-B — imagem de referência do modelo",
+      caption: "Imagem de referência do modelo LG UltraGear.",
+    },
     summary: "Monitor gamer LG UltraGear de 24\" com Full HD e 144 Hz, conforme o anúncio. Confira preço, disponibilidade e a variante exata na loja.",
     forWho: "Quem procura um monitor Full HD de alta frequência para jogos e quer avaliar um modelo de marca identificada.",
     notFor: "Quem precisa de resolução acima de Full HD ou de recursos confirmados por teste independente.",
@@ -281,6 +286,11 @@ export const products: readonly Product[] = [
     slug: "teclado-redragon-fizz-60",
     category: "Teclado",
     brand: "Redragon",
+    image: {
+      src: "https://img.terabyteshop.com.br/produto/g/teclado-mecanico-gamer-redragon-fizz-rainbow-switch-brown-abnt2-black-k617-r-b-pt-brown_145705.jpg",
+      alt: "Teclado Redragon Fizz Rainbow 60% com switch Brown — imagem de referência do modelo",
+      caption: "Imagem de referência do modelo Redragon Fizz.",
+    },
     summary: "Teclado mecânico compacto com switch Brown, formato 60% e hot-swap. Confirme a variante no anúncio.",
     forWho: "Quem prefere um teclado compacto e quer liberar espaço na mesa para o mouse.",
     notFor: "Quem precisa de teclado numérico dedicado ou prefere um formato maior, como 65% ou TKL.",
@@ -316,6 +326,99 @@ export const products: readonly Product[] = [
       },
     ],
     updatedAt: "2026-09-24",
+  },
+  {
+    id: "monitor-aoc-agon-g4z-27",
+    name: "Monitor gamer curvo AOC AGON G4Z 27\" 300 Hz",
+    slug: "monitor-aoc-agon-g4z-27-300hz",
+    category: "Monitor",
+    brand: "AOC",
+    image: {
+      src: "https://http2.mlstatic.com/D_NQ_NP_796898-MLA94128503742_102025-OO.png",
+      alt: "Monitor gamer curvo AOC AGON G4Z 27\" 300 Hz — imagem do anúncio",
+      caption: "Imagem do anúncio · Mercado Livre.",
+    },
+    summary: "Monitor curvo de 27\" com 300 Hz, curvatura 1500R, painel VA e HDR10, com base de altura ajustável. Confira preço e condição do anúncio.",
+    forWho: "Quem joga FPS competitivo e busca a menor latência possível com taxa de atualização muito alta e imersão por curvatura.",
+    notFor: "Quem precisa de resolução acima de Full HD, de tela plana para trabalho de precisão ou de um monitor grande para uso de mesa amplo.",
+    specs: [
+      { label: "Modelo anunciado", value: "AOC AGON C27G4Z/P" },
+      { label: "Tamanho anunciado", value: "27 polegadas" },
+      { label: "Resolução anunciada", value: "Full HD (1920 × 1080)" },
+      { label: "Frequência anunciada", value: "300 Hz" },
+      { label: "Tempo de resposta anunciado", value: "0,3 ms" },
+      { label: "Curvatura anunciada", value: "1500R" },
+      { label: "Painel anunciado", value: "VA" },
+      { label: "Recursos anunciados", value: "HDR10 e AMD FreeSync Premium" },
+      { label: "Base anunciada", value: "Altura ajustável, com inclinação e rotação" },
+    ],
+    useCases: ["Gaming"],
+    profile: "Desempenho",
+    tags: ["monitor", "curvo", "300hz", "aoc", "agon", "fps"],
+    offers: [
+      {
+        store: "Mercado Livre",
+        availability: "Sob consulta",
+        affiliateUrl: "https://www.mercadolivre.com.br/monitor-gamer-curvo-aoc-agon-g4z-27-300hz-03ms-hdr10-base-ajustavel-c27g4zp-preto/p/MLB59324574?pdp_filters=deal%3AMLB1578289-1&wid=MLB4286410409",
+        updatedAt: "2026-09-27",
+      },
+    ],
+    status: "illustrative",
+    sources: [
+      {
+        label: "Mercado Livre — anúncio do monitor gamer curvo AOC AGON G4Z 27\" 300 Hz",
+        url: "https://www.mercadolivre.com.br/monitor-gamer-curvo-aoc-agon-g4z-27-300hz-03ms-hdr10-base-ajustavel-c27g4zp-preto/p/MLB59324574?pdp_filters=deal%3AMLB1578289-1&wid=MLB4286410409",
+        accessedAt: "2026-09-27",
+      },
+    ],
+    updatedAt: "2026-09-27",
+  },
+  {
+    id: "notebook-asus-tuf-f16-fx607vu",
+    name: "Notebook ASUS TUF Gaming F16 FX607VU com RTX 4050",
+    slug: "notebook-asus-tuf-f16-fx607vu",
+    category: "PC",
+    brand: "ASUS",
+    image: {
+      src: "https://http2.mlstatic.com/D_NQ_NP_921056-MLA112390533051_052026-OO.png",
+      alt: "Notebook ASUS TUF Gaming F16 FX607VU — imagem do anúncio",
+      caption: "Imagem do anúncio · Mercado Livre.",
+    },
+    summary: "Notebook gamer de 16\" com Intel Core 5 210H, GeForce RTX 4050, 16 GB de RAM e SSD de 512 GB, com tela Full HD+ IPS de 144 Hz. O anúncio sai de fábrica com Linux; confira o sistema instalado na página da loja.",
+    forWho: "Quem quer um notebook gamer completo, com GPU dedicada e tela de 144 Hz, e ainda valoriza portas amplas e upgrades futuros de RAM e SSD.",
+    notFor: "Quem precisa de tela 4K, mais de 16 GB de RAM de fábrica ou processamento de nível desktop para cargas pesadas fora do uso gamer.",
+    specs: [
+      { label: "Modelo anunciado", value: "ASUS TUF Gaming F16 FX607VU" },
+      { label: "Processador anunciado", value: "Intel Core 5 210H" },
+      { label: "Placa de vídeo anunciada", value: "NVIDIA GeForce RTX 4050" },
+      { label: "Memória anunciada", value: "16 GB RAM" },
+      { label: "Armazenamento anunciado", value: "SSD de 512 GB" },
+      { label: "Tela anunciada", value: "16\" IPS Full HD+ (1920 × 1200) 16:10, 144 Hz, 3 ms" },
+      { label: "Sistema anunciado", value: "Linux" },
+      { label: "Recursos anunciados", value: "MUX Switch, Advanced Optimus, Wi-Fi 6, Bluetooth 5.3" },
+      { label: "Portas anunciadas", value: "USB-A, USB-C, HDMI 2.1, RJ-45 e áudio 3,5 mm" },
+      { label: "Expansão anunciada", value: "Dois slots RAM e dois espaços SSD PCIe 4.0" },
+    ],
+    useCases: ["Gaming", "Trabalho", "Programação"],
+    profile: "Desempenho",
+    tags: ["notebook", "asus", "tuf", "rtx 4050", "144hz", "portátil"],
+    offers: [
+      {
+        store: "Mercado Livre",
+        availability: "Sob consulta",
+        affiliateUrl: "https://meli.la/2gWbes2",
+        updatedAt: "2026-09-27",
+      },
+    ],
+    status: "illustrative",
+    sources: [
+      {
+        label: "Mercado Livre — anúncio do notebook ASUS TUF Gaming F16 FX607VU com RTX 4050",
+        url: "https://www.mercadolivre.com.br/notebook-asus-tuf-gamer-f16-fx607vu-nvidia-rtx-4050-intel-core-5-210h-16gb-ram-512gb-ssd-linux-16-lcd-led-fhd-nivel-ips-144-hz-rl385/p/MLB70421874?pdp_filters=deal%3AMLB1578289-1&wid=MLB4732238975",
+        accessedAt: "2026-09-27",
+      },
+    ],
+    updatedAt: "2026-09-27",
   },
   {
     id: "headset-anc",
@@ -388,6 +491,22 @@ export function hasMercadoLivreOffer(product: Product | undefined): product is P
     && (isMercadoLivreUrl(offer.affiliateUrl) || isMercadoLivreUrl(offer.productUrl))));
 }
 
+/** Item ID do anúncio de origem, usado apenas para consultar dados públicos do mesmo produto. */
+export function getMercadoLivreListingId(product: Product): string | undefined {
+  for (const source of product.sources ?? []) {
+    try {
+      const url = new URL(source.url);
+      const id = url.searchParams.get("item_id")
+        ?? url.searchParams.get("wid")
+        ?? url.searchParams.get("pdp_filters")?.match(/MLB\d{5,20}/)?.[0];
+      if (id && /^MLB\d{5,20}$/.test(id)) return id;
+    } catch {
+      // Ignora fonte malformada e tenta a próxima.
+    }
+  }
+  return undefined;
+}
+
 export const productsWithMercadoLivreLinks: readonly Product[] = products.filter(hasMercadoLivreOffer);
 
 export const setups: readonly Setup[] = [
@@ -398,7 +517,7 @@ export const setups: readonly Setup[] = [
     focus: ["Alto FPS", "Baixa latência", "Mesa compacta"],
     budget: "Orçamento intermediário",
     description: "Uma combinação ordenada para colocar desempenho e responsividade antes de efeitos visuais.",
-    productIds: ["ryzen-5-5600", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc", "mousepad-desk"],
+    productIds: ["ryzen-5-5600", "monitor-aoc-agon-g4z-27", "monitor-lg-ultragear-24g411a", "mouse-wireless-59", "headset-anc", "mousepad-desk"],
     searchTerms: ["jogos", "fps", "gamer", "jogar"],
   },
   {
@@ -408,7 +527,7 @@ export const setups: readonly Setup[] = [
     focus: ["Multitarefa", "Teclado compacto", "Conforto"],
     budget: "Investimento progressivo",
     description: "Componentes pensados para alternar entre código, chamadas e sessões de jogo com menos ruído visual.",
-    productIds: ["teclado-redragon-fizz", "monitor-24-144", "monitor-gamer-24-100", "mouse-wireless-59", "headset-anc"],
+    productIds: ["teclado-redragon-fizz", "monitor-lg-ultragear-24g411a", "kit-teclado-mouse-goodvision", "mouse-wireless-59", "headset-anc"],
     searchTerms: ["programação", "programar", "desenvolvimento", "home office", "montar setup", "trabalho e jogos", "trabalho e jogar", "trabalhar e jogar", "programador"],
   },
   {
@@ -420,6 +539,16 @@ export const setups: readonly Setup[] = [
     description: "Uma seleção enxuta para quem quer que o setup organize o ambiente sem competir com o trabalho.",
     productIds: ["teclado-redragon-fizz", "monitor-24-144", "mouse-wireless-59", "mousepad-desk"],
     searchTerms: ["mesa organizada", "minimalista", "organização"],
+  },
+  {
+    slug: "setup-portatil-gamer",
+    name: "Setup portátil gamer",
+    profile: "Gaming em movimento",
+    focus: ["Notebook completo", "Tela 144 Hz", "Conectividade"],
+    budget: "Compra única concentrada",
+    description: "Em vez de montar várias peças, um notebook gamer com GPU dedicada cobre jogo, estudo e trabalho em um só aparelho. A tela de 144 Hz mantém a resposta alta sem exigir monitor externo.",
+    productIds: ["notebook-asus-tuf-f16-fx607vu", "headset-anc", "mouse-wireless-59", "mousepad-desk"],
+    searchTerms: ["notebook gamer", "laptop gamer", "computador portátil", "notebook para jogar", "setup notebook", "trabalhar e jogar", "estudar e jogar"],
   },
 ] as const;
 
@@ -476,8 +605,8 @@ export const guides: readonly Guide[] = [
       { title: "Hz não é tudo", content: "Latência, resposta, estabilidade e qualidade da imagem importam tanto quanto a frequência anunciada. Compare análises e especificações do fabricante." },
       { title: "Encaixe na sua mesa", content: "Verifique profundidade, ergonomia, ajuste de altura e espaço para o suporte. Um monitor excelente no papel pode ser ruim se não funciona bem na sua rotina." },
     ],
-    productIds: ["monitor-24-144"],
-    updatedAt: "2026-09-21",
+    productIds: ["monitor-aoc-agon-g4z-27", "monitor-lg-ultragear-24g411a", "monitor-gamer-24-100", "monitor-24-144"],
+    updatedAt: "2026-09-27",
   },
   {
     slug: "perifericos-para-fps",
@@ -488,8 +617,8 @@ export const guides: readonly Guide[] = [
       { title: "Comece pelo controle", content: "Peso, ergonomia, conexão e leitura do sensor ajudam a definir o tipo de mouse que combina com seu estilo de movimento. Não existe uma resposta universal." },
       { title: "Coerência acima de quantidade", content: "Um conjunto compacto e consistente pode melhorar a mesa e a concentração. Teclas extras só são úteis quando têm função na sua rotina." },
     ],
-    productIds: ["mouse-wireless-59", "teclado-redragon-fizz", "monitor-24-144", "headset-anc"],
-    updatedAt: "2026-09-21",
+    productIds: ["mouse-wireless-59", "teclado-redragon-fizz", "kit-teclado-mouse-goodvision", "monitor-aoc-agon-g4z-27", "headset-anc"],
+    updatedAt: "2026-09-27",
   },
 ] as const;
 
@@ -506,8 +635,8 @@ export const games: readonly Game[] = [
       { label: "Input", detail: "Mouse confortável e monitor de 144 Hz" },
       { label: "Conforto", detail: "Headset com isolamento e peso bem distribuído" },
     ],
-    productIds: ["monitor-24-144", "mouse-wireless-59", "headset-anc", "teclado-redragon-fizz"],
-    updatedAt: "2026-09-21",
+    productIds: ["monitor-aoc-agon-g4z-27", "monitor-lg-ultragear-24g411a", "mouse-wireless-59", "headset-anc", "teclado-redragon-fizz"],
+    updatedAt: "2026-09-27",
   },
   {
     slug: "cyberpunk-2077",
