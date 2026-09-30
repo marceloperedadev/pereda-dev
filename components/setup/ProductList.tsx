@@ -22,9 +22,12 @@ export function ProductList({ items, limit, source = "product-list" }: { items: 
           <article key={product.id}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             {product.image ? (
-              <Link className={styles.image} href={detailHref}>
-                <Image src={product.image.src} alt={product.image.alt} width={220} height={180} unoptimized />
-              </Link>
+              <figure className={styles.imageFigure}>
+                <Link className={styles.image} href={detailHref}>
+                  <Image src={product.image.src} alt={product.image.alt} width={220} height={180} unoptimized />
+                </Link>
+                <figcaption>{product.image.caption ?? "Imagem do anúncio · Mercado Livre."}</figcaption>
+              </figure>
             ) : null}
             <div className={styles.content}>
               <p>{product.category} / {product.profile}</p>

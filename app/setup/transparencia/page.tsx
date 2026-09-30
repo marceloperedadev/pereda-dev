@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
-import { affiliateProducts } from "@/lib/data/setup";
+import { affiliateProducts, productsWithMercadoLivreLinks } from "@/lib/data/setup";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -17,9 +17,9 @@ export default function TransparencyPage() {
       <section className={`container ${styles.hero}`}>
         <p className={styles.eyebrow}>Transparência</p>
         <h1>Curadoria antes da comissão.</h1>
-        <p className={styles.lead}>Atualmente, {affiliateProducts.length} fichas incluem links de afiliado para anúncios específicos. Preço e estoque ainda não foram conferidos; as demais fichas seguem ilustrativas.</p>
+        <p className={styles.lead}>Atualmente, {affiliateProducts.length} fichas incluem links de afiliado para anúncios específicos. Somente produtos com destino válido ao Mercado Livre aparecem como opções de compra; são {productsWithMercadoLivreLinks.length} no momento. Preço e estoque ainda não foram conferidos.</p>
       </section>
-      <section className={`container ${styles.linksSection}`}>
+      <section className={`container ${styles.linksSection} ${styles.reading}`}>
         <h2>Sobre o link atual</h2>
         <p>Um link será identificado como afiliado e poderá gerar uma comissão sem custo adicional para você. A existência de comissão não será apresentada como evidência de qualidade ou adequação do produto.</p>
         <p>Preços e estoque mudam. Os links levam aos anúncios indicados nas fichas; confirme condições e especificações diretamente na loja antes de comprar.</p>

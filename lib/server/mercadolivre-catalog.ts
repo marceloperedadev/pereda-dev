@@ -1,5 +1,6 @@
 import "server-only";
 
+import { unstable_cache } from "next/cache";
 import { getMercadoLivreAccessToken } from "@/lib/server/mercadolivre-access-token";
 import type { CatalogListing, CatalogProvider } from "@/lib/server/catalog-provider";
 
@@ -77,6 +78,10 @@ export function normalizeMercadoLivreListing(input: unknown): CatalogListing {
 
 async function apiGet(url: URL): Promise<unknown> {
   const token = await getMercadoLivreAccessToken();
+  return apiGetWithToken(url, token);
+}
+
+async function apiGetWithToken(url: URL, token: string): Promise<unknown> {
   const response = await fetch(url, {
     headers: { Accept: "application/json", Authorization: `Bearer ${token}` },
     cache: "no-store",
@@ -88,6 +93,33 @@ async function apiGet(url: URL): Promise<unknown> {
     throw error;
   }
   return response.json() as Promise<unknown>;
+}
+
+const getCachedListings = unstable_cache(
+  async (ids: string[]): Promise<(CatalogListing | null)[]> => {
+    // Read the token once per refresh window, then fetch listings in parallel.
+    const token = await getMercadoLivreAccessToken();
+    const listings = await Promise.all(ids.map(async (id) => {
+      try {
+        const url = new URL(`${API}/items/${encodeURIComponent(id)}`);
+        return normalizeMercadoLivreListing(await apiGetWithToken(url, token));
+      } catch {
+        return null;
+      }
+    }));
+    if (listings.every((listing) => listing === null)) {
+      throw new Error("Mercado Livre listings could not be loaded");
+    }
+    return listings;
+  },
+  ["mercadolivre-setup-listings-v1"],
+  { revalidate: 1800 },
+);
+
+export async function getMercadoLivreListings(ids: readonly string[]) {
+  const unique = [...new Set(ids)].filter((id) => ITEM_ID.test(id)).slice(0, 8).sort();
+  if (unique.length === 0) return [] as (CatalogListing | null)[];
+  return getCachedListings(unique);
 }
 
 export const mercadoLivreCatalog: CatalogProvider = {

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Disclosure } from "@/components/setup/Disclosure";
 import { SetupExplorer } from "@/components/setup/SetupExplorer";
 import { SetupGuide } from "@/components/setup/SetupGuide";
-import { gamePath, games, guidePath, guides, setupPath, setups } from "@/lib/data/setup";
+import { gamePath, games, guidePath, guides, productsWithMercadoLivreLinks, setupPath, setups } from "@/lib/data/setup";
+import { getProductImageMap, getSetupProductListings } from "@/lib/server/setup-product-listings";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 import styles from "./page.module.css";
@@ -15,7 +16,12 @@ export const metadata: Metadata = buildMetadata({
   path: "/setup",
 });
 
-export default function SetupPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SetupPage() {
+  const listings = await getSetupProductListings(productsWithMercadoLivreLinks);
+  const productImages = getProductImageMap(listings);
+
   return (
     <div className={styles.page}>
       <section className={`container ${styles.hero}`}>
@@ -63,7 +69,7 @@ export default function SetupPage() {
       <section id="explorar" className={`container ${styles.explorerSection}`} aria-labelledby="explorer-title">
         <p className={styles.sectionLabel}>03 / Pesquisa orientada</p>
         <h2 id="explorer-title">Encontre um caminho para sua necessidade</h2>
-        <SetupExplorer />
+        <SetupExplorer productImages={productImages} />
       </section>
 
       <section className={`container ${styles.linksSection}`}>

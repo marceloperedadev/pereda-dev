@@ -54,8 +54,6 @@ export function Analytics() {
     ConsentState | "loading"
   >("loading");
 
-  const [ready, setReady] =
-    useState(false);
 
   /**
    * Recupera o consentimento salvo e
@@ -77,17 +75,6 @@ export function Analytics() {
         customEvent.detail,
       );
 
-      /**
-       * Se o visitante recusar depois de
-       * já ter aceitado anteriormente,
-       * não mantemos o estado de pronto.
-       */
-      if (
-        customEvent.detail !==
-        "granted"
-      ) {
-        setReady(false);
-      }
     };
 
     window.addEventListener(
@@ -104,18 +91,13 @@ export function Analytics() {
   }, []);
 
   /**
-   * Envia page_view somente depois que:
-   *
-   * 1. existe consentimento;
-   * 2. o script já está pronto;
-   * 3. o gtag global está disponível.
+   * Envia page_view depois do consentimento. O endpoint próprio
+   * funciona mesmo se o script externo do GA4 estiver indisponível.
    */
   useEffect(() => {
     if (
       consent !== "granted" ||
-      !ready ||
-      typeof window === "undefined" ||
-      typeof window.gtag !== "function"
+      typeof window === "undefined"
     ) {
       return;
     }
@@ -124,7 +106,6 @@ export function Analytics() {
   }, [
     pathname,
     consent,
-    ready,
   ]);
 
   if (!analyticsEnabled) {
@@ -159,14 +140,6 @@ export function Analytics() {
             id="ga-script"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
             strategy="afterInteractive"
-            onReady={() => {
-              setReady(
-                typeof window !==
-                  "undefined" &&
-                  typeof window.gtag ===
-                    "function",
-              );
-            }}
           />
         </>
       ) : null}
@@ -186,9 +159,9 @@ export function Analytics() {
                 styles.text
               }
             >
-              Uso o Google Analytics
-              para entender como o
-              site é utilizado. Nada é
+              Uso ferramentas de analytics
+              para entender como o site
+              é utilizado. Nada é
               ativado sem a sua escolha.{" "}
               <Link
                 href="/privacidade"

@@ -1,7 +1,11 @@
 import "server-only";
 
+import { revalidateTag } from "next/cache";
+
 import { getPrivateTokenStoreConfig } from "@/lib/server/affiliate-env";
 import type { CatalogListing } from "@/lib/server/catalog-provider";
+
+const PUBLIC_CURATION_CACHE_TAG = "public-curation";
 
 export type CurationStatus = "discovered" | "review" | "approved" | "published" | "expired";
 
@@ -57,6 +61,7 @@ export async function saveDiscoveredListing(listing: CatalogListing, contexts: s
     method: "POST",
     body: JSON.stringify({ p_listing: listing, p_contexts: contexts }),
   });
+  revalidateTag(PUBLIC_CURATION_CACHE_TAG);
 }
 
 export async function expireDiscoveredListing(provider: string, id: string) {
@@ -64,6 +69,7 @@ export async function expireDiscoveredListing(provider: string, id: string) {
     method: "POST",
     body: JSON.stringify({ p_provider: provider, p_source_product_id: id }),
   });
+  revalidateTag(PUBLIC_CURATION_CACHE_TAG);
 }
 
 export async function listCurationRows(status?: CurationStatus, limit = 100): Promise<CuratedProductRow[]> {
@@ -104,6 +110,7 @@ export async function updateCurationRow(id: string, patch: Partial<CuratedProduc
   if (!response.ok) throw new Error(`Supabase curation update failed (${response.status})`);
   const rows = await response.json() as CuratedProductRow[];
   if (!rows[0]) throw new Error("Curated product was not found");
+  revalidateTag(PUBLIC_CURATION_CACHE_TAG);
   return rows[0];
 }
 
@@ -121,7 +128,7 @@ export async function getPublishedCuration(context?: string): Promise<CuratedPro
   url.searchParams.set("limit", "40");
   const response = await fetch(url, {
     headers: headers(config.key),
-    next: { revalidate: 900 },
+    next: { revalidate: 900, tags: [PUBLIC_CURATION_CACHE_TAG] },
     signal: AbortSignal.timeout(8_000),
   });
   if (!response.ok) throw new Error(`Supabase public curation request failed (${response.status})`);

@@ -11,11 +11,10 @@ import { TrackedLink } from "@/components/ui/TrackedLink";
 
 import { ctaParams, projectParams } from "@/lib/analytics/events";
 import {
-  getProject,
-  otherProjects,
   projectPath,
   projects,
 } from "@/lib/data/projects";
+import { getPublicPortfolioProject, getPublicPortfolioProjects } from "@/lib/server/portfolio-projects";
 import { projectGraph } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
 import {
@@ -31,7 +30,7 @@ type Props = {
   }>;
 };
 
-export const dynamicParams = false;
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -43,7 +42,7 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = await getPublicPortfolioProject(slug);
 
   if (!project) {
     return {};
@@ -59,13 +58,13 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = await getPublicPortfolioProject(slug);
 
   if (!project) {
     notFound();
   }
 
-  const others = otherProjects(project.slug);
+  const others = (await getPublicPortfolioProjects()).filter(item => item.slug !== project.slug);
   const projectAnalyticsParams = projectParams(project);
 
   return (
@@ -250,6 +249,10 @@ export default async function ProjectPage({ params }: Props) {
               {project.objective}
             </p>
           </section>
+          {project.brandValue ? <section className={styles.block} aria-labelledby="valor-marca"><h2 id="valor-marca" className={styles.h2}>Valor para a marca</h2><p className={styles.lede}>{project.brandValue}</p></section> : null}
+          {project.businessValue ? <section className={styles.block} aria-labelledby="valor-negocio"><h2 id="valor-negocio" className={styles.h2}>Valor para o estabelecimento</h2><p className={styles.lede}>{project.businessValue}</p></section> : null}
+          {project.salesValue ? <section className={styles.block} aria-labelledby="valor-comercial"><h2 id="valor-comercial" className={styles.h2}>Contribuição para a jornada comercial</h2><p className={styles.lede}>{project.salesValue}</p><small>Contribuições potenciais não representam resultados de vendas medidos.</small></section> : null}
+          {project.futureOpportunities ? <section className={styles.block} aria-labelledby="oportunidades"><h2 id="oportunidades" className={styles.h2}>Oportunidades futuras</h2><p className={styles.lede}>{project.futureOpportunities}</p></section> : null}
         </div>
 
         <aside

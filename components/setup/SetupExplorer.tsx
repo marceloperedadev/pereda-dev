@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, type FormEvent } from "react";
 import { Search, SlidersHorizontal } from "lucide-react";
@@ -22,7 +23,7 @@ const ignoredTerms = new Set(["a", "ao", "ate", "com", "como", "de", "deixar", "
 const queryTerms = (query: string) => normalize(query).split(/\s+/).filter((term) => term.length > 1 && !ignoredTerms.has(term));
 const isBudgetQuery = (query: string) => /\b(ate|orcamento|limite|abaixo)\b/.test(normalize(query));
 
-export function SetupExplorer() {
+export function SetupExplorer({ productImages }: { productImages: Record<string, { src: string; alt: string; caption?: string }> }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Todos");
   const [profile, setProfile] = useState("Todos");
@@ -103,8 +104,22 @@ export function SetupExplorer() {
       <div className={styles.resultLine} aria-live="polite">{results.length + relatedContent.length} {(results.length + relatedContent.length) === 1 ? "resultado" : "resultados"}</div>
       <div className={styles.results}>
         {results.map((product, index) => (
-          <article key={product.id} className={styles.result}>
+          <article key={product.id} className={`${styles.result} ${(productImages[product.id] ?? product.image) ? styles.withImage : ""}`}>
             <div className={styles.resultIndex}>{String(index + 1).padStart(2, "0")}</div>
+            {(productImages[product.id] ?? product.image) ? (
+              <figure className={styles.resultFigure}>
+                <Link className={styles.resultImage} href={`/setup/produtos/${product.slug}?source=search`}>
+                  <Image
+                    src={(productImages[product.id] ?? product.image)!.src}
+                    alt={(productImages[product.id] ?? product.image)!.alt}
+                    width={360}
+                    height={270}
+                    unoptimized
+                  />
+                </Link>
+                <figcaption>{productImages[product.id]?.caption ?? product.image?.caption ?? "Foto do anúncio do Mercado Livre."}</figcaption>
+              </figure>
+            ) : null}
             <div>
               <p className={styles.category}>{product.category} / {product.profile}</p>
               <h3><Link href={`/setup/produtos/${product.slug}?source=search`}>{product.name}</Link></h3>

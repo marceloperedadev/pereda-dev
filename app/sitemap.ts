@@ -7,10 +7,10 @@ import {
 
 import {
   projectPath,
-  projects,
 } from "@/lib/data/projects";
 import { guidePath, guides, productPath, productsWithMercadoLivreLinks } from "@/lib/data/setup";
 import { getPublishedCuration } from "@/lib/server/curation-store";
+import { getPublicPortfolioProjects } from "@/lib/server/portfolio-projects";
 
 /**
  * Sitemap das páginas públicas e relevantes para indexação.
@@ -54,8 +54,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     ];
 
+  const visibleProjects = await getPublicPortfolioProjects();
   const projectPages: MetadataRoute.Sitemap =
-    projects.map((project) => ({
+    visibleProjects.map((project) => ({
       url: absoluteUrl(
         projectPath(project.slug),
       ),

@@ -106,7 +106,7 @@ A Ã¡rea pÃºblica fica em `/setup/curadoria` e sÃ³ consulta produtos com es
 
 ### Banco e segredos
 
-1. Aplique no Supabase `supabase/migrations/202609250001_setup_curation.sql` depois da migration de OAuth existente. Ela coloca os quatro anúncios de afiliado atuais em `discovered`; nenhum é aprovado ou publicado automaticamente.
+1. Aplique no Supabase, nesta ordem, `supabase/migrations/202609240001_affiliate_oauth_tokens.sql`, `supabase/migrations/202609250001_setup_curation.sql` e `supabase/migrations/202609250002_mercadolivre_refresh_coordination.sql`. A migration da curadoria coloca os quatro anúncios de afiliado atuais em `discovered`; nenhum é aprovado ou publicado automaticamente. A última adiciona a coordenação distribuída necessária para a rotação segura dos refresh tokens.
 2. Mantenha `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `MERCADOLIVRE_CLIENT_ID`, `MERCADOLIVRE_CLIENT_SECRET`, `MERCADOLIVRE_REDIRECT_URI`, `MERCADOLIVRE_CONNECT_USERNAME` e `MERCADOLIVRE_CONNECT_PASSWORD` somente no servidor.
 3. Configure `CRON_SECRET` como segredo aleatÃ³rio com pelo menos 16 caracteres no ambiente local e na Vercel.
 4. Cadastre no app do Mercado Livre exatamente `https://www.peredadev.com.br/api/afiliados/mercadolivre/callback` como URI de retorno OAuth.
@@ -127,3 +127,21 @@ Use os estados nesta ordem: `discovered` (importado), `review` (em anÃ¡lise), 
 `GET /api/cron/curadoria/mercadolivre` tenta atualizar atÃ© 4 fichas por execuÃ§Ã£o e deixa as restantes para a prÃ³xima chamada se o tempo seguro da funÃ§Ã£o estiver acabando. Cada consulta externa e operaÃ§Ã£o no Supabase tem timeout; a rota reserva margem dentro do limite de 60 segundos da funÃ§Ã£o. A Vercel chama essa rota uma vez ao dia conforme `vercel.json`; a chamada exige `Authorization: Bearer $CRON_SECRET`. RepetiÃ§Ãµes nÃ£o duplicam histÃ³rico para o mesmo preÃ§o. AnÃºncios indisponÃ­veis sÃ£o expirados, removidos da pÃ¡gina e tÃªm o histÃ³rico externo apagado. A API nÃ£o informa necessariamente a quantidade em estoque para um token que nÃ£o Ã© do vendedor, portanto a interface nÃ£o afirma estoque confirmado.
 
 O histÃ³rico guarda apenas a primeira consulta e alteraÃ§Ãµes reais de preÃ§o; nÃ£o gera afirmaÃ§Ãµes de menor preÃ§o ou desconto. A consulta automÃ¡tica diÃ¡ria usa Cron da Vercel Hobby, dentro do limite de uma execuÃ§Ã£o diÃ¡ria. A Vercel pode iniciar em qualquer minuto dentro da hora agendada.
+
+## Painel administrativo de analytics
+
+Acesse `/admin/analytics` e entre com a senha definida em `ANALYTICS_ADMIN_SECRET`. O painel usa um cookie HttpOnly com validade de 24 horas; a senha não é armazenada no navegador. Configure também `SUPABASE_URL` e `SUPABASE_SECRET_KEY` no servidor e aplique `supabase/migrations/202609300001_analytics.sql` para habilitar os dados. O painel mostra visitantes, sessões, páginas, conversões, eventos e contatos nos últimos 7, 30 ou 90 dias.
+
+## Analytics próprio e acesso ao painel
+
+O tracker grava em Supabase apenas depois do consentimento armazenado no navegador. `NEXT_PUBLIC_GA_ID` habilita o banner de escolha e os envios ao GA4 e ao coletor próprio; a coleta Supabase usa `/api/analytics/collect` e não bloqueia a navegação. Somente eventos conhecidos e propriedades permitidas são aceitos. Busca bruta, respostas do guia e campos do briefing não são gravados. O briefing reportado no painel é a contagem do evento `submit_contact`, não um lead nem o conteúdo enviado.
+
+Para habilitar `/admin/analytics`, defina `ANALYTICS_ADMIN_SECRET`, `SUPABASE_URL` e `SUPABASE_SECRET_KEY` no servidor e aplique `supabase/migrations/202609300001_analytics.sql`. A chave Supabase é usada somente em código servidor. Acesse a rota e autentique com o segredo administrativo; a sessão dura 24 horas.
+
+## Administração de projetos e estudos de caso
+
+Acesse `/admin/projetos` e use a senha definida em `ANALYTICS_ADMIN_SECRET` (a sessão é compartilhada com o painel de analytics). A migration `supabase/migrations/202609300002_portfolio_projects_admin.sql` cria as tabelas privadas de projetos e revisões; configure `SUPABASE_URL` e `SUPABASE_SECRET_KEY` no servidor antes de salvar. Aplique migrations ao seu ambiente local com o fluxo padrão do Supabase CLI; nenhuma migration é aplicada remotamente por esta funcionalidade.
+
+A análise por URL aceita apenas páginas HTTPS públicas e extrai metadados HTML básicos. Endereços internos, IPs privados, redirecionamentos não revalidados, conteúdo fora de HTML, páginas acima de 1 MB e consultas acima de 7 segundos são bloqueados. A análise não confirma tecnologias, código, integrações, funcionalidades internas, objetivos do cliente ou resultados comerciais. Esses campos precisam de revisão e confirmação humana. A aplicação não envia conteúdo a serviços de IA e não usa chave de IA.
+
+Projetos novos começam em rascunho ou aguardando informações. Edite a proposta, resolva as pendências e use “Publicar após revisão” para publicar. Projetos arquivados deixam de aparecer no portfólio. Alterações salvas mantêm revisões anteriores na tabela de histórico. A importação não baixa nem copia imagens externas; use somente arquivos autorizados que já estejam em `public/`. Upload de imagens ainda não está disponível. Cases antigos continuam no catálogo TypeScript até serem editados e publicados no admin.

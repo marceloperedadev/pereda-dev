@@ -1,0 +1,29 @@
+.page { padding: clamp(36px, 7vw, 88px) 0 100px; min-height: 70vh; }
+.eyebrow { color: var(--signal); text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 700; }
+.page h1 { margin: 12px 0 32px; font-size: clamp(2rem, 5vw, 3.6rem); }
+.login, .panel { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 24px; }
+.login { max-width: 440px; display: grid; gap: 16px; }
+.login label, .toolbar label { display: grid; gap: 8px; color: var(--muted); }
+.login input, .toolbar select { min-height: 44px; padding: 10px 12px; color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 8px; }
+.page button { border: 0; border-radius: 8px; padding: 12px 18px; font: inherit; font-weight: 700; color: #101014; background: var(--signal); cursor: pointer; }
+.page button:disabled { opacity: .55; cursor: wait; }
+.toolbar { display: flex; align-items: end; gap: 12px; margin-bottom: 24px; }
+.toolbar .secondary { color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+.metrics article { display: grid; gap: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.metrics span { color: var(--muted); font-size: .88rem; }
+.metrics strong { font-size: clamp(1.35rem, 2.5vw, 2rem); }
+.metrics small { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
+.panel h2 { margin: 0 0 16px; font-size: 1.1rem; }
+.panel ol { margin: 0; padding-left: 22px; }
+.panel li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.panel li:last-child { border-bottom: 0; }
+.panel li span { overflow-wrap: anywhere; }
+.panel p, .login p { color: var(--muted); }
+.quickMetrics { display: flex; flex-wrap: wrap; gap: 8px; }
+.quickMetrics p { margin: 0; padding: 12px 14px; background: var(--surface-2); border-radius: 8px; }
+.quickMetrics strong { color: var(--signal); margin-right: 4px; }
+.error { color: #ff9c9c !important; }
+.empty { padding: 22px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line-strong); border-radius: 12px; }
+@media (max-width: 760px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .columns { grid-template-columns: 1fr; } .toolbar { align-items: stretch; flex-wrap: wrap; } }

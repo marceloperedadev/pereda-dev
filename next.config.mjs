@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isDevelopment = process.env.NODE_ENV === "development";
+
 const nextConfig = {
+  // Keep dev output apart from production builds so `next dev` and `next build`
+  // cannot overwrite each other's Webpack manifests and chunks.
+  distDir: isDevelopment ? ".next-dev" : ".next",
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: process.cwd(),

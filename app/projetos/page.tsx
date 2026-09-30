@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { ProjectCover } from "@/components/ui/ProjectCover";
-import { projects, projectPath } from "@/lib/data/projects";
+import { projectPath } from "@/lib/data/projects";
+import { getPublicPortfolioProjects } from "@/lib/server/portfolio-projects";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 import styles from "./page.module.css";
@@ -13,7 +14,10 @@ export const metadata = buildMetadata({
   path: "/projetos",
 });
 
-export default function ProjetosPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ProjetosPage() {
+  const visibleProjects = await getPublicPortfolioProjects();
   return (
     <main>
       <section className={styles.intro} aria-labelledby="projetos-title">
@@ -46,7 +50,7 @@ export default function ProjetosPage() {
         </header>
 
         <div className={styles.list}>
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
               <article
                 key={project.slug}
                 className={styles.item}

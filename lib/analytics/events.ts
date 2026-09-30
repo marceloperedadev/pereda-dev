@@ -1,4 +1,6 @@
 import { analyticsEnabled } from "./config";
+import { readConsent } from "./consent";
+import { getSessionId, getVisitorId, getUTMParams } from "./session";
 
 /**
  * Catálogo central de eventos do portfólio.
@@ -76,13 +78,8 @@ function cleanParams(params: EventParams): EventParams {
 /**
  * Envia um evento para o Google Analytics.
  *
- * O envio somente acontece quando:
- * - o analytics está configurado;
- * - estamos no navegador;
- * - o gtag já foi carregado.
- *
- * A decisão de consentimento permanece centralizada na
- * configuração/carregamento do Google Analytics.
+ * Envia somente depois do consentimento. O evento vai ao GA4 quando
+ * o gtag estiver disponível e ao coletor proprio de forma assincrona.
  */
 export function track(
   name: EventName,
@@ -90,11 +87,35 @@ export function track(
 ): void {
   if (!analyticsEnabled) return;
   if (typeof window === "undefined") return;
-  if (typeof window.gtag !== "function") return;
+  if (readConsent() !== "granted") return;
 
   const clean = cleanParams(params);
 
-  window.gtag("event", name, clean);
+  if (typeof window.gtag === "function") window.gtag("event", name, clean);
+
+  const visitor = getVisitorId();
+  const utm = getUTMParams();
+  const payload = {
+    kind: "event",
+    sessionId: getSessionId(),
+    visitorId: visitor.id,
+    isNewVisitor: visitor.isNew,
+    eventName: name,
+    pagePath: typeof clean.page_path === "string" ? clean.page_path : window.location.pathname,
+    pageTitle: document.title,
+    referrer: document.referrer ? new URL(document.referrer).origin : null,
+    viewportWidth: window.innerWidth,
+    viewportHeight: window.innerHeight,
+    utm,
+    properties: clean,
+  };
+  void fetch("/api/analytics/collect", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+    cache: "no-store",
+    keepalive: true,
+  }).catch(() => undefined);
 }
 
 /**
@@ -106,16 +127,15 @@ export function track(
 export function pageview(path: string): void {
   if (!analyticsEnabled) return;
   if (typeof window === "undefined") return;
-  if (typeof window.gtag !== "function") return;
 
   const cleanPath =
     path.startsWith("/") ? path : `/${path}`;
 
   track("page_view", {
     page_path: cleanPath,
-    page_location: window.location.href,
+    page_location: `${window.location.origin}${cleanPath}`,
     page_title: document.title,
-    page_referrer: document.referrer || undefined,
+    page_referrer: document.referrer ? new URL(document.referrer).origin : undefined,
   });
 }
 

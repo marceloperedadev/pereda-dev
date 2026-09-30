@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
-import { affiliateProducts } from "@/lib/data/setup";
+import { affiliateProducts, productsWithMercadoLivreLinks } from "@/lib/data/setup";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = buildMetadata({
@@ -19,10 +19,10 @@ export default function MethodologyPage() {
         <h1>Transparência sobre o que foi verificado.</h1>
         <p className={styles.lead}>Uma recomendação só merece confiança quando deixa claros o contexto, as fontes e os limites do que sabemos.</p>
       </section>
-      <article className={`container ${styles.linksSection}`}>
+      <article className={`container ${styles.linksSection} ${styles.reading}`}>
         <section>
           <h2>Estado atual</h2>
-          <p>A maioria das fichas continua ilustrativa. As {affiliateProducts.length} fichas com links afiliados apontam anúncios específicos, mas os produtos não foram testados pela equipe e os preços e estoques não foram verificados. A marca e o modelo exatos do monitor de 100 Hz também precisam ser confirmados no anúncio. As fichas não devem ser tratadas como recomendações de compra.</p>
+          <p>Atualmente, {productsWithMercadoLivreLinks.length} produtos com destino válido para o Mercado Livre aparecem nas listas do Setup. {affiliateProducts.length} dessas fichas incluem links de afiliado para anúncios específicos. Os produtos não foram testados pela equipe e os preços e estoques não foram verificados. A marca e o modelo exatos do monitor de 100 Hz também precisam ser confirmados no anúncio. As fichas não devem ser tratadas como recomendações de compra.</p>
         </section>
         <section>
           <h2>Como uma ficha poderá ser publicada como verificada</h2>

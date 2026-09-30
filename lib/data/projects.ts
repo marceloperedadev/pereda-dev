@@ -21,6 +21,10 @@ export type Project = {
   solution: string;
   execution: string;
   objective: string;
+  brandValue?: string;
+  businessValue?: string;
+  salesValue?: string;
+  futureOpportunities?: string;
   features: readonly string[];
   decisions: readonly string[];
   tags: readonly string[];
