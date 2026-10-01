@@ -46,6 +46,7 @@ import styles from "./Analytics.module.css";
  */
 export function Analytics() {
   const pathname = usePathname();
+  const isAdminPath = pathname.startsWith("/admin") || pathname.startsWith("/setup/admin");
 
   const [
     consent,
@@ -96,6 +97,7 @@ export function Analytics() {
    */
   useEffect(() => {
     if (
+      isAdminPath ||
       consent !== "granted" ||
       typeof window === "undefined"
     ) {
@@ -106,9 +108,10 @@ export function Analytics() {
   }, [
     pathname,
     consent,
+    isAdminPath,
   ]);
 
-  if (!analyticsEnabled) {
+  if (!analyticsEnabled || isAdminPath) {
     return null;
   }
 
@@ -159,10 +162,9 @@ export function Analytics() {
                 styles.text
               }
             >
-              Uso ferramentas de analytics
-              para entender como o site
-              é utilizado. Nada é
-              ativado sem a sua escolha.{" "}
+              Podemos melhorar sua experiência?
+              Usamos cookies opcionais para
+              aprimorar o site.{" "}
               <Link
                 href="/privacidade"
                 className={

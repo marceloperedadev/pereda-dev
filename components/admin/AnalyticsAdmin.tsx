@@ -70,11 +70,11 @@ export function AnalyticsAdmin({ initialAuthenticated, initialConfigured }: { in
     {!authenticated ? <form className={styles.login} onSubmit={signIn}>
       <p>Acesse com a senha administrativa configurada no servidor.</p>
       {!configured?.admin && configured ? <p className={styles.error}>Configure ANALYTICS_ADMIN_SECRET nas variáveis de ambiente.</p> : null}
-      <label>Senha<input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /></label>
+      <label>Senha<input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /><small className={styles.fieldHint}>Senha administrativa definida no servidor.</small></label>
       <button disabled={busy || !configured?.admin}>{busy ? "Verificando…" : "Entrar"}</button>
       {error ? <p className={styles.error} role="alert">{error}</p> : null}
     </form> : <>
-      <div className={styles.toolbar}><label>Período<select value={days} onChange={(event) => { const next = Number(event.target.value); setDays(next); void load(next); }}><option value={7}>Últimos 7 dias</option><option value={30}>Últimos 30 dias</option><option value={90}>Últimos 90 dias</option></select></label><button className={styles.secondary} onClick={() => void load()}>Atualizar</button><button className={styles.secondary} onClick={() => void signOut()}>Sair</button></div>
+      <div className={styles.toolbar}><label>Período<select value={days} onChange={(event) => { const next = Number(event.target.value); setDays(next); void load(next); }}><option value={7}>Últimos 7 dias</option><option value={30}>Últimos 30 dias</option><option value={90}>Últimos 90 dias</option></select><small className={styles.fieldHint}>Intervalo contado para trás a partir de hoje.</small></label><button className={styles.secondary} onClick={() => void load()}>Atualizar</button><button className={styles.secondary} onClick={() => void signOut()}>Sair</button></div>
       {error ? <p className={styles.error} role="alert">{error}</p> : null}
       {!configured?.supabase ? <p className={styles.error}>Configure SUPABASE_URL, SUPABASE_SECRET_KEY e aplique a migration de analytics.</p> : null}
       {busy ? <p>Carregando dados…</p> : data && data.sessions === 0 && data.pageviews === 0 && data.events === 0 ? <p className={styles.empty}>Nenhum dado disponível no período selecionado.</p> : data ? <>

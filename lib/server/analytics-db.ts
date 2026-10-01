@@ -175,7 +175,9 @@ export async function queryDashboard(start: Date, end: Date) {
   const uniqueVisitors = new Set(sessions.map((s) => s.visitor_id ?? s.session_id)).size;
   const newVisitors = new Set(sessions.filter((s) => s.is_new_visitor).map((s) => s.visitor_id ?? s.session_id)).size;
   const returningVisitors = new Set(sessions.filter((s) => !s.is_new_visitor).map((s) => s.visitor_id ?? s.session_id)).size;
-  const totalPageviews = sessions.reduce((sum, s) => sum + s.pageview_count, 0);
+  // The pageview query is already bounded to the selected report window;
+  // session counters include views from outside that window.
+  const totalPageviews = pageviews.length;
   const conversions = new Set(events.filter((event) => event.event_name === "submit_contact").map((event) => event.session_id)).size;
   const avgPageviewsPerSession = totalSessions > 0 ? totalPageviews / totalSessions : 0;
 

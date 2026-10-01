@@ -28,7 +28,9 @@ export async function getMercadoLivreAccessToken(): Promise<string> {
   if (!config) throw new Error("Mercado Livre OAuth is not configured");
 
   const saved = await getMercadoLivreTokens();
-  if (!saved) throw new Error("Mercado Livre account is not connected");
+  if (!saved?.access_token || !saved.refresh_token || !saved.expires_at) {
+    throw new Error("Mercado Livre account is not connected");
+  }
   if (isUsable(saved.access_token, saved.expires_at)) return saved.access_token;
 
   const lockId = randomUUID();

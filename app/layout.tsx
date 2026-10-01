@@ -3,8 +3,8 @@ import { Bricolage_Grotesque, Newsreader } from "next/font/google";
 
 import { Analytics } from "@/components/analytics/Analytics";
 import { ScrollDepth } from "@/components/analytics/ScrollDepth";
-import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { siteConfig } from "@/lib/config/site";
 
 import "@/app/globals.css";
@@ -148,7 +148,7 @@ export default function RootLayout({
 
         <main id="conteudo">{children}</main>
 
-        <Footer />
+        <SiteFooter />
 
         <Analytics />
 

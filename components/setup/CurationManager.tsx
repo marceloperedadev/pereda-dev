@@ -70,15 +70,11 @@ export function CurationManager() {
       headers: { Authorization: authorization, "Content-Type": "application/json", ...init?.headers },
       cache: "no-store",
     });
+    const responseBody = await response.text();
     let data: (T & ApiError) | null = null;
-    let fallbackMessage = "";
-    try {
-      data = await response.json() as T & ApiError;
-    } catch {
-      fallbackMessage = (await response.text().catch(() => "")).slice(0, 200).trim();
-    }
+    try { data = JSON.parse(responseBody) as T & ApiError; } catch { /* Plain-text responses are valid for authentication errors. */ }
     if (!response.ok) {
-      throw new Error(data?.error || fallbackMessage || `A solicitação falhou (${response.status}).`);
+      throw new Error(data?.error || responseBody.slice(0, 200).trim() || `A solicitação falhou (${response.status}).`);
     }
     if (!data) throw new Error("A resposta do servidor não pôde ser interpretada.");
     return data;
@@ -215,7 +211,18 @@ export function CurationManager() {
     <section className={styles.page} aria-labelledby="curation-admin-title">
       <p className={styles.eyebrow}>Área administrativa · não indexada</p>
       <h1 id="curation-admin-title">Adicionar produtos à curadoria</h1>
-      <p className={styles.lead}>A busca preenche os dados do anúncio. Você só precisa revisar a ficha e colar o link de afiliado gerado no Portal do Mercado Livre.</p>
+      <p className={styles.lead}>Cadastre produtos por link ou busca, revise os dados e adicione o link de afiliado.</p>
+
+      <fieldset className={styles.credentials}>
+        <legend>Acesso à curadoria</legend>
+        <label>Usuário
+          <input autoComplete="username" value={username} onChange={(event) => setUsername(event.target.value)} />
+        </label>
+        <label>Senha
+          <input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        </label>
+        <p>Use o usuário e a senha definidos para a curadoria. Eles ficam apenas na memória desta página.</p>
+      </fieldset>
 
       <form className={styles.search} onSubmit={handleUrlPreview}>
         <label htmlFor="product-url">Importação automática por link</label>
@@ -223,7 +230,7 @@ export function CurationManager() {
           <input id="product-url" type="url" value={productUrl} onChange={(event) => setProductUrl(event.target.value)} placeholder="https://www.mercadolivre.com.br/...MLB..." required />
           <button type="submit" disabled={busy || !username || !password}>{busy ? "Buscando…" : "Buscar informações"}</button>
         </div>
-        <p>Consulta pela API oficial do Mercado Livre. São aceitos links HTTPS brasileiros com ID MLB; links encurtados e outras lojas não são seguidos pelo servidor.</p>
+        <p>Cole um anúncio do Mercado Livre Brasil para preencher título, preço e imagem. O link precisa conter um código MLB.</p>
       </form>
       {urlPreview ? <article className={styles.card}>
         {urlPreview.imageUrl ? <Image className={styles.image} src={urlPreview.imageUrl} alt="Imagem obtida do anúncio" width={150} height={130} unoptimized /> : <div className={styles.imageFallback}>Sem foto no anúncio</div>}
@@ -232,25 +239,16 @@ export function CurationManager() {
         </div>
       </article> : null}
 
-      <fieldset className={styles.credentials}>
-        <legend>Acesso administrativo</legend>
-        <label>Usuário
-          <input autoComplete="username" value={username} onChange={(event) => setUsername(event.target.value)} />
-        </label>
-        <label>Senha
-          <input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} />
-        </label>
-        <p>As credenciais ficam somente na memória desta página e não são salvas no navegador.</p>
-      </fieldset>
-
       <form className={styles.search} onSubmit={handleSearch}>
         <label htmlFor="product-search">Buscar no Mercado Livre</label>
         <div className={styles.searchRow}>
           <input id="product-search" value={query} onChange={(event) => setQuery(event.target.value)} minLength={2} maxLength={100} placeholder="Ex.: monitor gamer 144 Hz" required />
           <button type="submit" disabled={busy || !username || !password}>{busy ? "Aguarde…" : "Buscar produtos"}</button>
         </div>
+        <p>Digite o nome para localizar anúncios e comparar preço e disponibilidade.</p>
         <fieldset className={styles.contexts}>
           <legend>Contextos do produto</legend>
+          <small className={styles.fieldHint}>Marque os cenários em que este produto pode ser útil.</small>
           {[["gaming", "Gaming"], ["programacao", "Programação"], ["trabalho", "Trabalho"]].map(([value, label]) => (
             <label key={value}><input type="checkbox" checked={contexts.includes(value)} onChange={() => toggleContext(value)} /> {label}</label>
           ))}
@@ -287,13 +285,14 @@ export function CurationManager() {
             <h3>{product.source_title ?? "Anúncio importado"}</h3>
           <p className={styles.eyebrow}>Status: {product.curation_status}</p>
           {product.source_url ? <a href={product.source_url} target="_blank" rel="noreferrer">Conferir anúncio ↗</a> : null}
-          <label>Slug público<input value={editorial[product.id]?.slug ?? ""} onChange={(event) => updateEditorial(product.id, "slug", event.target.value)} placeholder="nome-do-produto" /></label>
-          <label>Título editorial<input value={editorial[product.id]?.title ?? ""} onChange={(event) => updateEditorial(product.id, "title", event.target.value)} /></label>
-          <label>Para quem é indicado<input value={editorial[product.id]?.suitableFor ?? ""} onChange={(event) => updateEditorial(product.id, "suitableFor", event.target.value)} /></label>
-          <label>Motivo da curadoria<textarea value={editorial[product.id]?.reason ?? ""} onChange={(event) => updateEditorial(product.id, "reason", event.target.value)} rows={3} /></label>
-          <label>Limitações e pontos de atenção<textarea value={editorial[product.id]?.limitations ?? ""} onChange={(event) => updateEditorial(product.id, "limitations", event.target.value)} rows={3} /></label>
+          <label>Slug público<input value={editorial[product.id]?.slug ?? ""} onChange={(event) => updateEditorial(product.id, "slug", event.target.value)} placeholder="nome-do-produto" /><small className={styles.fieldHint}>Final da URL pública; use letras minúsculas e hífens.</small></label>
+          <label>Título editorial<input value={editorial[product.id]?.title ?? ""} onChange={(event) => updateEditorial(product.id, "title", event.target.value)} /><small className={styles.fieldHint}>Nome curto mostrado na página do produto.</small></label>
+          <label>Para quem é indicado<input value={editorial[product.id]?.suitableFor ?? ""} onChange={(event) => updateEditorial(product.id, "suitableFor", event.target.value)} /><small className={styles.fieldHint}>Perfil de uso ou pessoa que mais se beneficia.</small></label>
+          <label>Motivo da curadoria<textarea value={editorial[product.id]?.reason ?? ""} onChange={(event) => updateEditorial(product.id, "reason", event.target.value)} rows={3} /><small className={styles.fieldHint}>Explique por que o produto merece recomendação.</small></label>
+          <label>Limitações e pontos de atenção<textarea value={editorial[product.id]?.limitations ?? ""} onChange={(event) => updateEditorial(product.id, "limitations", event.target.value)} rows={3} /><small className={styles.fieldHint}>Registre incompatibilidades, limites ou ressalvas.</small></label>
           <label htmlFor={`affiliate-${product.id}`}>Link de afiliado do Mercado Livre
               <input id={`affiliate-${product.id}`} type="url" placeholder="https://meli.la/..." value={affiliateUrls[product.id] ?? product.affiliate_url ?? ""} onChange={(event) => setAffiliateUrls((current) => ({ ...current, [product.id]: event.target.value }))} />
+              <small className={styles.fieldHint}>Link gerado no portal de afiliados; usado no botão de compra.</small>
             </label>
           <button type="button" onClick={() => saveAffiliateLink(product)} disabled={busy}>{product.curation_status === "discovered" ? "Salvar ficha e enviar para revisão" : "Salvar alterações editoriais"}</button>
           {product.curation_status === "review" ? <button type="button" onClick={() => changeStatus(product, "approved")} disabled={busy}>Aprovar editorialmente</button> : null}

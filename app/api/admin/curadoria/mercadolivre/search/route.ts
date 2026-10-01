@@ -25,7 +25,16 @@ export async function GET(request: Request) {
       ? Number((error as { status: unknown }).status)
       : 0;
     const httpStatus = status === 401 || status === 403 ? 502 : status === 429 ? 503 : 502;
-    console.error("Curadoria: Mercado Livre search failed", { status });
-    return NextResponse.json({ error: "Não foi possível consultar o Mercado Livre agora." }, { status: httpStatus });
+    const reason = error instanceof Error ? error.message : "Unknown Mercado Livre search error";
+    const disconnected = reason === "Mercado Livre account is not connected";
+    console.error("Curadoria: Mercado Livre search failed", {
+      status,
+      reason: disconnected ? "account_not_connected" : reason.slice(0, 120),
+    });
+    return NextResponse.json({
+      error: disconnected
+        ? "Conecte ou reconecte a conta do Mercado Livre antes de buscar produtos."
+        : "Não foi possível consultar o Mercado Livre agora.",
+    }, { status: httpStatus });
   }
 }

@@ -100,6 +100,10 @@ export function Header() {
     };
   }, [open]);
 
+  if (pathname.startsWith("/admin") || pathname.startsWith("/setup/admin")) {
+    return null;
+  }
+
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>

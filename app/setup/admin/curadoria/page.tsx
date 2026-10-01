@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-import { CurationManager } from "@/components/setup/CurationManager";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Gestão de curadoria | Pereda Dev",
@@ -8,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function CurationAdminPage() {
-  return <main className="container"><CurationManager /></main>;
+  redirect("/admin/produtos");
 }

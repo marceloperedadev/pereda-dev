@@ -1,1 +1,33 @@
-﻿.page{padding:4rem 0 7rem}.eyebrow{font-size:.72rem;letter-spacing:.14em;color:#777}.layout{display:grid;grid-template-columns:minmax(220px, .72fr) minmax(0,1.7fr);gap:2rem;margin-top:2rem}.list,.editor{border:1px solid #dedbd8;border-radius:14px;padding:1.2rem;background:#fff}.list ul{list-style:none;padding:0;margin:1rem 0}.list li{border-top:1px solid #eee}.list li button{width:100%;text-align:left;background:transparent;color:inherit;padding:.8rem .3rem;border:0}.list li span{display:block;color:#777;font-size:.82rem;margin-top:.25rem}.list label,.editor label{display:grid;gap:.4rem;margin:1rem 0;font-weight:600}.editor input,.editor textarea,.editor select,.list input,.list select{width:100%;padding:.7rem;border:1px solid #ccc;border-radius:7px;font:inherit}.editor textarea{min-height:90px;resize:vertical}.editor small{font-weight:400;color:#777}.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem}.page button{padding:.7rem 1rem;border:0;border-radius:7px;background:#252329;color:#fff;font:inherit;cursor:pointer}.page button:disabled{opacity:.55;cursor:wait}.status{font-weight:700}.notice{padding:1rem;background:#f2f5ef;border-radius:8px;overflow-wrap:anywhere}.error{color:#a12626}.editor h2{margin-top:0}@media(max-width:800px){.layout{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.page{padding-top:2rem}}
+﻿.page { padding: 30px 0 72px; }
+.eyebrow { color: var(--signal); font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.page > p:not(.eyebrow) { max-width: 70ch; margin-top: 12px; color: var(--muted); font-size: .9rem; }
+.page h1 { margin: 8px 0 0; font-size: 2.45rem; }
+.layout { display: grid; grid-template-columns: minmax(210px, .7fr) minmax(0, 1.75fr); gap: 12px; margin-top: 24px; align-items: start; }
+.list, .editor { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 2px; background: var(--surface); }
+.page > .editor { max-width: 460px; margin-top: 18px; }
+.list ul { margin: 12px 0 0; padding: 0; list-style: none; }
+.list li { border-top: 1px solid var(--line); }
+.list li button { width: 100%; min-height: 56px; padding: 9px 4px; border: 0; color: var(--text); background: transparent; text-align: left; }
+.list li button:hover { color: var(--signal); background: var(--signal-soft); }
+.list li span { display: block; margin-top: 3px; color: var(--muted); font-size: .75rem; }
+.list label, .editor label { display: grid; gap: 6px; margin: 12px 0; color: var(--muted); font-size: .82rem; font-weight: 600; }
+.editor input, .editor textarea, .editor select, .list input, .list select { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: 2px; color: var(--text); background: var(--surface-2); font: inherit; font-size: .86rem; }
+.editor textarea { min-height: 86px; resize: vertical; }
+.editor small { color: var(--muted); font-size: .75rem; font-weight: 400; line-height: 1.45; }
+.fieldHint { color: var(--soft) !important; font-size: .73rem !important; font-weight: 400 !important; line-height: 1.4; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.page button { min-height: 40px; padding: 8px 12px; border: 1px solid var(--signal); border-radius: 2px; color: var(--bg); background: var(--signal); font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; }
+.page button:hover:not(:disabled) { border-color: var(--text); color: var(--bg); background: var(--text); }
+.page button:disabled { opacity: .5; cursor: wait; }
+.list > button { width: 100%; }
+.actions button:not(:first-child) { border-color: var(--line-strong); color: var(--text); background: var(--surface-2); }
+.actions button:not(:first-child):hover:not(:disabled) { border-color: var(--signal); color: var(--signal); background: var(--surface-2); }
+.status { margin: 14px 0; color: var(--muted); font-size: .84rem; }
+.notice { padding: 12px; border: 1px solid var(--line); background: var(--signal-soft); color: var(--text); overflow-wrap: anywhere; }
+.notice p { margin-top: 6px; }
+.error { margin: 12px 0; color: #ff9c9c; }
+.editor h2 { margin: 0 0 12px; font-size: 1.15rem; }
+.editor input:focus-visible, .editor textarea:focus-visible, .editor select:focus-visible, .list input:focus-visible, .list select:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } .page { padding-top: 22px; } }
+@media (max-width: 520px) { .page h1 { font-size: 2rem; } .grid { grid-template-columns: 1fr; } .list, .editor { padding: 14px; } .actions button { flex: 1 1 100%; } }

@@ -9,5 +9,5 @@ export const dynamic = "force-dynamic";
 export default async function AnalyticsAdminPage() {
   const authenticated = await isAdminAuthenticated();
   const configured = isAnalyticsConfigured();
-  return <main className="container"><AnalyticsAdmin initialAuthenticated={authenticated} initialConfigured={configured} /></main>;
+  return <div className="container"><AnalyticsAdmin initialAuthenticated={authenticated} initialConfigured={configured} /></div>;
 }

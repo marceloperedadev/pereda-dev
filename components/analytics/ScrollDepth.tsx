@@ -40,6 +40,10 @@ export function ScrollDepth() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname.startsWith("/admin") || pathname.startsWith("/setup/admin")) {
+      return;
+    }
+
     const fired =
       new Set<EventName>();
 
