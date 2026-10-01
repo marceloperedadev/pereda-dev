@@ -24,8 +24,8 @@ export async function getPublicPortfolioProjects(): Promise<Project[]> {
   let managed: ManagedProject[] = [];
   try { managed = await listManagedProjects(); } catch { /* Static catalog remains available without Supabase. */ }
   const bySlug = new Map<string, ManagedProject>(managed.map(row => [row.slug, row]));
-  const { projects: staticProjects } = await import("@/lib/data/projects");
-  const merged = staticProjects.flatMap(project => {
+  const { projects: staticProjects } = (await import("@/lib/data/projects")) as { projects: readonly Project[] };
+  const merged: Project[] = [...staticProjects].flatMap(project => {
     const record = bySlug.get(project.slug);
     if (record?.status === "archived") return [];
     if (record?.status === "published") return [record.project_data];
