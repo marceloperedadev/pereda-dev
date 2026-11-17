@@ -23,6 +23,7 @@ export function Projects() {
       type: project.type,
       summary: project.shortDescription,
       stack: project.stack,
+      url: project.url,
       cover: project.cover,
     }));
 

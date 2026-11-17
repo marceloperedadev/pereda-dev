@@ -418,6 +418,13 @@ color: var(--soft);
 font-size: 0.75rem;
 }
 
+.projectActions {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: 8px 20px;
+}
+
 /* =========================================================
 CTA
 ========================================================= */
@@ -465,6 +472,22 @@ gap: 10px;
 
 .cta:hover svg {
 transform: translate3d(2px, -2px, 0);
+}
+
+.caseLink {
+min-height: 42px;
+display: inline-flex;
+align-items: center;
+color: var(--muted);
+font-size: 0.62rem;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+transition: color 0.2s var(--ease);
+}
+
+.caseLink:hover {
+color: var(--text);
 }
 
 /* =========================================================

@@ -70,19 +70,35 @@ export function ProjectCarouselSlide({
                 <li key={technology}>{technology}</li>
               ))}
             </ul>
-            <TrackedLink
-              href={`/projetos/${project.slug}`}
-              className={styles.cta}
-              event="click_project"
-              eventParams={{
-                ...projectParams(project),
-                ...ctaParams("carousel", "Ver como foi construído"),
-                project_position: index + 1,
-              }}
-            >
-              Ver como foi construído
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </TrackedLink>
+            <div className={styles.projectActions}>
+              <TrackedLink
+                href={project.url}
+                className={styles.cta}
+                target="_blank"
+                rel="noopener noreferrer"
+                event="click_project"
+                eventParams={{
+                  ...projectParams(project),
+                  ...ctaParams("carousel", "Abrir projeto publicado"),
+                  project_position: index + 1,
+                }}
+              >
+                Abrir projeto publicado
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </TrackedLink>
+              <TrackedLink
+                href={`/projetos/${project.slug}`}
+                className={styles.caseLink}
+                event="click_project"
+                eventParams={{
+                  ...projectParams(project),
+                  ...ctaParams("carousel", "Ler estudo de caso"),
+                  project_position: index + 1,
+                }}
+              >
+                Ler estudo de caso
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </article>

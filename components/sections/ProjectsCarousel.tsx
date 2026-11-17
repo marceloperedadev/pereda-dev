@@ -29,6 +29,7 @@ export type CarouselProject = {
   type: string;
   summary: string;
   stack: readonly string[];
+  url: string;
   cover: Project["cover"];
 };
 
