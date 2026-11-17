@@ -1,0 +1,142 @@
+.widget {
+  margin-top: clamp(32px, 5vw, 64px);
+}
+
+.stage {
+  padding: clamp(20px, 4vw, 40px);
+  border: 1px solid var(--pl-line-strong);
+  background: var(--pl-ink);
+  color: var(--pl-paper);
+}
+
+.stageHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(245, 244, 242, 0.16);
+  color: rgba(245, 244, 242, 0.58);
+  font-family: var(--pl-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.stageHead p:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--pl-paper);
+}
+
+.stageDot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--pl-acid);
+}
+
+.layout {
+  display: grid;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  margin-top: clamp(24px, 4vw, 40px);
+}
+
+.intro {
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: 14px;
+  max-width: 38rem;
+}
+
+.pickerLabel {
+  color: var(--pl-acid);
+  font-family: var(--pl-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.intro h3 {
+  max-width: 18ch;
+  font-size: clamp(25px, 3.2vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.pickerHint {
+  max-width: 40ch;
+  color: rgba(245, 244, 242, 0.64);
+  font-size: 14px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.stageCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  margin-top: 6px;
+  border-bottom: 1px solid rgba(245, 244, 242, 0.38);
+  color: var(--pl-paper);
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.stageCta:hover {
+  border-color: var(--pl-acid);
+  color: var(--pl-acid);
+}
+
+.panel {
+  justify-self: center;
+  width: min(100%, 390px);
+  padding: 8px;
+  border: 1px solid rgba(245, 244, 242, 0.2);
+  background: #050506;
+}
+
+.liveFrame {
+  display: block;
+  width: 100%;
+  height: clamp(540px, 72vw, 720px);
+  border: 0;
+  background: var(--pl-paper);
+}
+
+@media (min-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+  }
+}
+
+@media (max-width: 520px) {
+  .stage {
+    padding: 16px;
+  }
+
+  .stageHead {
+    font-size: 8px;
+  }
+
+  .liveFrame {
+    height: 620px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stageCta {
+    transition: none;
+  }
+}

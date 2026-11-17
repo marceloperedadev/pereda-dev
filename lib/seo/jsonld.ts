@@ -237,7 +237,7 @@ export function projectGraph(
           "@id": personId(),
         },
 
-        ...(project.cover.src
+        ...(project.cover.src && !project.cover.illustrative
           ? {
               image: absoluteUrl(
                 project.cover.src,

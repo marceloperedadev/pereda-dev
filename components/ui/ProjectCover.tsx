@@ -33,8 +33,11 @@ export function ProjectCover({
   priority = false,
 }: Props) {
   const { cover, name } = project;
+  const carriesIllustrativeLabel = /mockup ilustrativo|captura fiel/i.test(
+    cover.alt,
+  );
 
-  if (cover.src) {
+  if (cover.src && !cover.illustrative && !carriesIllustrativeLabel) {
     return (
       <div className={styles.cover}>
         <Image

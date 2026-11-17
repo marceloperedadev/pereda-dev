@@ -1,0 +1,249 @@
+.mark {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(82px, 6.8vw, 108px);
+  overflow: hidden;
+  border: 1px solid rgba(11, 10, 14, 0.2);
+  background: #e8e2d5;
+}
+
+/* Sites institucionais — janela editorial */
+.sites {
+  background:
+    linear-gradient(
+      rgba(106, 44, 158, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, #e9e2f2, #d8cbe7);
+  background-size: 100% 11px, 100% 100%;
+}
+
+.browser {
+  position: absolute;
+  top: 15%;
+  right: 8%;
+  bottom: -8%;
+  left: 11%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #6a2c9e;
+  background: #f1ede3;
+  box-shadow: 5px 5px 0 rgba(63, 22, 95, 0.22);
+}
+
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 17px;
+  flex: 0 0 auto;
+  padding: 0 6px;
+  background: #6a2c9e;
+}
+
+.browserBar i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c9ff3f;
+  opacity: 0.86;
+}
+
+.browserBody {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 9px;
+}
+
+.siteLead {
+  width: 62%;
+  height: 8px;
+  background: #0b0a0e;
+}
+
+.siteColumns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.siteColumns i {
+  height: 24px;
+  border-top: 2px solid #6a2c9e;
+  background: #ddd4c5;
+}
+
+/* Lojas virtuais — grade de produtos e carrinho */
+.lojas {
+  background:
+    radial-gradient(
+      70% 90% at 100% 0%,
+      rgba(201, 255, 63, 0.16),
+      transparent 60%
+    ),
+    #0b0a0e;
+  border-color: rgba(201, 255, 63, 0.32);
+}
+
+.shop {
+  position: absolute;
+  inset: 14% 10% -6%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(242, 238, 229, 0.3);
+  background: #15111d;
+}
+
+.shopTop {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 16px;
+  flex: 0 0 auto;
+  padding: 0 7px;
+  border-bottom: 1px solid rgba(242, 238, 229, 0.16);
+}
+
+.shopTop i {
+  width: 22%;
+  height: 3px;
+  background: rgba(242, 238, 229, 0.34);
+}
+
+.shopTop i:last-child {
+  width: 12%;
+  margin-left: auto;
+  background: #c9ff3f;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  padding: 7px;
+}
+
+.products i {
+  position: relative;
+  display: block;
+  height: 24px;
+  border: 1px solid rgba(242, 238, 229, 0.16);
+  background: rgba(242, 238, 229, 0.055);
+}
+
+.products i::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: color-mix(in srgb, #c9ff3f 66%, #15111d);
+}
+
+.cart {
+  position: absolute;
+  right: 10%;
+  bottom: 16%;
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 27px;
+  border-radius: 999px;
+  background: #c9ff3f;
+  color: #0b0a0e;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.28);
+}
+
+.cart b {
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Experiências de links — pilha de acessos */
+.links {
+  background:
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      rgba(11, 10, 14, 0.12) 50%,
+      transparent calc(50% + 0.5px)
+    ),
+    #f1ede3;
+}
+
+.links::after {
+  content: "BIO";
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  color: rgba(106, 44, 158, 0.38);
+  font-family: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.avatar {
+  position: absolute;
+  top: 27%;
+  left: 18%;
+  width: 21px;
+  height: 21px;
+  border: 1px solid #0b0a0e;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 36%, #c9ff3f 0 28%, transparent 30%),
+    linear-gradient(135deg, #6a2c9e, #3f165f);
+  box-shadow: 0 0 0 2px #f1ede3;
+}
+
+.link {
+  position: absolute;
+  right: 17%;
+  left: 33%;
+  display: block;
+  height: 15px;
+  border: 1px solid rgba(11, 10, 14, 0.34);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.link::after {
+  content: "↗";
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  color: #6a2c9e;
+  font-size: 7px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.link:nth-child(2) {
+  top: 24%;
+}
+
+.link:nth-child(3) {
+  top: 48%;
+}
+
+.link:nth-child(4) {
+  top: 72%;
+}
+
+.linkAccent {
+  border-color: #0b0a0e;
+  background: #c9ff3f;
+}
+
+.linkAccent::after {
+  color: #0b0a0e;
+}

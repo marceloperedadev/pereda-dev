@@ -1,0 +1,63 @@
+.pageMotion { isolation: isolate; }
+
+.pageMotion > section:first-of-type {
+  animation: commercial-entry 640ms cubic-bezier(.2, .7, .2, 1) both;
+}
+
+@supports (animation-timeline: view()) {
+  .pageMotion > section:not(:first-of-type) {
+    animation: commercial-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 26%;
+  }
+}
+
+.pageMotion :global(a),
+.pageMotion :global(button),
+.pageMotion :global(summary) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pageMotion :global(a:active),
+.pageMotion :global(button:active),
+.pageMotion :global(summary:active) {
+  transform: scale(.985);
+  opacity: .9;
+}
+
+.pageMotion :global(details > summary) {
+  transition: color 160ms ease;
+}
+
+.pageMotion :global(details > summary:hover),
+.pageMotion :global(details[open] > summary) {
+  color: var(--purple);
+}
+
+@keyframes commercial-entry {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes commercial-reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pageMotion > section,
+  .pageMotion :global(a),
+  .pageMotion :global(button),
+  .pageMotion :global(summary) {
+    animation: none;
+    transition: none;
+  }
+
+  .pageMotion :global(a:active),
+  .pageMotion :global(button:active),
+  .pageMotion :global(summary:active) {
+    transform: none;
+    opacity: 1;
+  }
+}

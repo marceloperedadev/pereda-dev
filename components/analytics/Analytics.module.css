@@ -39,6 +39,16 @@
     rgba(0, 0, 0, 0.18);
 }
 
+.bannerProfile {
+  top: auto;
+  bottom: 12px;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 24px));
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 12px 14px;
+}
+
 /* =========================================================
    TEXTO
    ========================================================= */
@@ -181,6 +191,18 @@
     width: min(380px, calc(100vw - 24px));
 
     padding: 16px;
+  }
+
+  .bannerProfile {
+    top: auto;
+    bottom: 10px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    transform: none;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px;
   }
 
   .text {

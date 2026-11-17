@@ -28,7 +28,7 @@
   padding: 12px 14px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: var(--radius-control);
   color: var(--text);
   font: inherit;
   line-height: 1.4;
@@ -78,7 +78,7 @@
   min-height: 52px;
   padding: 0 1.5rem;
   border: 0;
-  border-radius: 2px;
+  border-radius: var(--radius-control);
   background: var(--signal);
   color: var(--bg);
   font: inherit;

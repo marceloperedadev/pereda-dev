@@ -107,12 +107,12 @@ export const viewport: Viewport = {
   themeColor: [
     {
       media: "(prefers-color-scheme: dark)",
-      color: "#08070A",
+      color: "#09090B",
     },
 
     {
       media: "(prefers-color-scheme: light)",
-      color: "#F3F1EB",
+      color: "#F4F3F0",
     },
   ],
 
@@ -131,14 +131,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <noscript>
-          <style>{`
-            [data-reveal] {
-              opacity: 1 !important;
-              transform: none !important;
-            }
-          `}</style>
-        </noscript>
+
 
         <a href="#conteudo" className="skipLink">
           Ir para o conteúdo

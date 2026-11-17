@@ -47,6 +47,9 @@ import styles from "./Analytics.module.css";
 export function Analytics() {
   const pathname = usePathname();
   const isAdminPath = pathname.startsWith("/admin") || pathname.startsWith("/setup/admin");
+  const isPeredaProfile =
+    pathname.startsWith("/links/pereda-dev") ||
+    pathname.startsWith("/pereda-links");
 
   const [
     consent,
@@ -149,7 +152,7 @@ export function Analytics() {
 
       {consent === "unset" ? (
         <section
-          className={styles.banner}
+          className={`${styles.banner}${isPeredaProfile ? ` ${styles.bannerProfile}` : ""}`}
           aria-label="Preferências de privacidade"
         >
           <div

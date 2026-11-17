@@ -100,7 +100,12 @@ export function Header() {
     };
   }, [open]);
 
-  if (pathname.startsWith("/admin") || pathname.startsWith("/setup/admin")) {
+  if (
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/setup/admin") ||
+    pathname === "/pereda-links" ||
+    pathname.startsWith("/links/pereda-dev")
+  ) {
     return null;
   }
 
