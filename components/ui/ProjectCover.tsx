@@ -6,10 +6,25 @@ import type { Project } from "@/lib/data/projects";
 import styles from "./ProjectCover.module.css";
 
 type Props = Readonly<{
-  project: Pick<Project, "name" | "cover">;
+  project: Pick<Project, "slug" | "name" | "cover">;
   sizes?: string;
   priority?: boolean;
 }>;
+
+const liveCaptures: Record<string, { src: string; alt: string }> = {
+  "mimo-pet": {
+    src: "/projects/mimo-pet-live.webp",
+    alt: "Captura real da página inicial publicada da Mimo Pet.",
+  },
+  "pereda-engenharia": {
+    src: "/projects/pereda-engenharia-live.webp",
+    alt: "Captura real da página inicial publicada da Pereda Engenharia.",
+  },
+  "ortoclinica-taubate": {
+    src: "/projects/ortoclinica-taubate-live.webp",
+    alt: "Captura real da página inicial publicada da Ortoclínica Taubaté.",
+  },
+};
 
 type ArtStyle = CSSProperties & {
   "--bg-c": string;
@@ -32,23 +47,28 @@ export function ProjectCover({
   sizes = "(min-width: 1024px) 60vw, 90vw",
   priority = false,
 }: Props) {
-  const { cover, name } = project;
-  const carriesIllustrativeLabel = /mockup ilustrativo|captura fiel/i.test(
-    cover.alt,
+  const { cover, name, slug } = project;
+  const liveCapture = liveCaptures[slug];
+  const imageSrc = liveCapture?.src ?? cover.src;
+  const imageAlt = liveCapture?.alt ?? cover.alt;
+  const isIllustrative = !liveCapture && (
+    cover.illustrative || /mockup ilustrativo/i.test(cover.alt)
   );
 
-  if (cover.src && !cover.illustrative && !carriesIllustrativeLabel) {
+  if (imageSrc) {
     return (
       <div className={styles.cover}>
         <Image
-          src={cover.src}
-          alt={cover.alt}
+          src={imageSrc}
+          alt={imageAlt}
           fill
           sizes={sizes}
           priority={priority}
           className={styles.img}
         />
-        <span className={styles.caption}>Mockup ilustrativo</span>
+        {isIllustrative ? (
+          <span className={styles.caption}>Mockup ilustrativo</span>
+        ) : null}
       </div>
     );
   }
